@@ -45,9 +45,7 @@ Filter topics using URL parameters to link to specific lectures, subject groups,
 ?id=algebra&category=Science  ← Combine ID + category filters
 ```
 
-- Multiple values can be comma-separated  
-- Matching is **inclusive** (uses OR logic)  
-- **Parent must be included** to show its subtopics
+- Multiple values can be comma-separated
 
 ---
 
