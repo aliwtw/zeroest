@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — Page Not Found</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body>
+    <main>
+        <h1>404 — Page Not Found</h1>
+        <p>The page you are seeking does not exist.<br />
+            It may have been moved, renamed, or removed.</p>
+
+        <p>
+            Redirecting to root in <span id="countdown">5</span> seconds...
+        </p>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let seconds = 5;
+            const countdown = document.getElementById('countdown');
+            const interval = setInterval(() => {
+                seconds--;
+                countdown.textContent = seconds;
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    window.location.href = "/";
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>
