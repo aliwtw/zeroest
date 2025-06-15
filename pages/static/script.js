@@ -116,14 +116,18 @@ function generateIEEEReference() {
     const title = document.title || "Untitled";
     const url = window.location.href;
 
+    // Format date to IEEE style: [Accessed: Jun. 15, 2025]
     const dateObj = new Date();
-    const day = dateObj.getDate();
-    const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
+    const day = dateObj.getDate().toString().padStart(2, '0');
+    const monthNames = [
+        "Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
+        "Jul.", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
+    ];
     const month = monthNames[dateObj.getMonth()];
     const year = dateObj.getFullYear();
-    const dateString = `${day} ${month} ${year}`;
+    const accessDate = `[Accessed: ${month} ${day}, ${year}]`;
 
-    return `${author}, "${title}", ${websiteName}. [Online]. Available: ${url}. Accessed on: ${dateString}.`;
+    return `${author}, "${title}", ${websiteName}. [Online]. Available: ${url}. ${accessDate}.`;
 }
 
 // Set footer
