@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="/pages/static/mathJax/config.js"></script>
+    <script src="/pages/static/mathJax/es5/tex-chtml-full.js"></script>
+
+
+    <style>
+        body {
+            padding: 2rem;
+            line-height: 1.8;
+        }
+
+        h2 {
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>MathJax Full TeX Feature Test</h1>
+
+    <h2>Inline Math</h2>
+    This is an inline formula: $E = mc^2$ and another: \( a^2 + b^2 = c^2 \)
+
+    <h2>Display Math</h2>
+    $$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$
+    \[ \nabla \cdot \vec{E} = \frac{\rho}{\varepsilon_0} \]
+
+    <h2>AMSmath</h2>
+    \[
+    \begin{aligned}
+    a & = b + c \\
+    x & = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+    \end{aligned}
+    \]
+
+    <h2>New Commands</h2>
+    \[
+    \newcommand{\R}{\mathbb{R}} \quad \text{Let } f: \R \to \R
+    \]
+
+    <h2>Bold Symbols</h2>
+    \[
+    \boldsymbol{A} \cdot \boldsymbol{B} = \sum_i A_i B_i
+    \]
+
+    <h2>Unicode Math</h2>
+    \[
+    \text{Unicode example: } π ≈ 3.14159, ∑_{n=1}^{∞} \frac{1}{n^2} = \frac{π^2}{6}
+    \]
+
+    <h2>mhchem (Chemical Equations)</h2>
+    \[
+    \ce{2H2 + O2 -> 2H2O}
+    \]
+
+    <h2>Physics Package</h2>
+    \[
+    \dv{t} \left( \frac{1}{2}mv^2 \right) = F\cdot v
+    \]
+
+    <h2>Escaped Delimiters</h2>
+    \$ Not math \$ and escaped: \\( not math \\)
+
+    <p style="font-size: 1.2rem; line-height: 2; max-width: 800px;">
+        Here’s a showcase of <span style="color: blue;">inline math</span>:
+        $E = mc^2$,
+        $f(x) = \sin(x) + \frac{1}{x}$,
+        $a^2 + b^2 = c^2$,
+        and even $\ce{CO2 + H2O -> H2CO3}$ via <span style="color: teal;">mhchem</span>!
+
+        We can also test escaping: \$100 is not math.
+
+        Now for some <span style="color: darkgreen;">display math</span>:
+
+        <span style="display: block; background: #f0f0f0; padding: 1rem; margin: 1rem 0; border-left: 4px solid #999;">
+            $$\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}$$
+        </span>
+
+        <span
+            style="display: block; background: #eef5ff; padding: 1rem; margin: 1rem 0; border-left: 4px solid #4a90e2;">
+            $$\dv \dv{t} \left( \frac{1}{2}mv^2 \right) = F \cdot v$$
+        </span>
+
+        <span
+            style="color:blue; display: block; background: #fff6e6; padding: 1rem; margin: 1rem 0; border-left: 4px solid #ffa500;">
+            $$\ce{H2SO4 + 2NaOH -> Na2SO4 + 2H2O}$$
+        </span>
+
+        <span style="display: block; background: #fef0f0; padding: 1rem; margin: 1rem 0; border-left: 4px solid #d33;">
+            $$\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}$$
+        </span>
+    </p>
+
+
+</body>
+
+</html>

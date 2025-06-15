@@ -1,0 +1,131 @@
+[
+  {
+    "id": "cs",
+    "title": "Computer Science",
+    "description": "Theory and practice of computers and computational systems, including their theory, design, development, and application.",
+    "categories": [
+      "STEM",
+      "Technology"
+    ],
+    "link": false,
+    "hidden": false,
+    "lastUpdated": "2025-01-01",
+    "subtopics": [
+      {
+        "id": "number-systems",
+        "title": "Number Systems",
+        "description": "Fundamental concept in computer science used to represent and process data using different base numbering systems such as binary, octal, decimal, hexadecimal, and Base64.",
+        "categories": [
+          "Computer Science",
+          "Digital Logic"
+        ],
+        "link": "cs/number-systems.html",
+        "hidden": false,
+        "lastUpdated": "2025-04-05",
+        "subtopics": [
+          {
+            "id": "binary",
+            "title": "Binary Number System",
+            "description": "Base-2 number system using only 0 and 1; foundational for digital systems and computers.",
+            "categories": [
+              "Computer Science",
+              "Digital Logic"
+            ],
+            "link": "cs/number-systems/binary.html",
+            "hidden": false,
+            "lastUpdated": "2025-04-5",
+            "subtopics": []
+          },
+          {
+            "id": "octal",
+            "title": "Octal Number System",
+            "description": "Base-8 number system using digits 0 through 7; sometimes used in digital electronics.",
+            "categories": [
+              "Computer Science"
+            ],
+            "link": "cs/number-systems/octal.html",
+            "hidden": false,
+            "lastUpdated": "2025-05-18",
+            "subtopics": []
+          },
+          {
+            "id": "decimal",
+            "title": "Decimal Number System",
+            "description": "Base-10 number system, the standard numerical system used by humans.",
+            "categories": [
+              "Mathematics",
+              "Computer Science"
+            ],
+            "link": "cs/number-systems/decimal.html",
+            "hidden": false,
+            "lastUpdated": "2020-05-01",
+            "subtopics": []
+          },
+          {
+            "id": "hexadecimal",
+            "title": "Hexadecimal Number System",
+            "description": "Base-16 system using digits 0–9 and letters A–F; commonly used in memory addressing and color codes in computing.",
+            "categories": [
+              "Computer Science",
+              "Digital Logic"
+            ],
+            "link": "cs/number-systems/hexadecimal.html",
+            "hidden": false,
+            "lastUpdated": "2025-05-01",
+            "subtopics": []
+          },
+          {
+            "id": "base64",
+            "title": "Base64 Encoding",
+            "description": "A binary-to-text encoding scheme that represents binary data using 64 ASCII characters; widely used in data transmission, such as email and image embedding in HTML.",
+            "categories": [
+              "Computer Science",
+              "Data Encoding"
+            ],
+            "link": "cs/number-systems/base64.html",
+            "hidden": false,
+            "lastUpdated": "2025-05-02",
+            "subtopics": []
+          }
+        ]
+      },
+      {
+        "id": "programming",
+        "title": "Programming",
+        "description": "Writing and understanding code.",
+        "categories": [
+          "Computer Science"
+        ],
+        "link": "programming.html",
+        "hidden": true,
+        "lastUpdated": "2025-05-03",
+        "subtopics": [
+          {
+            "id": "python",
+            "title": "Python",
+            "description": "Beginner-friendly programming language.",
+            "categories": [
+              "Programming"
+            ],
+            "link": "python.html",
+            "hidden": false,
+            "lastUpdated": "2025-05-09",
+            "subtopics": []
+          },
+          {
+            "id": "cpp",
+            "title": "C++",
+            "description": "High-performance language for systems and games.",
+            "categories": [
+              "Programming"
+            ],
+            "link": "cpp.html",
+            "hidden": false,
+            "lastUpdated": "2025-05-07",
+            "subtopics": []
+          }
+        ]
+      }
+    ]
+  }
+]

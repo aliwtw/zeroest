@@ -1,0 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace, monospace;
+  background: #fff;
+  color: #000;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  overflow-wrap: anywhere;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+#footer {
+  border-top: solid grey 1px;
+  position: relative;
+  margin-left: auto;
+  width: 90%;
+}
+
+/* Sidebar (Table of content) */
+aside {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  max-width: 250px;
+  padding: 1rem;
+  border-right: 1px solid #ddd;
+  overflow: hidden;
+  overflow-y: auto;
+  resize: horizontal;
+  line-height: 1.5;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+aside h2 {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+nav a {
+  margin: 0.5rem 0;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Main content */
+main {
+  flex: 1;
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+main li {
+  margin-left: 12px;
+}
+
+section {
+  margin-bottom: 2rem;
+  transition: background-color 0.5s ease;
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 0.5rem;
+  scroll-margin-top: 80px;
+  /* For offset when anchor by id# */
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+hr {
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+.grey-highlight {
+  background-color: #ddd;
+}
+
+.vertical-text {
+  position: sticky;
+  top: 0;
+  right: 0;
+  writing-mode: vertical-lr;
+  margin: 0;
+  display: inline;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+  font-size: 2rem;
+  font-weight: lighter;
+}
+
+.vertical-text:visited {
+  text-decoration: none;
+}
+
+.vertical-text:active {
+  text-decoration: none;
+}
+
+#toc ol {
+  counter-reset: item;
+  list-style: none;
+}
+
+
+#toc li {
+  counter-increment: item;
+}
+
+#toc li::before {
+  content: counters(item, ".") " "; /* For nested li counters() */
+}
+
+/* Smaller font size and indentation for deeper levels */
+#toc ol ol {
+  margin-left: 1.5rem;
+}
+
+.noNumbering li::before {
+  content: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  aside {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    resize: vertical;
+  }
+
+  .vertical-text {
+    writing-mode: unset;
+  }
+
+  .video {
+    width: auto;
+    height: 100%;
+    border-radius: 15px;
+  }
+
+}

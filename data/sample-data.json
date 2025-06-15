@@ -1,0 +1,148 @@
+[
+  {
+    "id": "math",
+    "title": "Mathematics",
+    "description": "Study of numbers, quantities, and shapes.",
+    "categories": ["STEM", "Science"],
+    "link": "math.html",
+    "hidden": false,
+    "lastUpdated": "2023-10-15",
+    "subtopics": [
+      {
+        "id": "algebra",
+        "title": "Algebra",
+        "description": "Manipulation of symbols and equations.",
+        "categories": ["Mathematics"],
+        "link": "algebra.html",
+        "hidden": false,
+        "lastUpdated": "2024-05-21",
+        "subtopics": [
+          {
+            "id": "linear-equations",
+            "title": "Linear Equations",
+            "description": "Equations of the first degree.",
+            "categories": ["Algebra"],
+            "link": "linear-equations.html",
+            "hidden": false,
+            "lastUpdated": "2024-01-10",
+            "subtopics": []
+          },
+          {
+            "id": "quadratics",
+            "title": "Quadratic Equations",
+            "description": "Equations with degree 2.",
+            "categories": ["Algebra"],
+            "link": "quadratics.html",
+            "hidden": false,
+            "lastUpdated": "2022-12-04",
+            "subtopics": []
+          }
+        ]
+      },
+      {
+        "id": "geometry",
+        "title": "Geometry",
+        "description": "Study of shapes, sizes, and properties of space.",
+        "categories": ["Mathematics"],
+        "link": "geometry.html",
+        "hidden": true,
+        "lastUpdated": "2025-02-27",
+        "subtopics": []
+      }
+    ]
+  },
+  {
+    "id": "cs",
+    "title": "Computer Science",
+    "description": "Theory and practice of computer systems and software.",
+    "categories": ["STEM", "Technology"],
+    "link": "cs.html",
+    "hidden": false,
+    "lastUpdated": "2023-07-30",
+    "subtopics": [
+      {
+        "id": "programming",
+        "title": "Programming",
+        "description": "Writing and understanding code.",
+        "categories": ["Computer Science"],
+        "link": "programming.html",
+        "hidden": false,
+        "lastUpdated": "2024-08-14",
+        "subtopics": [
+          {
+            "id": "python",
+            "title": "Python",
+            "description": "Beginner-friendly programming language.",
+            "categories": ["Programming"],
+            "link": "python.html",
+            "hidden": false,
+            "lastUpdated": "2025-04-19",
+            "subtopics": []
+          },
+          {
+            "id": "cpp",
+            "title": "C++",
+            "description": "High-performance language for systems and games.",
+            "categories": ["Programming"],
+            "link": "cpp.html",
+            "hidden": false,
+            "lastUpdated": "2022-11-02",
+            "subtopics": []
+          }
+        ]
+      },
+      {
+        "id": "databases",
+        "title": "Databases",
+        "description": "Storage and management of data.",
+        "categories": ["Computer Science"],
+        "link": "databases.html",
+        "hidden": false,
+        "lastUpdated": "2023-03-26",
+        "subtopics": [
+          {
+            "id": "sql",
+            "title": "SQL",
+            "description": "Language for managing relational databases.",
+            "categories": ["Databases"],
+            "link": "sql.html",
+            "hidden": false,
+            "lastUpdated": "2024-06-03",
+            "subtopics": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "physics",
+    "title": "Physics",
+    "description": "Study of matter, motion, and energy.",
+    "categories": ["STEM", "Science"],
+    "link": "physics.html",
+    "hidden": false,
+    "lastUpdated": "2023-09-18",
+    "subtopics": [
+      {
+        "id": "mechanics",
+        "title": "Mechanics",
+        "description": "Motion and forces.",
+        "categories": ["Physics"],
+        "link": "mechanics.html",
+        "hidden": false,
+        "lastUpdated": "2025-01-11",
+        "subtopics": []
+      },
+      {
+        "id": "optics",
+        "title": "Optics",
+        "description": "Study of light.",
+        "categories": ["Physics"],
+        "link": "optics.html",
+        "hidden": true,
+        "lastUpdated": "2024-02-06",
+        "subtopics": []
+      }
+    ]
+  }
+]
