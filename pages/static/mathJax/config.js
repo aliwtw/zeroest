@@ -12,5 +12,3 @@ window.MathJax = {
     load: []
   }
 };
-
-await import('./es5/tex-chtml-full');
