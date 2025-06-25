@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sample Template</title>
+  <link rel="stylesheet" href="/pages/static/style.css">
+  <script src="/pages/static/script.js" defer></script>
+
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="3" />
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+        </svg>
+  '>
+</head>
+
+<body>
+  <div>
+    <a class="vertical-text" href="/">Zeroest</a>
+  </div>
+
+  <!-- Sidebar Table of Contents -->
+  <aside>
+    <h2>Contents</h2>
+    <nav id="toc" data-numbered="true">
+      <!-- JS will populate this -->
+    </nav>
+    <hr>
+
+    <!-- Add video here -->
+    <!-- ?rel=0 To stop youtube from showing related videos -->
+    <div>
+      <h2>Video Adaptation</h2>
+      <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
+        style="border: none;" allowfullscreen>
+      </iframe>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main>
+    <section id="intro">
+      <h1 class="heading">Welcome to Your Page Template</h1>
+      <p>This is a sample layout to demonstrate how to write and organize content using clean sections and headings. You
+        can copy this structure for any documentation, blog, or learning content.</p>
+    </section>
+
+    <section id="structure">
+      <h2 class="heading">Page Structure</h2>
+      <p>Use section blocks to divide your content logically. Each section should have a title to be picked up by the
+        Table of Contents.</p>
+
+      <section id="structure-headings">
+        <h3 class="heading">Headings</h3>
+        <p>Each section begins with a clear heading. This helps with readability and navigation.</p>
+      </section>
+
+      <section id="structure-ids">
+        <h3 class="heading">Section IDs</h3>
+        <p>Make sure each section has a unique ID so it can be linked from the table of contents.</p>
+      </section>
+
+      <section id="structure-nesting">
+        <h3 class="heading">Nested Sections</h3>
+        <p>Subtopics or related points can be placed inside nested sections to keep content organized.</p>
+      </section>
+    </section>
+
+    <section id="content-guidelines">
+      <h2 class="heading">Writing Content</h2>
+      <p>Place your content in paragraphs, lists, or any other format that fits your purpose. Keep it readable and
+        well-structured.</p>
+
+      <section id="content-paragraphs">
+        <h3 class="heading">Paragraphs </h3>
+        <p>Use short paragraphs and break ideas into separate lines for clarity.</p>
+        <section id="numbered-toc">
+          <h3 class="heading">Numberd TOC</h3>
+          <p>You can have numbered nested table of content by setting data-numbered="true" inside the nav tag. </p>
+        </section>
+      </section>
+
+      <section id="content-lists">
+        <h3 class="heading">Lists</h3>
+        <ul>
+          <li>Use bullet points for quick facts</li>
+          <li>Use numbered lists for steps</li>
+        </ul>
+      </section>
+    </section>
+
+    <section id="images">
+      <h2 class="heading">Using Images</h2>
+      <p>You can insert images to illustrate concepts, examples, or ideas visually. Keep them relevant and properly
+        labeled.</p>
+
+      <section id="images-basic">
+        <h3 class="heading">Basic Image Use</h3>
+        <p>To include an image, use the image element with the <code>src</code> pointing to your image file and
+          <code>alt</code> describing it.
+        </p>
+        <p><strong>Example:</strong> Place an image inside your section like this:</p>
+        <p><em>(This example won't render an actual image unless the file exists)</em></p>
+        <img src="example.jpg" alt="Descriptive text for the image" style="max-width: 100%; height: auto;">
+      </section>
+
+      <section id="images-tips">
+        <h3 class="heading">Image Tips</h3>
+        <ul>
+          <li>Use <strong>clear filenames</strong> like <em>diagram1.png</em></li>
+          <li>Keep image sizes optimized for fast loading</li>
+          <li>Use <strong>alt text</strong> for accessibility and SEO</li>
+          <li>Group related images under their topic sections</li>
+        </ul>
+      </section>
+    </section>
+
+    <section id="styling">
+      <h2 class="heading">Styling Notes</h2>
+      <p>Keep your layout simple. Use clear fonts and a minimal color scheme to maintain focus on content.</p>
+    </section>
+
+    <section id="navigation">
+      <h2 class="heading">Navigation</h2>
+      <p>Navigation links can help users quickly jump to sections. These links can be generated automatically from
+        headings.</p>
+
+      <section id="navigation-sidebar">
+        <h3 class="heading">Sidebar</h3>
+        <p>The sidebar will display all top-level and nested sections so readers can find content easily.</p>
+      </section>
+
+      <section id="navigation-links">
+        <h3 class="heading">Anchor Links</h3>
+        <p>Each heading becomes a clickable anchor that scrolls to that section.</p>
+      </section>
+    </section>
+
+    <section id="extra-tips">
+      <h2 class="heading">Extra Tips</h2>
+      <ul>
+        <li>Organize content in a logical flow</li>
+        <li>Break long topics into smaller sections</li>
+        <li>Use subheadings for clarity</li>
+        <li>Keep titles consistent in style and length</li>
+      </ul>
+    </section>
+
+    <section id="conclusion">
+      <h2 class="heading">Conclusion</h2>
+      <p>This page gives you a clean, semantic layout to start writing well-organized content. Edit, expand, and adapt
+        as needed.</p>
+    </section>
+
+    <p id="footer">
+      <b>Usage & License</b> <br>
+      This site is freely provided for the pursuit of knowledge. <br>
+      All content must be properly cited in any private, public, or scholarly use. <br>
+      No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s content. <br>
+      <br>
+    </p>
+  </main>
+</body>
+
+</html>

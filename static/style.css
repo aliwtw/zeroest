@@ -1,0 +1,105 @@
+body {
+  margin: 0;
+  padding: 2rem;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: 'Courier New', Courier, monospace, monospace;
+}
+
+main {
+  max-width: 800px;
+  margin: auto;
+}
+
+#header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+}
+
+#info {
+  text-align: right;
+}
+
+#info div {
+  margin-left: 25px;
+  text-align: left;
+  width: auto;
+  height: 0;
+  overflow: scroll;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+
+  transition: height 0.5s ease;
+}
+
+#about,
+#contact {
+  display: inline;
+  cursor: pointer;
+}
+
+z-0 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: lighter;
+  cursor: none;
+}
+
+.tree-node {
+  margin: 1rem;
+  padding-left: 0.5rem;
+  border: 1px dashed #000000;
+  border-right: none;
+  border-top: none;
+}
+
+.topic-title {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.topic-description {
+  font-style: italic;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+}
+
+.topic-link {
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  color: grey;
+  text-decoration: underline;
+}
+
+#search-container {
+  margin: 1rem;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+}
+
+#tree-or-list {
+  cursor: pointer;
+  color: black;
+  background-color: white;
+  text-align: center;
+  margin-left: 5px;
+  padding: 1px;
+  border: solid grey 1px;
+}
+
+#search-box {
+  width: 40%;
+  max-width: 400px;
+  padding: 0.25rem;
+  font-family: monospace;
+  font-size: 1rem;
+  border: 1px dashed #ccc;
+}
+
+.hover-dark:hover {
+  color: white !important;
+  background-color: #000000 !important;
+}

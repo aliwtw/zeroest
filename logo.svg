@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="2" />
+  <circle cx="50" cy="50" r="43" fill="white" stroke="black" stroke-width="3"/>
+
+  /* 
+    use height of equilatrol as a chalange... possible PKI
+  */
+  <polygon points="50,13.4 86.6,75 13.4,75" fill="white" stroke="black" stroke-width="3"/>
+  <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+</svg>
