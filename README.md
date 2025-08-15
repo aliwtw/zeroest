@@ -23,7 +23,7 @@ The app renders content from a local JSON file and supports powerful filtering v
 
 - ✅ **Minimalist Design** - Distraction-free, perfect for printing.
 - 📁 **Nested Topic Tree** - Organize deeply nested sections.
-- 🔍 **Dynamic Filtering** - Filter content via URL parameters.
+- 🔍 **Filtering** - Filter content via URL parameters.
 - 🧠 **Hidden Topics** - Keep draft items hidden from view.
 - 📎 **Static Pages with Table of Contents** - Blog-style layout (sample at [sample-page.html](pages/sample-page.html)).
 - 📐 **LaTeX** - Put LaTeX-style math expressions directly in your HTML.
@@ -64,7 +64,7 @@ You can pass filters as a Base64-encoded string instead of plain query parameter
 ```
 
 **Base64 URL:**
-```kotlin
+```
 /?data=ewogICJpZHMiOiBbIm1hdGgiXSwKICAiY2F0ZWdvcmllcyI6IFsiU1RFTSIsIm51bWJlcnMiXQp9
 ```
 
@@ -72,18 +72,18 @@ You can pass filters as a Base64-encoded string instead of plain query parameter
 
 ## 📂 Use Cases
 
-| Use Case            | How to Use                           |
-|---------------------|--------------------------------------|
-| Single Lecture Set  | `?id=lecture1`                       |
-| Subject Category    | `?category=Physics`                  |
-| Encoded Links       | Use `/?data=...`                     |
-| Drafts/Hidden Work  | Use `"hidden": true` to hide in view |
+| Use Case            | How to Use                                          |
+|---------------------|-----------------------------------------------------|
+| Single Lecture Set  | `?id=lecture1`                                      |
+| Subject Category    | `?category=Physics`                                 |
+| Encoded Links       | Use `/?data=...`                                    |
+| Drafts/Hidden Work  | Use `"hidden": true` in `data.json` to hide in view |
 
 ---
 
 ## 🚀 How to Start
 
-1. Place your `data.json` in the root or public folder.  
+1. Place your `data.json` in the data folder.  
 2. Customize the JSON structure to match your topics.  
 3. Add and link static pages.  
 4. Pass filters via the URL to view focused content.

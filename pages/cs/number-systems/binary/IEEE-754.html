@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binary Shift Operations for Arithmetic</title>
+    <link rel="stylesheet" href="/pages/static/style.css">
+
+    <script src="/pages/static/mathJax/config.js"></script>
+    <script src="/pages/static/mathJax/es5/tex-chtml-full.js"></script>
+    <script src="/pages/static/script.js" defer></script>
+
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="3" />
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+        </svg>
+    '>
+
+</head>
+
+<body>
+    <div>
+        <a class="vertical-text" href="/">Zeroest</a>
+    </div>
+
+    <!-- Sidebar Table of Contents -->
+    <aside>
+        <h2>Contents</h2>
+        <nav id="toc" data-numbered="true">
+            <!-- JS will populate this -->
+        </nav>
+        <hr>
+
+        <!-- Add video here -->
+        <!-- ?rel=0 To stop youtube from showing related videos -->
+        <div>
+            <h2>Video Adaptation</h2>
+            <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
+                style="border: none;" allowfullscreen>
+            </iframe>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+
+
+        <section id="binary-floating-point">
+            <h2 class="heading">Binary Floating-Point Representation</h2>
+
+            <p>
+                Floating-point arithmetic enables computers to represent real numbers—including fractions and extremely
+                large or small values—using a form of scientific notation. In binary systems, floating-point numbers
+                adhere to the IEEE 754 standard, which ensures consistent and accurate numerical computation across
+                platforms.
+            </p>
+
+            <p>
+                A normalized binary floating-point number is generally expressed as:
+            </p>
+
+            <p style="text-align: center;">
+                $$
+                N = (-1)^s \times 1.m \times 2^e
+                $$
+                <i>Note: Here <strong style="font-size: large;">.</strong> represents the binary point.</i>
+            </p>
+
+            <p>where:</p>
+
+            <p>
+                s = Sign bit (0 for positive, 1 for negative) <br>
+                m = Mantissa (fractional part after the binary point) <br>
+                e = Exponent (after applying bias) <br><br>
+                <i>The bias allows both positive and negative exponents to be represented as unsigned numbers,
+                    simplifying storage and computation.</i>
+            </p>
+
+            <section id="ieee-format">
+                <h2 class="heading">IEEE 754 Floating-Point Format</h2>
+
+                <section id="ieee-definition">
+                    <h3 class="heading">Overview</h3>
+                    <p>
+                        The IEEE 754 standard precisely defines how floating-point numbers are represented and
+                        manipulated in binary. It specifies the encoding of real numbers using sign, exponent, and
+                        mantissa fields, along with rules for rounding, special values (such as infinity and NaN), and
+                        numerical stability.
+                    </p>
+                </section>
+
+                <section id="ieee-components">
+                    <h3 class="heading">Structure of IEEE 754 (Single Precision)</h3>
+                    <p>The 32-bit floating-point format consists of three main components:</p>
+
+                    <p>
+                        Sign Bit (1 bit) → 0 for positive, 1 for negative<br>
+                        Exponent (8 bits) → Stored with a bias of 127<br>
+                        Mantissa (23 bits) → Binary digits following the binary point (with an implicit leading 1)
+                    </p>
+
+                    <p>
+                        The floating-point value is reconstructed by the formula:
+                    </p>
+
+                    <p style="text-align: center;">
+                        $$
+                        (-1)^s \times 1.m \times 2^{E - 127}
+                        $$
+                    </p>
+                </section>
+
+                <section id="ieee-conversion-steps">
+                    <h3 class="heading">Conversion Steps (Decimal → IEEE 754)</h3>
+                    <p>To convert a decimal number into IEEE 754 format, follow these steps:</p>
+
+                    <p>
+                        1. Convert the decimal number to binary, separating integer and fractional parts.<br>
+                        2. Normalize the binary number to the form \(1.xxxxx \times 2^e\).<br>
+                        3. Determine the sign bit: 0 if positive, 1 if negative.<br>
+                        4. Calculate the biased exponent: \(e + 127\).<br>
+                        5. Extract the mantissa bits (the 23 bits following the binary point).<br>
+                        6. Assemble the 32-bit IEEE 754 value as: [sign][exponent][mantissa].
+                    </p>
+                </section>
+
+                <section id="ieee-example">
+                    <h3 class="heading">Example: Converting 5.75 to IEEE 754 (32-bit)</h3>
+
+                    <p><b>Step 1: Convert to binary</b></p>
+                    <p style="text-align: center;">
+                        $$
+                        5 = 101_2,\quad 0.75 = 0.11_2 \Rightarrow 5.75 = 101.11_2
+                        $$
+                    </p>
+
+                    <p><b>Step 2: Normalize</b></p>
+                    <p style="text-align: center;">
+                        $$
+                        101.11_2 = 1.0111_2 \times 2^2
+                        $$
+                    </p>
+
+                    <p><b>Step 3: Determine sign bit</b></p>
+                    <p style="text-align: center;">
+                        $$
+                        \text{Positive} \Rightarrow s = 0
+                        $$
+                    </p>
+
+                    <p><b>Step 4: Compute biased exponent</b></p>
+                    <p style="text-align: center;">
+                        $$
+                        e = 2,\quad E = 2 + 127 = 129,\quad E_{bin} = 10000001_2
+                        $$
+                    </p>
+
+                    <p><b>Step 5: Extract mantissa</b></p>
+                    <p style="text-align: center;">
+                        $$
+                        \text{Mantissa (omit leading 1)} = 01110000000000000000000
+                        $$
+                    </p>
+
+                    <p><b>Step 6: Assemble IEEE 754 representation</b></p>
+
+                    <p>
+                        Sign = 0<br>
+                        Exponent = 10000001<br>
+                        Mantissa = 01110000000000000000000
+                    </p>
+
+                    <p><b>Final IEEE 754 (binary):</b></p>
+                    <p><code>0 10000001 01110000000000000000000</code></p>
+
+                    <p><b>In hexadecimal:</b></p>
+                    <p style="text-align: center;">
+                        $$
+                        \text{IEEE 754 (hex)} = \texttt{0x40B80000}
+                        $$
+                    </p>
+                </section>
+
+                <section id="ieee-special-values">
+                    <h3 class="heading">Special Values</h3>
+
+                    <p>
+                        Exponent = 255 (all 1s), Mantissa = 0 → ±Infinity<br>
+                        Exponent = 255, Mantissa ≠ 0 → NaN (Not a Number)<br>
+                        Exponent = 0, Mantissa ≠ 0 → Denormalized number<br>
+                        Exponent = 0, Mantissa = 0 → Zero (positive or negative)
+                    </p>
+                </section>
+
+                <section id="ieee-summary">
+                    <h3 class="heading">Summary</h3>
+                    <p>
+                        - IEEE 754 employs normalized scientific binary notation with an implicit leading 1.<br>
+                        - Exponent biasing enables unsigned storage of both positive and negative exponents.<br>
+                        - The 23-bit mantissa limits precision, affecting exactness for some decimal values.<br>
+                        - Special encodings are used to represent infinity, NaN, and subnormal numbers.
+                    </p>
+                </section>
+            </section>
+        </section>
+
+
+
+        <p id="footer">
+            <b>Usage & License</b> <br>
+            This site is freely provided for the pursuit of knowledge. <br>
+            All content must be properly cited in any private, public, or scholarly use. <br>
+            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s
+            content.
+            <br>
+            <br>
+        </p>
+    </main>
+</body>
+
+</html>

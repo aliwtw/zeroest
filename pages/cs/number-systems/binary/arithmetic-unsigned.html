@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binary Arithmetic Operations (Unsigned)</title>
+    <link rel="stylesheet" href="/pages/static/style.css">
+
+    <script src="/pages/static/mathJax/config.js"></script>
+    <script src="/pages/static/mathJax/es5/tex-chtml-full.js"></script>
+    <script src="/pages/static/script.js" defer></script>
+
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="3" />
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+        </svg>
+    '>
+
+</head>
+
+<body>
+    <div>
+        <a class="vertical-text" href="/">Zeroest</a>
+    </div>
+
+    <!-- Sidebar Table of Contents -->
+    <aside>
+        <h2>Contents</h2>
+        <nav id="toc" data-numbered="true">
+            <!-- JS will populate this -->
+        </nav>
+        <hr>
+
+        <!-- Add video here -->
+        <!-- ?rel=0 To stop youtube from showing related videos -->
+        <div>
+            <h2>Video Adaptation</h2>
+            <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
+                style="border: none;" allowfullscreen>
+            </iframe>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+
+
+        <section id="binary-arithmetic">
+            <h2 class="heading">Binary Arithmetic Operations (Unsigned)</h2>
+
+            <p>
+                Binary arithmetic forms the foundation of digital logic and computing. It uses only two digits, <b>0</b>
+                and <b>1</b>,
+                to perform standard mathematical operations such as addition, subtraction, multiplication, and division.
+                These operations follow specific rules tailored to base-2 logic and are fundamental in the design of
+                processors,
+                digital circuits, and low-level software.
+            </p>
+
+            <section id="binary-addition">
+                <h3 class="heading">Binary Addition</h3>
+
+                <p>
+                    Binary addition follows four simple rules:
+                </p>
+                <code>0 + 0 = 0</code> <br>
+                <code>0 + 1 = 1</code> <br>
+                <code>1 + 0 = 1</code> <br>
+                <code>1 + 1 = 10</code> (which is 0 with a carry of 1)
+
+                <p><b>Example:</b> Add binary numbers <code>1011</code> and <code>1101</code></p>
+                <pre style="font-family: monospace;">
+   1011
++  1101
+-------
+  11000
+        </pre>
+                <p>So, <code>1011 + 1101 = 11000</code> in binary (11 + 13 = 24 in decimal).</p>
+            </section>
+
+            <section id="binary-subtraction">
+                <h3 class="heading">Binary Subtraction</h3>
+
+                <p>Binary subtraction is based on these rules:</p>
+
+                <code>0 − 0 = 0</code>
+                <code>1 − 0 = 1</code>
+                <code>1 − 1 = 0</code>
+                <code>0 − 1 = 1</code> with a borrow of 1 from the next higher bit
+
+
+                <p><b>Example:</b> Subtract binary <code>1011</code> from <code>1101</code></p>
+                <pre style="font-family: monospace;">
+   1101
+−  1011
+--------
+    0010
+        </pre>
+                <p>So, <code>1101 − 1011 = 0010</code> in binary (13 − 11 = 2 in decimal).</p>
+            </section>
+
+            <section id="binary-multiplication">
+                <h3 class="heading">Binary Multiplication</h3>
+
+                <p>Binary multiplication works similarly to decimal long multiplication.</p>
+                <p><b>Example:</b> Multiply binary <code>101</code> by <code>11</code></p>
+                <pre style="font-family: monospace;">
+      101
+×      11
+---------
+     101      (101 × 1)
++   1010      (101 × 1, shifted left)
+---------
+   1111
+        </pre>
+                <p>So, <code>101 × 11 = 1111</code> in binary (5 × 3 = 15 in decimal).</p>
+            </section>
+
+            <section id="binary-division">
+                <h3 class="heading">Binary Division</h3>
+
+                <p>
+                    Binary division follows the long division method similar to decimal. The quotient and remainder are
+                    both in binary.
+                </p>
+
+                <p><b>Example:</b> Divide binary <code>1100</code> by <code>10</code></p>
+                <pre style="font-family: monospace;">
+
+    110                
+    _______
+10 | 1100
+     10
+    ----
+      10
+      10
+    ----
+       00
+        </pre>
+                <p>
+                    So, <code>1100 ÷ 10 = 110</code> with a remainder of <code>0</code> (12 ÷ 2 = 6 in decimal).
+                </p>
+            </section>
+
+            <section id="summary-binary-arithmetic">
+                <h3 class="heading">Summary</h3>
+
+                <b>Binary addition</b> uses bitwise addition with carry handling. <br>
+                <b>Binary subtraction</b> uses borrowing like in decimal subtraction. <br>
+                <b>Binary multiplication</b> is based on shifting and adding partial products. <br>
+                <b>Binary division</b> follows long division logic with binary values.
+            </section>
+        </section>
+
+        <p id="footer">
+            <b>Usage & License</b> <br>
+            This site is freely provided for the pursuit of knowledge. <br>
+            All content must be properly cited in any private, public, or scholarly use. <br>
+            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s content.
+            <br>
+            <br>
+        </p>
+    </main>
+</body>
+
+</html>

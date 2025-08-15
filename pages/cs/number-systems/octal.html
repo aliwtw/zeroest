@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Octal Fundamentals</title>
+    <link rel="stylesheet" href="/pages/static/style.css">
+
+    <script src="/pages/static/mathJax/config.js"></script>
+    <script src="/pages/static/mathJax/es5/tex-chtml-full.js"></script>
+    <script src="/pages/static/script.js" defer></script>
+
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="3" />
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+        </svg>
+    '>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <a class="vertical-text" href="/">Zeroest</a>
+    </div>
+
+    <!-- Sidebar Table of Contents -->
+    <aside>
+        <h2>Contents</h2>
+        <nav id="toc" data-numbered="true">
+            <!-- JS will populate this -->
+        </nav>
+        <hr>
+
+        <!-- Add video here -->
+        <!-- ?rel=0 To stop youtube from showing related videos -->
+        <div>
+            <h2>Video Adaptation</h2>
+            <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
+                style="border: none;" allowfullscreen>
+            </iframe>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+
+        <section id="octal-fundamentals">
+            <h1 class="heading">Octal Fundamentals</h1>
+
+            <section id="what-is-octal">
+                <h2 class="heading">What is the Octal Number System?</h2>
+
+                <section id="definition">
+                    <h3 class="heading">Definition</h3>
+                    <p>
+                        The <b>octal number system</b>, or <i>base-8</i>, is a positional numeral system using eight
+                        distinct digits:
+                        <span style="white-space: nowrap;"><b>{0, 1, 2, 3, 4, 5, 6, 7}</b></span>.
+                        Each digit represents a value from zero to seven, with positions corresponding to powers of
+                        eight.
+                    </p>
+
+                    <p>
+                        A general octal number \(O\) with digits \(o_i\) can be expressed as:
+                        $$
+                        O = \sum_{i=0}^k o_i \times 8^i, \quad o_i \in \{0,1,2,3,4,5,6,7\}
+                        $$
+                        where \(o_0\) is the least significant digit (LSD) and \(o_k\) the most significant digit (MSD).
+                    </p>
+                </section>
+
+                <section id="positional-notion">
+                    <h3 class="heading">Positional Notation and Conversion</h3>
+                    <p>
+                        Since the base of octal is 8, which equals \(2^3\), each octal digit corresponds exactly to a
+                        group of three binary bits (a triad). This property makes conversion between binary and octal
+                        straightforward and efficient. <a class="link" href="#compact-binary-representation">Octal $\to$
+                            Binary</a>
+                    </p>
+                </section>
+            </section>
+
+            <section id="octal-applications">
+                <h2 class="heading">Applications of Octal</h2>
+
+                <section id="historical-usage">
+                    <h3 class="heading">Historical and Legacy Computing</h3>
+                    <p>
+                        Octal was historically important in early computing, especially in systems with word lengths
+                        divisible by 3 or 6 bits.
+                        Some early computers and programming languages used octal notation for memory addressing and
+                        instruction encoding.
+                    </p>
+                </section>
+
+                <section id="unix-permissions">
+                    <h3 class="heading">Unix File Permissions</h3>
+                    <p>
+                        In modern computing, octal notation remains widely used to represent Unix and Linux file
+                        permissions. For example,
+                        the permission <code>rwxr-xr--</code> → $\text{111 101 100}_2$ corresponds to the octal number
+                        $754_8$, which
+                        simplifies
+                        permission setting and readability.
+                    </p>
+                </section>
+
+                <section id="compact-binary-representation">
+                    <h3 class="heading">Compact Binary Representation</h3>
+                    <p>
+                        Similar to hexadecimal, octal offers a compact representation of binary data. Each octal digit
+                        corresponds to exactly
+                        three bits, which helps reduce the length of binary strings for easier reading and writing in
+                        some contexts.
+                    </p>
+                    <p>Consider the 12-bit binary number:</p>
+                    <p>
+                        Example: <b>101 110 011 101 <sub>2</sub></b>
+                    </p>
+                    <p>We can partition it into 3-bit groups from left to right (since 1 octal digit = 3 binary bits):
+                    </p>
+                    <ul>
+                        <li><b>101</b> (binary) = <b>5</b> (octal)</li>
+                        <li><b>110</b> (binary) = <b>6</b> (octal)</li>
+                        <li><b>011</b> (binary) = <b>3</b> (octal)</li>
+                        <li><b>101</b> (binary) = <b>5</b> (octal)</li>
+                    </ul>
+                    <p>Therefore, the binary number <code>101110011101</code> is represented as
+                        <code>5635 <sub>8</sub></code> in
+                        octal notation.</p>
+
+                </section>
+            </section>
+
+            <section id="octal-conversion-table">
+                <h2 class="heading">Octal to Decimal and Binary Conversion Table</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Octal Digit</th>
+                            <th>Decimal Equivalent</th>
+                            <th>Binary Equivalent (3 bits)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>000</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>001</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>010</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>3</td>
+                            <td>011</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>4</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>5</td>
+                            <td>101</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>6</td>
+                            <td>110</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>7</td>
+                            <td>111</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="octal-example">
+                <h2 class="heading">Example: Binary to Octal Conversion</h2>
+                <p>Convert the binary number <code>101101110</code> to its octal representation:</p>
+                <p style="text-align: center; font-family: monospace;">
+                    101 101 110
+                </p>
+                <p>Group the binary digits into triads (from right to left):</p>
+                <ul>
+                    <li><b>101</b> (binary) = <b>5</b> (octal)</li>
+                    <li><b>101</b> (binary) = <b>5</b> (octal)</li>
+                    <li><b>110</b> (binary) = <b>6</b> (octal)</li>
+                </ul>
+                <p>
+                    Therefore, the binary number <code>101101110</code> corresponds to <code>556_8</code> in octal
+                    notation.
+                </p>
+            </section>
+
+            <section id="octal-decimal-example">
+                <h2 class="heading">Example: Octal to Decimal Conversion</h2>
+                <p> Convert the octal number $1786_8$ to its decimal (base-10) representation: </p>
+                <p style="text-align: left;">
+                    $$
+                    \begin{aligned}
+                    1786_8 &= (1 \times 8^3) + (7 \times 8^2) + (8 \times 8^1) + (6 \times 8^0) \\
+                    &= 512 + 448 + 8 + 6 \\
+                    &= 974_{10}
+                    \end{aligned}
+                    $$
+                </p>
+            </section>
+
+            <section id="conclusion">
+                <h3 class="heading">Conclusion</h3>
+                <p>
+                    The octal number system provides a concise and efficient way to represent binary data, particularly
+                    useful when working
+                    with 3-bit groupings. While less prevalent than hexadecimal in modern computing, octal remains
+                    relevant in specific contexts such as Unix file permissions and legacy systems.
+                </p>
+            </section>
+        </section>
+
+
+        <p id="footer">
+            <b>Usage & License</b> <br>
+            This site is freely provided for the pursuit of knowledge. <br>
+            All content must be properly cited in any private, public, or scholarly use. <br>
+            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s content.
+            <br>
+            <br>
+        </p>
+    </main>
+</body>
+
+</html>

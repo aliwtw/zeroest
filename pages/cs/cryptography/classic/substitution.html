@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classic Substitution Cipher</title>
+    <link rel="stylesheet" href="/pages/static/style.css">
+
+    <script src="/pages/static/mathJax/config.js"></script>
+    <script src="/pages/static/mathJax/es5/tex-chtml-full.js"></script>
+
+    <script src="/pages/static/script.js" defer></script>
+
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="3" />
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+        </svg>
+  '>
+</head>
+
+<body>
+    <div>
+        <a class="vertical-text" href="/">Zeroest</a>
+    </div>
+
+    <!-- Sidebar Table of Contents -->
+    <aside>
+        <h2>Contents</h2>
+        <nav id="toc" data-numbered="true">
+            <!-- JS will populate this -->
+        </nav>
+        <hr>
+
+        <!-- Add video here -->
+        <!-- ?rel=0 To stop youtube from showing related videos -->
+        <div hidden>
+            <h2>Video Adaptation</h2>
+            <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
+                style="border: none;" allowfullscreen>
+            </iframe>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+
+        <section id="substitution-cipher">
+            <h1 class="heading">Classic Substitution Cipher</h1>
+
+            <section id="substitution-intro">
+                <h2 class="heading">Introduction</h2>
+                <p>
+                    A <b>substitution cipher</b> encrypts messages by replacing each symbol of the plaintext with
+                    another
+                    symbol from the same alphabet, according to a fixed system defined by a secret key. Unlike
+                    transposition
+                    ciphers, which rearrange symbols, substitution ciphers transform the symbols themselves.
+                </p>
+                <p>
+                    Mathematically, a substitution cipher defines a bijection
+                    $$
+                    f_K : A \to A
+                    $$
+                    where \(A\) is the alphabet and \(K\) is the key. The ciphertext sequence is:
+                    $$
+                    C_i = f_K(P_i), \quad 1 \le i \le n
+                    $$
+                    and decryption uses the inverse mapping:
+                    $$
+                    P_i = f_K^{-1}(C_i)
+                    $$
+                </p>
+            </section>
+
+            <section id="substitution-characteristics">
+                <h2 class="heading">Characteristics</h2>
+                <ul>
+                    <li>Each plaintext symbol is replaced independently.</li>
+                    <li>Letter frequency is preserved in monoalphabetic substitution, making simple ciphers
+                        vulnerable to analysis.</li>
+                    <li>Key space depends on the size of the alphabet; for a monoalphabetic cipher over 26 letters,
+                        there are 26! possible keys.</li>
+                    <li>Polyalphabetic substitution ciphers, such as Vigenère, improve security by varying the
+                        substitution across positions.</li>
+                </ul>
+            </section>
+
+            <section id="algorithm-types">
+                <h2 class="heading">Common Algorithm Types</h2>
+
+                <section id="monoalphabetic">
+                    <h3 class="heading">1. Monoalphabetic Substitution</h3>
+                    <p>
+                        Each plaintext letter maps to a fixed ciphertext letter throughout the message.<br>Example:
+                    <pre>
+Plaintext:  HELLO
+Key mapping: H->Q, E->X, L->Z, O->M
+Ciphertext: QXZZM
+                </pre>
+                    </p>
+
+                    <section id="caesar-cipher">
+                        <h5 class="heading">Caesar Cipher</h5>
+                        <p>
+                            A simple monoalphabetic substitution with a fixed shift. Each letter is replaced by another
+                            a fixed number of positions down the alphabet. Mathematically, this can be written as:
+                            <br><br>
+                            <em>Encryption:</em> $C_i = (P_i + k) \bmod 26$ <br>
+                            <em>Decryption:</em> $P_i = (C_i - k) \bmod 26$
+                        <pre>
+Plaintext: HELLO
+Shift: 3 (ROT3)
+Ciphertext: KHOOR
+    </pre>
+                        </p>
+
+                        <section id="rot-cipher">
+                            <h5 class="heading">2. ROT-n Ciphers</h5>
+                            <p>
+                                ROT-n ciphers are generalizations of the Caesar cipher where each letter is shifted by
+                                <i>n</i> positions. ROT13 is the most common example.
+                            <pre>
+Plaintext: HELLO
+ROT13: URYYB
+                </pre>
+                            </p>
+                        </section>
+
+                        <style>
+                            input {
+                                width: 400px;
+                                font-size: 1.2em;
+                                padding: 5px;
+                            }
+                        </style>
+
+                        <input type="text" id="shiftInput" placeholder="Type letters and use ↑ ↓ to shift">
+
+                        <script>
+                            const input = document.getElementById('shiftInput');
+
+                            function shiftChar(c, direction) {
+                                if (c >= 'A' && c <= 'Z') {
+                                    // Uppercase letter
+                                    const code = c.charCodeAt(0) - 65; // 0-25
+                                    const shifted = (code + direction + 26) % 26; // wrap around
+                                    return String.fromCharCode(shifted + 65);
+                                } else if (c >= 'a' && c <= 'z') {
+                                    // Lowercase letter
+                                    const code = c.charCodeAt(0) - 97; // 0-25
+                                    const shifted = (code + direction + 26) % 26; // wrap around
+                                    return String.fromCharCode(shifted + 97);
+                                } else {
+                                    // Leave spaces and other characters unchanged
+                                    return c;
+                                }
+                            }
+
+                            input.addEventListener('keydown', (e) => {
+                                if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                                    e.preventDefault(); // Prevent cursor movement
+
+                                    const direction = e.key === 'ArrowUp' ? 1 : -1;
+
+                                    input.value = input.value
+                                        .split('')
+                                        .map(c => shiftChar(c, direction))
+                                        .join('');
+                                }
+                            });
+                        </script>
+
+                    </section>
+                    <section id="atbash-cipher">
+                        <h5 class="heading">3. Atbash Cipher</h5>
+                        <p>
+                            Atbash is a classical monoalphabetic substitution that maps each letter to its reverse in
+                            the alphabet (A↔Z, B↔Y, ...).
+                            While technically monoalphabetic, it is often included as a foundational cipher for
+                            understanding substitutions.
+                        <pre>
+Plaintext: HELLO
+Ciphertext: SVOOL
+                </pre>
+                        </p>
+                    </section>
+                </section>
+
+                <section id="polyalphabetic">
+                    <h3 class="heading">2. Polyalphabetic Substitution</h3>
+                    <p>
+                        Each position may use a different substitution alphabet, often controlled by a repeating key
+                        sequence.
+                        The Vigenère cipher is the classic example:
+                        $$
+                        C_i = (P_i + K_{i \bmod m}) \bmod n
+                        $$
+                        where \(n\) is the alphabet size and \(m\) is the key length.
+                    </p>
+                    <section id="vigenere-cipher">
+                        <h3 class="heading">Vigenère Cipher</h3>
+                        <p>
+                            The Vigenère cipher is a classical polyalphabetic substitution cipher. Each letter of the
+                            plaintext is shifted according to a repeating keyword.
+                            The cipher uses a <b>Vigenère square</b> (tabula recta) for encryption and decryption.
+                        </p>
+
+                        <p><b>Example:</b><br>
+                            Plaintext: ATTACKATDAWN<br>
+                            Key: LEMON<br>
+                            Ciphertext: LXFOPVEFRNHR
+                        </p>
+
+                        <style>
+                            /* Vigenère table styling */
+                            .vigenere-table {
+                                border-collapse: collapse;
+                                font-family: monospace;
+                            }
+
+                            .vigenere-table th,
+                            .vigenere-table td {
+                                border: 1px solid black;
+                                width: 25px;
+                                height: 25px;
+                                text-align: center;
+                                cursor: pointer;
+                            }
+
+                            .vigenere-table th {
+                                font-weight: bolder;
+                                border: 3px solid black;
+                            }
+
+                            .vigenere-table tr:hover {
+                                background-color: grey;
+                            }
+
+                            .highlight-col {
+                                background-color: grey;
+                            }
+                        </style>
+
+                        <table class="vigenere-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                        <script>
+                            // Vigenère table script
+                            const table = document.querySelector('.vigenere-table');
+                            const theadRow = table.querySelector('thead tr');
+                            const tbody = table.querySelector('tbody');
+
+                            const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+
+                            // Add column headers A-Z
+                            letters.forEach(letter => {
+                                const th = document.createElement('th');
+                                th.textContent = letter;
+                                theadRow.appendChild(th);
+                            });
+
+                            // Generate 26 rows
+                            letters.forEach((rowLetter, rowIndex) => {
+                                const tr = document.createElement('tr');
+
+                                // Row header
+                                const th = document.createElement('th');
+                                th.textContent = rowLetter;
+                                tr.appendChild(th);
+
+                                // Generate shifted letters
+                                letters.forEach((_, colIndex) => {
+                                    const td = document.createElement('td');
+                                    const shiftedIndex = (rowIndex + colIndex) % 26;
+                                    td.textContent = letters[shiftedIndex];
+
+                                    // Add data attributes
+                                    //td.setAttribute('data-row', rowIndex);
+                                    //td.setAttribute('data-col', colIndex);  // Later for auto decreption 
+
+                                    //Column hover highlight
+
+                                    td.addEventListener('mouseenter', () => {
+                                        const rows = table.querySelectorAll('tr');
+                                        rows.forEach(row => {
+                                            row.children[colIndex + 1].classList.add('highlight-col');
+                                        });
+                                    });
+
+                                    td.addEventListener('mouseleave', () => {
+                                        const highlightedCells = table.querySelectorAll('.highlight-col');
+                                        highlightedCells.forEach(highlightedCell => {
+                                            highlightedCell.classList.remove('highlight-col');
+                                        });
+                                    });
+
+
+                                    tr.appendChild(td);
+                                });
+
+                                tbody.appendChild(tr);
+                            });
+                        </script>
+
+
+                        <p>
+                            <b>How to use:</b> To encrypt a letter, find the row corresponding to the plaintext letter
+                            and the column corresponding to the key letter.
+                            The cell at that intersection is the ciphertext letter. For decryption, locate the key row,
+                            find the ciphertext letter in that row,
+                            and use the column header to recover the plaintext.
+                        </p>
+                    </section>
+
+                </section>
+
+                <section id="homophonic">
+                    <h3 class="heading">3. Homophonic Substitution</h3>
+                    <p>
+                        Each plaintext symbol can map to multiple ciphertext symbols to flatten frequency
+                        distribution.
+                        Example: the letter 'E' could be encoded as any of {3,7,12,19}, making frequency analysis
+                        more difficult.
+                    </p>
+                </section>
+
+                <section id="polysubstitution">
+                    <h3 class="heading">4. Polygraphic Substitution</h3>
+                    <p>
+                        Groups of letters (digraphs, trigraphs) are substituted as a unit, e.g., the Playfair cipher
+                        uses digraphs to increase diffusion.
+                </section>
+            </section>
+
+            <section id="mathematical-representation">
+                <h2 class="heading">Mathematical Representation</h2>
+                <p>
+                    Let \(P = (P_1, P_2, \dots, P_n) \in A^*\) be the plaintext. A substitution cipher with key
+                    \(K\) is a bijective function:
+                    $$
+                    f_K : A \to A
+                    $$
+                    Extended homomorphically to strings:
+                    $$
+                    E_K(P_1, \dots, P_n) = (f_K(P_1), \dots, f_K(P_n))
+                    $$
+                    Decryption applies the inverse function:
+                    $$
+                    D_K(C_1, \dots, C_n) = (f_K^{-1}(C_1), \dots, f_K^{-1}(C_n))
+                    $$
+                </p>
+            </section>
+
+            <section id="Analysis">
+                <h2 class="heading">analysis</h2>
+                <ul>
+                    <li><b>Frequency Analysis:</b> Monoalphabetic substitution can be broken using letter
+                        frequencies in natural languages.</li>
+                    <li><b>Kasiski Examination:</b> Detects key length in polyalphabetic ciphers such as Vigenère.
+                    </li>
+                    <li><b>Pattern Matching:</b> Repeated sequences and known words can help identify substitutions.
+                    </li>
+                    <li><b>Homophonic Analysis:</b> More complex frequency methods are required to attack ciphers
+                        with multiple ciphertext symbols per plaintext letter.</li>
+                </ul>
+            </section>
+
+            <section id="conclusion-substitution">
+                <h3 class="heading">Conclusion</h3>
+                <p>
+                    Substitution ciphers illustrate the principle of <b>confusion</b> in Shannon’s terms by hiding
+                    the
+                    relationship between plaintext and ciphertext symbols. While simple monoalphabetic schemes are
+                    weak,
+                    polyalphabetic and polygraphic variants remain historically significant and demonstrate
+                    foundational
+                    ideas in modern cryptography.
+                </p>
+            </section>
+        </section>
+
+
+
+        <p id="footer">
+            <b>Usage & License</b> <br>
+            This site is freely provided for the pursuit of knowledge. <br>
+            All content must be properly cited in any private, public, or scholarly use. <br>
+            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s
+            content.
+            <br>
+            <br>
+        </p>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decimal Fundamentals and Base Conversion Mechanics</title>
+    <link rel="stylesheet" href="/pages/static/style.css">
+
+    <script src="/pages/static/mathJax/config.js"></script>
+    <script src="/pages/static/mathJax/es5/tex-chtml-full.js"></script>
+    <script src="/pages/static/script.js" defer></script>
+
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="3" />
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+        </svg>
+    '>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <a class="vertical-text" href="/">Zeroest</a>
+    </div>
+
+    <!-- Sidebar Table of Contents -->
+    <aside>
+        <h2>Contents</h2>
+        <nav id="toc" data-numbered="true">
+            <!-- JS will populate this -->
+        </nav>
+        <hr>
+
+        <!-- Add video here -->
+        <!-- ?rel=0 To stop youtube from showing related videos -->
+        <div>
+            <h2>Video Adaptation</h2>
+            <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
+                style="border: none;" allowfullscreen>
+            </iframe>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+
+        <section id="decimal-fundamentals">
+            <h1 class="heading">Decimal Fundamentals and Base Conversion Mechanics</h1>
+
+            <section id="what-is-decimal">
+                <h2 class="heading">What is the Decimal Number System?</h2>
+
+                <section id="decimal-definition">
+                    <h3 class="heading">Definition</h3>
+                    <p>
+                        The <b>decimal number system</b>, or <i>base-10</i>, is the most commonly used positional
+                        numeral
+                        system in daily life. It employs ten unique digits:
+                        <span style="white-space: nowrap;"><b>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}</b></span>.
+                    </p>
+                    <p>
+                        Each digit's value depends on its position (or <i>place value</i>) and is weighted by powers of
+                        10. A
+                        decimal number \(D\) with digits \(d_i\) can be mathematically expressed as:
+                        $$
+                        D = \sum_{i=0}^{k} d_i \times 10^i, \quad d_i \in \{0, 1, ..., 9\}
+                        $$
+                    </p>
+                </section>
+
+                <section id="positional-value">
+                    <h3 class="heading">Positional Value and Significance</h3>
+                    <p>
+                        Positional numeral systems like decimal exploit the regularity of powers of the base. For
+                        base-10,
+                        each successive digit represents an order of magnitude increase or decrease (10×, 100×, etc.).
+                        This principle extends naturally to other bases, including binary, octal, and hexadecimal.
+                    </p>
+                </section>
+            </section>
+
+            <section id="conversion-methodology">
+                <h2 class="heading">How to Convert from Decimal to Other Bases</h2>
+
+                <section id="division-remainder-method">
+                    <h3 class="heading">Division and Remainder Method</h3>
+                    <p>
+                        Converting a decimal number to another base (e.g., binary, octal, or hexadecimal) relies on the
+                        <b>division-remainder algorithm</b>. This technique extracts the digits of the new base from
+                        least significant to most significant by successively dividing by the target base and tracking
+                        the remainders.
+                    </p>
+                    <ol>
+                        <li>Divide the number by the target base.</li>
+                        <li>Record the remainder (this becomes a digit).</li>
+                        <li>Update the number to the quotient and repeat until it reaches 0.</li>
+                        <li>The remainders, read in reverse order, give the converted number.</li>
+                    </ol>
+                </section>
+
+                <section id="example-binary">
+                    <h3 class="heading">Example: Decimal 156 to Binary (Base-2)</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Step</th>
+                                <th>Decimal Value</th>
+                                <th>÷ 2</th>
+                                <th>Quotient</th>
+                                <th>Remainder</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>156</td>
+                                <td>156 ÷ 2</td>
+                                <td>78</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>78</td>
+                                <td>78 ÷ 2</td>
+                                <td>39</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>39</td>
+                                <td>39 ÷ 2</td>
+                                <td>19</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>19</td>
+                                <td>19 ÷ 2</td>
+                                <td>9</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>9</td>
+                                <td>9 ÷ 2</td>
+                                <td>4</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>4</td>
+                                <td>4 ÷ 2</td>
+                                <td>2</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>2</td>
+                                <td>2 ÷ 2</td>
+                                <td>1</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>1</td>
+                                <td>1 ÷ 2</td>
+                                <td>0</td>
+                                <td>1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><b>Binary:</b> \(156_{10} = 10011100_2\)</p>
+                </section>
+
+                <section id="example-octal">
+                    <h3 class="heading">Example: Decimal 156 to Octal (Base-8)</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Step</th>
+                                <th>Decimal Value</th>
+                                <th>÷ 8</th>
+                                <th>Quotient</th>
+                                <th>Remainder</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>156</td>
+                                <td>156 ÷ 8</td>
+                                <td>19</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>19</td>
+                                <td>19 ÷ 8</td>
+                                <td>2</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>2 ÷ 8</td>
+                                <td>0</td>
+                                <td>2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><b>Octal:</b> \(156_{10} = 234_8\)</p>
+                </section>
+
+                <section id="example-hexadecimal">
+                    <h3 class="heading">Example: Decimal 156 to Hexadecimal (Base-16)</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Step</th>
+                                <th>Decimal Value</th>
+                                <th>÷ 16</th>
+                                <th>Quotient</th>
+                                <th>Remainder</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>156</td>
+                                <td>156 ÷ 16</td>
+                                <td>9</td>
+                                <td>12 (C)</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>9</td>
+                                <td>9 ÷ 16</td>
+                                <td>0</td>
+                                <td>9</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><b>Hexadecimal:</b> \(156_{10} = 9C_{16}\)</p>
+                </section>
+
+                <section id="example-base64">
+                    <h3 class="heading">Example: Decimal 156 to Base-64</h3>
+
+                    <p>
+                        Base-64 is a numeral system that uses 64 unique symbols. While not standardized for pure numeric
+                        bases, a common
+                        character set (as used in Base64 encoding) includes:
+                        <br>
+                        <code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/</code>
+                    </p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Step</th>
+                                <th>Divide</th>
+                                <th>Quotient</th>
+                                <th>Remainder</th>
+                                <th>Base-64 Digit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>156 ÷ 64</td>
+                                <td>2</td>
+                                <td>28</td>
+                                <td><code>c</code> (28<sup>th</sup> symbol)</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>2 ÷ 64</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td><code>C</code> (2<sup>nd</sup> symbol)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><b>Base-64:</b> \(156_{10} = Cc_{64}\)</p>
+                </section>
+
+            </section>
+
+            <section id="why-it-works">
+                <h2 class="heading">Why the Division Method Works</h2>
+
+                <section id="mathematical-basis">
+                    <h3 class="heading">Mathematical Justification</h3>
+                    <p>
+                        The process exploits the fact that every positional digit is a multiple of powers of the base.
+                        Using modulus and integer division isolates these powers:
+                        $$
+                        \text{remainder} = N \bmod b, \quad \text{quotient} = \left\lfloor \frac{N}{b} \right\rfloor
+                        $$
+                        By repeatedly applying this, we extract digits from the least significant upward.
+                    </p>
+
+                    <section id="remainder-method">
+                        <h2 class="heading">Why Reading Remainders in Reverse Produces the Correct Base Representation
+                        </h2>
+
+                        <section id="division-steps">
+                            <h3 class="heading">Division and Remainder Decomposition</h3>
+                            <p>
+                                The process of converting a decimal number to another base (such as binary, octal, or
+                                hexadecimal)
+                                involves repeatedly dividing by the base and recording the remainder. Each step of the
+                                division
+                                can be expressed algebraically:
+                            </p>
+
+                            <p>
+                                We repeatedly compute:
+                            </p>
+
+                            <div>
+                                \( N = b \cdot Q_1 + R_0 \quad \) (Remainder is the <b>Least Significant Digit</b>)<br>
+                                \( Q_1 = b \cdot Q_2 + R_1 \quad \) (Next remainder)<br>
+                                \( Q_2 = b \cdot Q_3 + R_2 \quad \) (And so on)<br>
+                                \( \vdots \)<br>
+                                \( Q_k = 0 \)
+                            </div>
+
+                            <p>
+                                Each remainder \( R_i \) represents the digit at position \( i \) in base \( b \), where
+                                \( R_0 \) is the digit
+                                for \( b^0 \), \( R_1 \) is the digit for \( b^1 \), and so forth.
+                            </p>
+                        </section>
+
+                        <section id="reconstruction">
+                            <h3 class="heading">Reconstructing the Original Number</h3>
+                            <p>
+                                Once all remainders have been collected through repeated division, we can reconstruct
+                                the original
+                                decimal number using positional notation:
+                            </p>
+
+                            <p>
+                                \( N = R_0 \cdot b^0 + R_1 \cdot b^1 + R_2 \cdot b^2 + \cdots + R_k \cdot b^k \)
+                            </p>
+
+                            <p>
+                                This expression is precisely the base-\( b \) representation of the number. The
+                                remainders \( R_0, R_1, \dots, R_k \)
+                                are the digits of the number in base \( b \), listed from least significant (rightmost)
+                                to most significant (leftmost).
+                                Since we collect them starting from the least significant digit, we must reverse the
+                                order to obtain the final number
+                                in base-\( b \).
+                            </p>
+                        </section>
+                    </section>
+
+                </section>
+
+                <section id="universality">
+                    <h3 class="heading">Universality Across Bases</h3>
+                    <p>
+                        This algorithm applies to all integer bases \(b \geq 2\), including:
+                    </p>
+                    <ul>
+                        <li><b>Binary (Base-2):</b> Each digit is a bit — 0 or 1.</li>
+                        <li><b>Octal (Base-8):</b> Groups of three binary digits map neatly to octal.</li>
+                        <li><b>Hexadecimal (Base-16):</b> Groups of four binary digits convert directly to one hex
+                            digit.</li>
+                    </ul>
+                    <p>
+                        This is why computers use binary internally but often display values in octal or hexadecimal for
+                        clarity.
+                    </p>
+                </section>
+            </section>
+
+            <section id="decimal-summary">
+                <h3 class="heading">Conclusion</h3>
+                <p>
+                    The decimal system, though intuitive for humans, can be transformed into any other base using
+                    systematic
+                    division and remainder operations. This method reveals how digits in any base represent powers of
+                    that base,
+                    and is fundamental in programming, data encoding, and digital system design.
+                </p>
+            </section>
+        </section>
+
+
+        <p id="footer">
+            <b>Usage & License</b> <br>
+            This site is freely provided for the pursuit of knowledge. <br>
+            All content must be properly cited in any private, public, or scholarly use. <br>
+            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s content.
+            <br>
+            <br>
+        </p>
+    </main>
+</body>
+
+</html>

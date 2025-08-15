@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hexadecimal Fundamentals</title>
+    <link rel="stylesheet" href="/pages/static/style.css">
+
+    <script src="/pages/static/mathJax/config.js"></script>
+    <script src="/pages/static/mathJax/es5/tex-chtml-full.js"></script>
+    <script src="/pages/static/script.js" defer></script>
+
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="3" />
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+        </svg>
+    '>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <a class="vertical-text" href="/">Zeroest</a>
+    </div>
+
+    <!-- Sidebar Table of Contents -->
+    <aside>
+        <h2>Contents</h2>
+        <nav id="toc" data-numbered="true">
+            <!-- JS will populate this -->
+        </nav>
+        <hr>
+
+        <!-- Add video here -->
+        <!-- ?rel=0 To stop youtube from showing related videos -->
+        <div>
+            <h2>Video Adaptation</h2>
+            <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
+                style="border: none;" allowfullscreen>
+            </iframe>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+
+        <section id="hexadecimal-fundamentals">
+            <h1 class="heading">Hexadecimal Fundamentals</h1>
+
+            <section id="what-is-hexadecimal">
+                <h2 class="heading">What is the Hexadecimal Number System?</h2>
+
+                <section id="definition">
+                    <h3 class="heading">Definition</h3>
+                    <p>
+                        The <b>hexadecimal number system</b>, or <i>base-16</i>, is a positional numeral system that
+                        uses
+                        sixteen unique symbols: <span style="white-space: nowrap;"><b>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A,
+                                B, C, D, E, F}</b></span>.
+                        The letters <b>A</b> through <b>F</b> represent decimal values 10 through 15, respectively.
+                    </p>
+
+                    <p>
+                        Each digit's position corresponds to a power of sixteen, so a hexadecimal number \(N\) with
+                        digits \(h_i\)
+                        can be expressed as:
+                        $$
+                        N = \sum_{i=0}^k h_i \times 16^i, \quad h_i \in \{0, \ldots, 9, A, B, C, D, E, F\}
+                        $$
+                        where \(h_0\) is the least significant digit (LSD) and \(h_k\) the most significant digit (MSD).
+                    </p>
+                </section>
+
+                <section id="hex-positional-notation">
+                    <h3 class="heading">Positional Notation and Conversion</h3>
+                    <p>
+                        Hexadecimal's base-16 structure offers a compact way to represent binary data, since each hex
+                        digit
+                        directly maps to four binary bits (a nibble). This makes converting between binary and
+                        hexadecimal
+                        straightforward and efficient.
+                    </p>
+                    <p>
+                        Hexadecimal is often preferred in computing and digital electronics for this clarity and
+                        conciseness.
+                    </p>
+                </section>
+            </section>
+
+            <section id="hex-applications">
+                <h2 class="heading">Applications of Hexadecimal</h2>
+
+                <section id="programming">
+                    <h3 class="heading">Programming and Memory Addressing</h3>
+                    <p>
+                        Hexadecimal is extensively used in programming and computer architecture to represent memory
+                        addresses,
+                        machine code, and instruction sets. It provides a readable shorthand for binary data, helping
+                        developers
+                        inspect and manipulate memory contents more efficiently.
+                    </p>
+                </section>
+
+                <section id="color-coding">
+                    <h3 class="heading">Color Representation in Digital Media</h3>
+                    <p>
+                        In web development and digital graphics, colors are frequently specified using hexadecimal
+                        notation.
+                        For example, the color white is represented as <code>#FFFFFF</code>, where each pair of hex
+                        digits
+                        corresponds to the intensity of red, green, and blue (RGB) components.
+                    </p>
+                </section>
+
+                <section id="data-encoding">
+                    <h3 class="heading">Data Encoding and Debugging</h3>
+                    <p>
+                        Hexadecimal encoding is a common way to represent binary data as text, simplifying transmission,
+                        storage, and debugging. Tools like hex editors allow inspection and modification of binary files
+                        in
+                        hex format.
+                    </p>
+                </section>
+
+                <section id="usage">
+                    <h3 class="heading">Applications of Hexadecimal in Cryptography</h3>
+                    <p>
+                        Hexadecimal notation is ubiquitous in cryptographic contexts due to its efficiency and
+                        readability:
+                    </p>
+                    <ul>
+                        <li><b>Key Representation:</b> Cryptographic keys, hashes, and digital signatures are
+                            commonly displayed in hex.</li>
+                        <li><b>Memory and Data Inspection:</b> Hex format facilitates debugging and analysis of
+                            binary data streams.</li>
+                        <li><b>Encoding Schemes:</b> Hex encoding (Base16) provides a straightforward way to
+                            represent binary data as text.</li>
+                    </ul>
+                </section>
+
+                <section id="hex-example">
+                    <h3 class="heading">Efficiency of Hexadecimal Representation</h3>
+                    <p>
+                        Each hexadecimal digit encodes exactly four bits of information:
+                        $$
+                        H(h) = \log_2(16) = 4 \text{ bits}
+                        $$
+                        This makes hex digits highly efficient for conveying information compared to decimal digits
+                        (which convey approximately 3.32 bits) while remaining human-readable.
+                    </p>
+
+                    <p>
+                        Because the base of hexadecimal is 16, which equals \(2^4\), each hex digit precisely
+                        corresponds to a group of four binary bits (a nibble). This direct correspondence preserves the
+                        positional value of each digit, enabling straightforward conversion between binary and
+                        hexadecimal without loss of information or ambiguity.
+                    </p>
+
+                    <p>For example, consider the 16-bit binary number:</p>
+                    <p style="text-align: center; font-family: monospace;">
+                        <b>1101 1010 1111 0001</b>
+                    </p>
+                    <p>We can partition it into four 4-bit groups (nibbles):</p>
+                    <ul>
+                        <li><b>1101</b> (binary) = <b>D</b> (hex)</li>
+                        <li><b>1010</b> (binary) = <b>A</b> (hex)</li>
+                        <li><b>1111</b> (binary) = <b>F</b> (hex)</li>
+                        <li><b>0001</b> (binary) = <b>1</b> (hex)</li>
+                    </ul>
+                    <p>Therefore, the binary number <code>1101101011110001</code> is represented as <code>DAF1</code> in
+                        hexadecimal notation.</p>
+                </section>
+
+            </section>
+
+            <section id="hex-conversion-table">
+                <h2 class="heading">Hexadecimal to Decimal and Binary Conversion Table</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hex Digit</th>
+                            <th>Decimal Equivalent</th>
+                            <th>Binary Equivalent (4 bits)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0000</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0001</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>0010</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>3</td>
+                            <td>0011</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>4</td>
+                            <td>0100</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>5</td>
+                            <td>0101</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>6</td>
+                            <td>0110</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>7</td>
+                            <td>0111</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>8</td>
+                            <td>1000</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>9</td>
+                            <td>1001</td>
+                        </tr>
+                        <tr>
+                            <td>A</td>
+                            <td>10</td>
+                            <td>1010</td>
+                        </tr>
+                        <tr>
+                            <td>B</td>
+                            <td>11</td>
+                            <td>1011</td>
+                        </tr>
+                        <tr>
+                            <td>C</td>
+                            <td>12</td>
+                            <td>1100</td>
+                        </tr>
+                        <tr>
+                            <td>D</td>
+                            <td>13</td>
+                            <td>1101</td>
+                        </tr>
+                        <tr>
+                            <td>E</td>
+                            <td>14</td>
+                            <td>1110</td>
+                        </tr>
+                        <tr>
+                            <td>F</td>
+                            <td>15</td>
+                            <td>1111</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="conclusion">
+                <h3 class="heading">Conclusion</h3>
+                <p>
+                    Hexadecimal balances human readability with efficient representation of binary data. Its direct
+                    correspondence with binary enhances its utility in computing.
+                    When writing hexadecimal numbers in programming and technical contexts, a prefix of <code>0x</code> is often 
+                    added (e.g., <code>0xDAF1</code>) to clearly indicate that the number is in base 16. This helps distinguish 
+                    hexadecimal values from decimal or other numbering systems, avoiding confusion in code or documentation.
+                </p>
+            </section>
+        </section>
+
+
+        <p id="footer">
+            <b>Usage & License</b> <br>
+            This site is freely provided for the pursuit of knowledge. <br>
+            All content must be properly cited in any private, public, or scholarly use. <br>
+            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s content.
+            <br>
+            <br>
+        </p>
+    </main>
+</body>
+
+</html>

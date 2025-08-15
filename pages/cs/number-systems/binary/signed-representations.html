@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signed Representations</title>
+    <link rel="stylesheet" href="/pages/static/style.css">
+
+    <script src="/pages/static/mathJax/config.js"></script>
+    <script src="/pages/static/mathJax/es5/tex-chtml-full.js"></script>
+    <script src="/pages/static/script.js" defer></script>
+
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="3" />
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+        </svg>
+    '>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <a class="vertical-text" href="/">Zeroest</a>
+    </div>
+
+    <!-- Sidebar Table of Contents -->
+    <aside>
+        <h2>Contents</h2>
+        <nav id="toc" data-numbered="true">
+            <!-- JS will populate this -->
+        </nav>
+        <hr>
+
+        <!-- Add video here -->
+        <!-- ?rel=0 To stop youtube from showing related videos -->
+        <div>
+            <h2>Video Adaptation</h2>
+            <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
+                style="border: none;" allowfullscreen>
+            </iframe>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+
+        <section id="signed-representations">
+            <h2 class="heading">Signed Binary Representations</h2>
+
+            <section id="signed-vs-unsigned">
+                <h3 class="heading">Signed vs. Unsigned Numbers</h3>
+                <p>
+                    In binary systems, numbers can be interpreted as either <strong>unsigned</strong> or
+                    <strong>signed</strong>:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Unsigned binary</strong> represents only non-negative integers.<br>
+                        An $n$-bit unsigned number ranges from $0$ to $2^n - 1$.<br>
+                        <b>Example:</b> A 4-bit unsigned number ranges from $0$ to $15$.
+                    </li>
+                    <li>
+                        <strong>Signed binary</strong> represents both positive and negative integers. Several encoding
+                        schemes exist, including:
+                        <ul>
+                            <li><strong>Sign-and-Magnitude</strong></li>
+                            <li><strong>1's Complement</strong></li>
+                            <li><strong>2's Complement</strong> (most common)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Sign-and-Magnitude -->
+            <section id="sign-and-magnitude">
+                <h3 class="heading">Sign-and-Magnitude Representation</h3>
+
+                <section id="sign-and-magnitude-definition">
+                    <h4 class="heading">Definition</h4>
+                    <p>
+                        In <strong>Sign-and-Magnitude</strong> representation, the <strong>most significant bit
+                            (MSB)</strong> denotes the sign:
+                    </p>
+                    <ul>
+                        <li><code>0</code> for positive numbers</li>
+                        <li><code>1</code> for negative numbers</li>
+                    </ul>
+                    <p>
+                        The remaining bits represent the magnitude (absolute value) of the number in binary.
+                        For an $n$-bit number:
+                    </p>
+                    <p>
+                        $$ \text{Bit Pattern: } S \, M_{n-2}M_{n-3}\dots M_0 $$
+                    <ul>
+                        <li>$S$ = sign bit</li>
+                        <li>$M_i$ = magnitude bits</li>
+                    </ul>
+                    </p>
+                </section>
+
+                <section id="sign-and-magnitude-example">
+                    <h4 class="heading">Example (4-bit)</h4>
+                    <p>Representing $+5$ and $-5$:</p>
+                    <table>
+                        <tr>
+                            <th>Decimal</th>
+                            <th>Sign Bit</th>
+                            <th>Magnitude (3 bits)</th>
+                            <th>Binary</th>
+                        </tr>
+                        <tr>
+                            <td>+5</td>
+                            <td>0</td>
+                            <td>101</td>
+                            <td><code>0101</code></td>
+                        </tr>
+                        <tr>
+                            <td>-5</td>
+                            <td>1</td>
+                            <td>101</td>
+                            <td><code>1101</code></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section id="sign-and-magnitude-zero">
+                    <h4 class="heading">Dual Zero Representation</h4>
+                    <p>
+                        Sign-and-magnitude allows <strong>two representations of zero</strong>:
+                    </p>
+                    <ul>
+                        <li>Positive zero: <code>0000</code></li>
+                        <li>Negative zero: <code>1000</code></li>
+                    </ul>
+                    <p>This redundancy complicates comparison and arithmetic operations.</p>
+                </section>
+
+                <section id="sign-and-magnitude-drawbacks">
+                    <h4 class="heading">Drawbacks</h4>
+                    <ul>
+                        <li><strong>Arithmetic Complexity:</strong> Addition/subtraction requires separate handling for
+                            signs.</li>
+                        <li><strong>Inefficient Hardware Implementation:</strong> More circuitry is needed to handle
+                            sign logic.</li>
+                        <li><strong>Redundant Zero:</strong> Two representations for zero cause logical ambiguity.</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- One's Complement -->
+            <section id="ones-complement">
+                <h3 class="heading">1's Complement Representation</h3>
+                <p>
+                    In <strong>1’s complement</strong>, negative numbers are represented by flipping all bits of their
+                    positive counterparts:
+                </p>
+                <ul>
+                    <li>MSB indicates sign (0 = positive, 1 = negative)</li>
+                    <li>To compute 1’s complement: invert all bits</li>
+                    <li>Range for $n$ bits: $-(2^{n-1} - 1)$ to $2^{n-1} - 1$</li>
+                </ul>
+                <p><strong>Example:</strong> Represent $-5$ in 4-bit 1’s complement:</p>
+                <ol>
+                    <li>5 in binary: <code>0101</code></li>
+                    <li>Flip bits: <code>1010</code></li>
+                </ol>
+                <p><strong>Result:</strong> $-5$ = <code>1010</code></p>
+                <p><strong>Limitation:</strong> Like sign-and-magnitude, 1’s complement has <em>two representations for
+                        zero</em>: <code>0000</code> and <code>1111</code>.</p>
+            </section>
+
+            <!-- Two's Complement -->
+            <section id="twos-complement">
+                <h3 class="heading">2's Complement Representation</h3>
+                <p>
+                    <strong>2’s complement</strong> solves the dual-zero issue and is the standard method used in modern
+                    digital systems.
+                </p>
+                <ul>
+                    <li>MSB indicates sign: <code>0</code> = positive, <code>1</code> = negative</li>
+                    <li>
+                        To compute 2’s complement:
+                        <ol>
+                            <li>Convert positive value to binary</li>
+                            <li>Invert all bits (1’s complement)</li>
+                            <li>Add 1</li>
+                        </ol>
+                    </li>
+                    <li>Range for $n$ bits: $-2^{n-1}$ to $2^{n-1} - 1$</li>
+                </ul>
+
+                <section id="twos-complement-example">
+                    <h4 class="heading">Example: Convert $-5$ to 4-bit 2's Complement</h4>
+                    <ol>
+                        <li>5 in binary: <code>0101</code></li>
+                        <li>Invert: <code>1010</code></li>
+                        <li>Add 1: <code>1010 + 0001 = 1011</code></li>
+                    </ol>
+                    <p><strong>Result:</strong> $-5 = 1011_2$</p>
+                </section>
+
+                <section id="decimal-to-twos-complement">
+                    <h4 class="heading">General Conversion to 2’s Complement</h4>
+                    <p><strong>For a decimal number and $n$ bits:</strong></p>
+                    <ul>
+                        <li>If positive: convert to binary and pad to $n$ bits</li>
+                        <li>If negative:
+                            <ol>
+                                <li>Take absolute value and convert to binary</li>
+                                <li>Pad to $n$ bits</li>
+                                <li>Invert all bits</li>
+                                <li>Add 1</li>
+                            </ol>
+                        </li>
+                    </ul>
+                    <p><strong>Example:</strong> Convert $-6$ to 6-bit 2’s complement:</p>
+                    <ol>
+                        <li>$6 = 000110$</li>
+                        <li>Invert: <code>111001</code></li>
+                        <li>Add 1: <code>111010</code></li>
+                    </ol>
+                    <p><strong>Result:</strong> $-6 = 111010_2$</p>
+                </section>
+
+                <section id="verify-twos-complement">
+                    <h4 class="heading">Verifying 2’s Complement Values</h4>
+                    <ul>
+                        <li>If MSB = 0: read as unsigned</li>
+                        <li>If MSB = 1:
+                            <ul>
+                                <li>Invert bits</li>
+                                <li>Add 1</li>
+                                <li>Convert to decimal and apply minus sign</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p><strong>Example:</strong> What is <code>111010</code> (6-bit)?</p>
+                    <ol>
+                        <li>MSB = 1 → negative</li>
+                        <li>Invert: <code>000101</code></li>
+                        <li>Add 1: <code>000110 = 6</code></li>
+                        <li><strong>Result:</strong> -6</li>
+                    </ol>
+                </section>
+            </section>
+
+            <!-- Overflow -->
+            <section id="overflow">
+                <h3 class="heading">Overflow in Binary Arithmetic</h3>
+                <p>
+                    <strong>Overflow</strong> occurs when the result of an arithmetic operation exceeds the range of the
+                    fixed bit width.
+                </p>
+                <ul>
+                    <li>Unsigned: overflow if result > $2^n - 1$</li>
+                    <li>Signed (2’s complement):
+                        <ul>
+                            <li>Positive + Positive → Negative</li>
+                            <li>Negative + Negative → Positive</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p><strong>Example (4-bit):</strong></p>
+                <p>
+                    $$ 0100\ (4) + 0101\ (5) = 1001\ (-7) \Rightarrow \text{Overflow} $$
+                </p>
+            </section>
+
+            <!-- Two's Complement Usages & Advantages -->
+            <section id="twos-complement-advantages">
+                <h3 class="heading">Uses and Advantages of Two’s Complement</h3>
+
+                <section id="twos-complement-usage">
+                    <h4 class="heading">Where It's Used</h4>
+                    <ul>
+                        <li><strong>CPUs & Microcontrollers:</strong> Built-in hardware for 2’s complement arithmetic
+                        </li>
+                        <li><strong>Low-level languages:</strong> <code>int</code>, <code>short</code> in C/C++ use 2’s
+                            complement</li>
+                        <li><strong>Embedded systems & DSP:</strong> Sensor data, signals</li>
+                        <li><strong>Compilers:</strong> Simplifies integer optimizations</li>
+                    </ul>
+                </section>
+
+                <section id="twos-complement-benefits">
+                    <h4 class="heading">Why It’s Preferred</h4>
+                    <ul>
+                        <li><strong>Single Zero Representation:</strong> Avoids ambiguity</li>
+                        <li><strong>Same Logic for Addition/Subtraction:</strong> No special hardware needed</li>
+                        <li><strong>Consistent Bit Patterns:</strong> Simplifies bitwise operations</li>
+                        <li><strong>Efficient Modular Arithmetic:</strong> Wraps naturally</li>
+                        <li><strong>Industry Standard:</strong> Supported across all modern architectures</li>
+                    </ul>
+                </section>
+
+                <section id="twos-complement-limitations">
+                    <h4 class="heading">Limitations</h4>
+                    <ul>
+                        <li><strong>Asymmetric Range:</strong> One extra negative number (e.g., -8 to +7 in 4-bit)</li>
+                        <li><strong>Overflow Detection:</strong> Requires careful flag handling</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section id="twos-complement-summary">
+                <h3 class="heading">Summary</h3>
+                <p>
+                    Two’s complement is the industry-standard binary representation for signed integers. Its
+                    mathematical elegance, efficient hardware support, and unified treatment of zero and negative
+                    numbers make it ideal for modern computing systems.
+                </p>
+            </section>
+        </section>
+
+
+        <p id="footer">
+            <b>Usage & License</b> <br>
+            This site is freely provided for the pursuit of knowledge. <br>
+            All content must be properly cited in any private, public, or scholarly use. <br>
+            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s
+            content.
+            <br>
+            <br>
+        </p>
+    </main>
+</body>
+
+</html>

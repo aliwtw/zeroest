@@ -129,16 +129,35 @@ function createNode(topic) {
         link.className = 'hover-dark topic-link';
         link.href = topic.link;
         link.textContent = 'Open>';
-        link.target = '_blank';
+        link.target = '_self';
         container.appendChild(link);
     }
+
+    const nodes = document.createElement('div');
+    nodes.className = "child-nodes"
 
     // Recursively add child subtopics if any
     if (topic.subtopics && topic.subtopics.length > 0) {
         topic.subtopics.forEach(sub => {
             const childNode = createNode(sub);
-            if (childNode) container.appendChild(childNode);
+            if (childNode) nodes.appendChild(childNode);
         });
+
+        container.appendChild(nodes)
+    }
+
+    // Add collapse button if it has a childnode
+    if (container.lastElementChild.className == 'child-nodes') {
+
+        const button = document.createElement('button');
+        button.type = "button"
+        button.className = "collapse-button"
+        button.textContent = "-"
+        button.title = "Collapse"
+
+        button.addEventListener('click', () => collapse(button))
+
+        container.prepend(button)
     }
 
     return container; // Return the complete tree node
@@ -146,7 +165,7 @@ function createNode(topic) {
 
 // Convert from tree to list and in decending order by date updated
 // <3 Recursion 
-function treeTolist(tree){
+function treeTolist(tree) {
 
     let newList = [];
 
@@ -220,7 +239,6 @@ init();
 // Add search functionality to filter rendered topics
 document.getElementById('search-box').addEventListener('input', e => {
     const query = e.target.value.toLowerCase();
-    const container = document.getElementById('tree-container');
 
     // Hide/show tree nodes based on search match
     const nodes = document.querySelectorAll('.tree-node');
@@ -230,11 +248,29 @@ document.getElementById('search-box').addEventListener('input', e => {
     });
 });
 
+// Add collapse toggle function
+
+function collapse(element){
+
+    if(element.textContent == "-") {
+        element.parentElement.lastElementChild.style.display = "none"
+
+        element.textContent = "+"
+        element.title = "Expand"
+    }
+    else if(element.textContent == "+") {
+        element.parentElement.lastElementChild.style.display = "block"
+
+        element.textContent = "-"
+        element.title = "Collapse"
+    }
+}
+
 // Add listeners for info of About and Contact section
 document.getElementById('about').addEventListener('click', () => {
     const info = document.querySelector('#about-info');
-    
-    if (info.style.height === '0px' || info.style.height === ''){
+
+    if (info.style.height === '0px' || info.style.height === '') {
         info.style.height = '100px';
         info.style.borderBottom = '1px grey solid';
     }
@@ -250,16 +286,16 @@ document.getElementById('contact').addEventListener('click', () => {
 })
 
 // Add listener to switch between tree and list view
-document.getElementById('tree-or-list').addEventListener('click', (e)=>{
-    if(e.target.innerHTML == 'Σ'){
+document.getElementById('tree-or-list').addEventListener('click', (e) => {
+    if (e.target.innerHTML == 'Σ') {
         e.target.innerHTML = '⊥'
-        e.target.title="Latest Additions"
+        e.target.title = "Latest Additions"
 
         document.getElementById('tree-container').style.display = 'block';
         document.getElementById('list-container').style.display = 'none';
     } else if (e.target.innerHTML == '⊥') {
         e.target.innerHTML = 'Σ'
-        e.target.title="Tree View"
+        e.target.title = "Tree View"
 
         document.getElementById('tree-container').style.display = 'none';
         document.getElementById('list-container').style.display = 'block';

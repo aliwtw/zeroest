@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classic Transposition Cipher</title>
+    <link rel="stylesheet" href="/pages/static/style.css">
+    <script src="/pages/static/mathJax/config.js"></script>
+    <script src="/pages/static/mathJax/es5/tex-chtml-full.js"></script>
+    <script src="/pages/static/script.js" defer></script>
+
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="3" />
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+        </svg>
+  '>
+</head>
+
+<body>
+    <div>
+        <a class="vertical-text" href="/">Zeroest</a>
+    </div>
+
+    <!-- Sidebar Table of Contents -->
+    <aside>
+        <h2>Contents</h2>
+        <nav id="toc" data-numbered="true">
+            <!-- JS will populate this -->
+        </nav>
+        <hr>
+
+        <!-- Add video here -->
+        <!-- ?rel=0 To stop youtube from showing related videos -->
+        <div hidden>
+            <h2>Video Adaptation</h2>
+            <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
+                style="border: none;" allowfullscreen>
+            </iframe>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <section id="transposition-cipher">
+            <h1 class="heading">Classic Transposition Cipher</h1>
+
+            <section id="transposition-intro">
+                <h2 class="heading">Introduction</h2>
+                <p>
+                    A <b>transposition cipher</b> is a method of encryption where the positions of characters in the
+                    plaintext
+                    are systematically rearranged according to a key, without altering the actual characters themselves.
+                    Unlike substitution ciphers, which change the symbols, transposition ciphers rely solely on
+                    <em>permutation</em>
+                    of symbol positions to achieve secrecy.
+                </p>
+                <p>
+                    Formally, if the plaintext has length <i>n</i>, the encryption process applies a permutation
+                    \(\pi \in S_n\) to the indices of the symbols:
+                    $$
+                    C_i = P_{\pi(i)}
+                    $$
+                    where \(S_n\) is the symmetric group of all permutations of \(n\) elements.
+                </p>
+            </section>
+
+            <section id="transposition-characteristics">
+                <h2 class="heading">Characteristics</h2>
+                <ul>
+                    <li>Preserves letter frequencies exactly as it's useful for cryptanalysts, dangerous for cipher security.
+                    </li>
+                    <li>Security depends on hiding the permutation pattern.</li>
+                    <li>Often combined with substitution ciphers in polyalphabetic designs for increased diffusion.</li>
+                </ul>
+            </section>
+
+            <section id="transposition-algorithm-types">
+                <h2 class="heading">Common Algorithm Types</h2>
+
+                <section id="rail-fence">
+                    <h3 class="heading">1. Rail Fence Cipher</h3>
+                    <p>
+                        The message is written in a zigzag pattern across multiple rows and then read off row by row.
+                        Example with depth \(d\):
+                    <pre>
+Plaintext:  WEAREDISCOVEREDRUN
+Depth: 3
+Pattern:
+W . . . E . . . C . . . V . . . D . . .
+. E . R . D . S . O . E . E . R . U . N
+. . A . . . I . . . S . . . C . . . O .
+Ciphertext: WECVDERUEERESOAISC
+                    </pre>
+                    </p>
+                </section>
+
+                <section id="columnar-transposition">
+                    <h3 class="heading">2. Columnar Transposition</h3>
+                    <p>
+                        The plaintext is written into a grid row-wise, and the columns are then read in an order
+                        determined
+                        by a keyword. If the keyword is <i>HACK</i>, its alphabetical order \((A,C,H,K) \to (2,3,1,4)\)
+                        defines the readout order.
+                    </p>
+                    <p>
+                        Example:
+                    <table>
+                        <tr>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>1</th>
+                            <th>4</th>
+                        </tr>
+                        <tr>
+                            <td>W</td>
+                            <td>E</td>
+                            <td>A</td>
+                            <td>R</td>
+                        </tr>
+                        <tr>
+                            <td>E</td>
+                            <td>D</td>
+                            <td>I</td>
+                            <td>S</td>
+                        </tr>
+                        <tr>
+                            <td>C</td>
+                            <td>O</td>
+                            <td>V</td>
+                            <td>E</td>
+                        </tr>
+                        <tr>
+                            <td>R</td>
+                            <td>E</td>
+                            <td>D</td>
+                            <td>X</td>
+                        </tr>
+                    </table>
+                    Ciphertext: EDOERECEWAIREDOVDEXSR
+                    </p>
+                </section>
+
+                <section id="double-transposition">
+                    <h3 class="heading">3. Double Columnar Transposition</h3>
+                    <p>
+                        This applies the columnar transposition process twice, often with different keys, dramatically
+                        increasing the keyspace and resistance to basic pattern analysis. The technique was used by the
+                        German military in WWII for field ciphers.
+                    </p>
+                </section>
+
+                <section id="scytale">
+                    <h3 class="heading">4. Spartan Scytale</h3>
+                    <p>
+                        One of the oldest known transposition methods: the message is written along the length of a
+                        strip
+                        wound around a cylinder of fixed diameter. Reading without the correct diameter produces a
+                        scrambled text.
+                    </p>
+                </section>
+            </section>
+
+            <section id="mathematical-representation">
+                <h2 class="heading">Mathematical Representation</h2>
+                <p>
+                    Let \(P = (P_1, P_2, \dots, P_n)\) be the plaintext sequence over alphabet \(A\).
+                    A transposition cipher is determined by a permutation \(\pi \in S_n\), and the ciphertext is:
+                    $$
+                    C = (P_{\pi(1)}, P_{\pi(2)}, \dots, P_{\pi(n)})
+                    $$
+                    Decryption is performed by applying the inverse permutation \(\pi^{-1}\):
+                    $$
+                    P = (C_{\pi^{-1}(1)}, C_{\pi^{-1}(2)}, \dots, C_{\pi^{-1}(n)})
+                    $$
+                </p>
+            </section>
+
+            <section id="cryptanalysis">
+                <h2 class="heading">Cryptanalysis</h2>
+                <ul>
+                    <li><b>Frequency Analysis:</b> Ineffective for breaking pure transposition, since symbol
+                        distribution is unchanged.</li>
+                    <li><b>Anagramming:</b> Analysts search for possible rearrangements matching natural language
+                        patterns.</li>
+                    <li><b>Known-plaintext attack:</b> If a segment of plaintext is guessed, the permutation can often
+                        be deduced.</li>
+                    <li><b>Multiple permutations:</b> Using repeated transpositions can exponentially increase
+                        complexity for the attacker.</li>
+                </ul>
+            </section>
+
+            <section id="conclusion-transposition">
+                <h3 class="heading">Conclusion</h3>
+                <p>
+                    The transposition cipher exemplifies the concept of <b>diffusion</b> in Shannon's model by spreading
+                    the influence of each plaintext letter to different ciphertext positions. While insecure on its own
+                    against modern cryptanalysis, it remains an important historical cipher and a building block for
+                    composite systems combining substitution and transposition.
+                </p>
+            </section>
+        </section>
+
+
+        <p id="footer">
+            <b>Usage & License</b> <br>
+            This site is freely provided for the pursuit of knowledge. <br>
+            All content must be properly cited in any private, public, or scholarly use. <br>
+            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s content.
+            <br>
+            <br>
+        </p>
+    </main>
+</body>
+
+</html>

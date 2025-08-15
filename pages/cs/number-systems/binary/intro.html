@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binary Fundamentals</title>
+    <link rel="stylesheet" href="/pages/static/style.css">
+
+    <script src="/pages/static/mathJax/config.js"></script>
+    <script src="/pages/static/mathJax/es5/tex-chtml-full.js"></script>
+    <script src="/pages/static/script.js" defer></script>
+
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="3" />
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+        </svg>
+    '>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <a class="vertical-text" href="/">Zeroest</a>
+    </div>
+
+    <!-- Sidebar Table of Contents -->
+    <aside>
+        <h2>Contents</h2>
+        <nav id="toc" data-numbered="true">
+            <!-- JS will populate this -->
+        </nav>
+        <hr>
+
+        <!-- Add video here -->
+        <!-- ?rel=0 To stop youtube from showing related videos -->
+        <div>
+            <h2>Video Adaptation</h2>
+            <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
+                style="border: none;" allowfullscreen>
+            </iframe>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+
+        <section id="binary-fundamentals">
+            <h1 class="heading">Binary Fundamentals</h1>
+
+            <section id="what-is-binary">
+                <h2 class="heading">What is Binary?</h2>
+
+                <section id="definition">
+                    <h3 class="heading">Definition</h3>
+                    <p>
+                        The <b>binary numeral system</b>, also referred to as <i>base-2</i>, is a positional number
+                        system that utilizes exactly <span style="white-space: nowrap;">two symbols: <b>{0,
+                                1}</b>.</span> Each digit, called a <b>bit</b>,
+                        occupies a position corresponding to a power of two, analogous to the base-10 system in which
+                        digits represent powers of ten.
+                    </p>
+
+                    <p>
+                        A <b>number base</b> (or radix) determines the number of unique digits, including
+                        zero, used to represent numbers. For example, base-2 (binary) uses only 0 and 1, while base-10
+                        (decimal) uses digits from 0 to 9.
+                        <br>
+
+                        Numbers with there bases can be can be represented as: $\text{Number}_\text{Base}$ <br>
+                        <b> Example:</b> <i>Binary:</i> $0101_2$, <i>Decimal:</i> $5_{10}$
+                    </p>
+
+                    <p>
+                        Formally, an $n$-bit binary number can be expressed as:
+                        $$
+                        b_{n-1}b_{n-2}\dots b_1b_0
+                        $$
+                        where each bit $b_i \in \{0, 1\}$ for all $i \in \{0, 1, \dots, n-1\}$. The corresponding
+                        integer value (in base-10) is given by the weighted sum:
+                        $$
+                        \sum_{i=0}^{n-1} b_i \cdot 2^i
+                        $$
+                        
+                        The bit $b_0$ is referred to as the least significant bit (LSB), as it corresponds to the lowest positional weight, $2^0$. In contrast, the bit $b_{n-1}$ is the most significant bit (MSB), associated with the highest positional weight, $2^{n-1}$.
+
+                    </p>
+                </section>
+
+
+                <section id="binary-example">
+                    <h2 class="heading">Example</h2>
+                    <p> Convert the binary number $1011_2$ to its decimal (base-10) representation: </p>
+                    <p style="text-align: left;">
+                        $$
+                        \begin{aligned}
+                        1011_2 &= (1 \times 2^3) + (0 \times 2^2) + (1 \times 2^1) + (1 \times 2^0) \\
+                        &= 8 + 0 + 2 + 1 \\
+                        &= 11_{10}
+                        \end{aligned}
+                        $$
+                    </p>
+                </section>
+            </section>
+
+            <section id="why-binary">
+                <h2 class="heading">Why Binary?</h2>
+
+                <section id="binary-logical-foundation">
+                    <h3 class="heading">Compatibility with Boolean Algebra</h3>
+                    <p>
+                        Binary logic aligns directly with Boolean algebra - the foundation of digital logic.
+                        Operations like AND, OR, NOT, and XOR are naturally defined over binary inputs, enabling the
+                        construction of efficient and scalable logic circuits.
+                    </p>
+                </section>
+
+                <section id="binary-hardware-efficiency">
+                    <h3 class="heading">Efficient Hardware Implementation</h3>
+                    <p>
+                        Binary logic gates are simple to implement using transistors. This results in compact,
+                        power-efficient circuits that scale effectively, supporting advancements in microprocessor
+                        design and integrated systems.
+                    </p>
+                </section>
+
+                <section id="binary-finite-fields">
+                    <h3 class="heading">Formal Integration with Finite Fields</h3>
+                    <p>
+                        Binary operations correspond to arithmetic in the finite field $\mathbb{F}_2$, which is
+                        fundamental in cryptographic constructions, error-correcting codes, and formal verification
+                        methods. This algebraic structure provides a rigorous framework for secure digital
+                        communication.
+                    </p>
+                </section>
+
+                <section id="binary-determinism">
+                    <h3 class="heading">Deterministic Computation Models</h3>
+                    <p>
+                        Binary supports deterministic models such as finite automata and Turing machines. These
+                        models form the theoretical foundation of computer science, demonstrating that binary is
+                        sufficient for expressing any computable function within a formal system.
+                    </p>
+                </section>
+                
+                <section id="binary-physical-alignment">
+                    <h3 class="heading">Physical Alignment with Digital Electronics</h3>
+                    <p>
+                        Binary representation is inherently suited to physical hardware, where two distinct voltage
+                        levels represent logical 0 and 1 (commonly 0V and a positive voltage like 3.3V or 5V). This
+                        direct mapping simplifies circuit design and minimizes signal ambiguity.
+                    </p>
+                </section>
+
+                <section id="binary-stability">
+                    <h3 class="heading">Noise Tolerance and Signal Stability</h3>
+                    <p>
+                        With only two discrete states, binary systems are more resistant to electrical noise and
+                        voltage fluctuations than multi-level systems. This improves reliability and reduces the
+                        chance of signal misinterpretation in digital circuits.
+                    </p>
+                </section>
+            </section>
+
+
+
+            <section id="binary-units">
+                <h3 class="heading">Basic Binary Units</h3>
+
+                <section id="bit">
+                    <h4 class="heading">Bit</h4>
+                    <p>
+                        A <strong>bit (b)</strong> (short for binary digit) is the fundamental unit of binary information.
+                        It holds one of two values: 0 or 1.
+                        In algebraic terms, a bit belongs to the finite field $\mathbb{F}_2$, which contains exactly
+                        two elements.
+                    </p>
+                </section>
+
+                <section id="byte">
+                    <h3 class="heading">Byte</h3>
+                    <p>
+                        A <strong>byte (B)</strong> consists of 8 bits and is a standard unit for data storage and memory
+                        access: <i style="color: grey;">8-dimensional vector over the binary field</i>
+                    </p>
+                    $$
+                    \text{Byte} = (b_7, b_6, b_5, b_4, b_3, b_2, b_1, b_0) \in \mathbb{F}_2^8
+                    $$
+                    <ul>
+                        <li>Represents one ASCII character.</li>
+                        <li>CPU architectures commonly operate on byte-aligned data.</li>
+                        <li>Maximum value (unsigned): $2^8 - 1 = 255$
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="nibble">
+                    <h3 class="heading">Nibble</h3>
+                    <p>
+                        A <strong>nibble</strong> is a group of 4 bits-exactly half a byte: $\text{Nibble} = (b_3, b_2,
+                        b_1, b_0) \in \mathbb{F}_2^4$
+                    </p>
+                    <ul>
+                        <li>
+                            Capable of representing a single hexadecimal digit (0–15). <br>
+                            Example: $ 0000_2 = 0_{16}, \quad 1111_2 = F_{16}$
+                        </li>
+                        <li>Used in compact digital representations such as 7-segment displays.</li>
+                    </ul>
+                </section>
+
+
+                <section id="word">
+                    <h3 class="heading">Word</h3>
+                    <p>A <strong>word</strong> is a fixed-length sequence of bits processed as a unit by a CPU. The word
+                        size defines the computational width of a system:</p>
+                    <ul>
+                        <li>Common sizes: 32-bit and 64-bit.</li>
+                        <li>Defines processor architecture and affects performance, memory addressing, and instruction
+                            sets.</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section id="conclusion">
+                <h3 class="heading">5. Conclusion</h3>
+                <p>The binary system is the foundation of digital computation, providing a simple and efficient
+                    framework suited to electronic hardware. Its connection to Boolean algebra and finite fields
+                    supports logic design and cryptography. Understanding its structure and basic units is essential
+                    for representing </p>
+            </section>
+        </section>
+
+
+        <p id="footer">
+            <b>Usage & License</b> <br>
+            This site is freely provided for the pursuit of knowledge. <br>
+            All content must be properly cited in any private, public, or scholarly use. <br>
+            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s content.
+            <br>
+            <br>
+        </p>
+    </main>
+</body>
+
+</html>

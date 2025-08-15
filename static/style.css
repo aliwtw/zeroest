@@ -23,7 +23,7 @@ main {
 }
 
 #info div {
-  margin-left: 25px;
+  margin-left: 15px;
   text-align: left;
   width: auto;
   height: 0;
@@ -53,9 +53,30 @@ z-0 {
   border: 1px dashed #000000;
   border-right: none;
   border-top: none;
+  position: relative;
+}
+
+.tree-node .tree-node {
+  margin-left: 15px;
+}
+
+
+.tree-node .collapse-button {
+  border-style: none;
+  background-color: white;
+  border: 1px solid black;
+  margin-right: 5px;
+  padding: 3px;
+  padding-bottom: 1px;
+}
+
+.tree-node .collapse-button:hover {
+  background-color: black;
+  color: white;
 }
 
 .topic-title {
+  display: inline;
   font-weight: bold;
   margin-top: 0.5rem;
 }

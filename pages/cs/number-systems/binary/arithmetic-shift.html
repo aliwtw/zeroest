@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binary Shift Operations for Arithmetic</title>
+    <link rel="stylesheet" href="/pages/static/style.css">
+
+    <script src="/pages/static/mathJax/config.js"></script>
+    <script src="/pages/static/mathJax/es5/tex-chtml-full.js"></script>
+    <script src="/pages/static/script.js" defer></script>
+
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="3" />
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+        </svg>
+    '>
+
+</head>
+
+<body>
+    <div>
+        <a class="vertical-text" href="/">Zeroest</a>
+    </div>
+
+    <!-- Sidebar Table of Contents -->
+    <aside>
+        <h2>Contents</h2>
+        <nav id="toc" data-numbered="true">
+            <!-- JS will populate this -->
+        </nav>
+        <hr>
+
+        <!-- Add video here -->
+        <!-- ?rel=0 To stop youtube from showing related videos -->
+        <div>
+            <h2>Video Adaptation</h2>
+            <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
+                style="border: none;" allowfullscreen>
+            </iframe>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+
+
+        <section id="binary-shift-operations">
+            <h2 class="heading">Binary Shift Operations for Arithmetic</h2>
+
+            <p>
+                Binary shift operations are fundamental low-level operations that efficiently perform multiplication or
+                division
+                by powers of two. These operations are integral to digital circuit design, compilers, and
+                performance-critical code.
+            </p>
+
+            <section id="left-shift">
+                <h3 class="heading">Left Shift ($\ll$): Multiplication by Powers of 2</h3>
+
+                <p>
+                    A binary left shift shifts all bits of a number to the left by a given number of positions,
+                    inserting zeros on the right.
+                    Mathematically, shifting a binary number $n$ to the left by $k$ positions is equivalent to
+                    multiplying it by $2^k$:
+                </p>
+
+                $$
+                n \ll k = n \times 2^k
+                $$
+
+                <p><b>Example:</b> Shift $n = 001101$ left by $2$ positions</p>
+
+                <pre>
+Original:   001101   (decimal 13)
+Shifted:   110100   (decimal 52)
+Math:      13 × 2^2 = 52
+        </pre>
+
+                <p>
+                    Each left shift moves bits to higher powers of two, increasing the magnitude of the value.
+                </p>
+            </section>
+
+            <section id="right-shift">
+                <h3 class="heading">Right Shift ($\gg$): Integer Division by Powers of 2</h3>
+
+                <p>
+                    A binary right shift moves all bits to the right, discarding the least significant bits and (for
+                    unsigned values) inserting zeros on the left.
+                    This operation approximates integer division by a power of two:
+                </p>
+
+                $$
+                n \gg k = \left\lfloor \frac{n}{2^k} \right\rfloor
+                $$
+
+                <p><b>Example:</b> Shift $n = 110100$ right by $2$ positions</p>
+
+                <pre>
+Original:   110100   (decimal 52)
+Shifted:    001101   (decimal 13)
+Math:       52 ÷ 2^2 = 13
+        </pre>
+
+                <p>
+                    Each right shift reduces the magnitude, similar to integer division. The floor operation ensures any
+                    fractional bits are discarded.
+                </p>
+            </section>
+
+            <section id="arithmetic-vs-logical">
+                <h3 class="heading">Arithmetic vs Logical Shifts</h3>
+
+                <p>
+                    There are two kinds of right shifts: <i>logical</i> and <i>arithmetic</i>. For unsigned values, both
+                    behave identically.
+                    For signed values, the distinction becomes important:
+                </p>
+
+                <pre>
+Logical Right Shift:
+Fills left bits with 0 regardless of sign
+
+Arithmetic Right Shift:
+Preserves sign bit (for two's complement negative numbers)
+        </pre>
+
+                <p>
+                    Example: Arithmetic right shift of $n = 11110000$ (−16 in two's complement) by 1:
+                </p>
+
+                <pre>
+Original:   11110000   (−16)
+Shifted:    11111000   (−8)
+        </pre>
+
+                <p>
+                    The sign is preserved due to replication of the MSB (most significant bit), which represents the
+                    sign in two's complement.
+                </p>
+            </section>
+
+            <section id="summary-shifts">
+                <h3 class="heading">Summary of Shift Operations</h3>
+
+                <pre>
+Left Shift (n << k):     n × 2^k     (Multiplication)
+Right Shift (n >> k):    ⌊n / 2^k⌋   (Division, floor)
+Shift type depends on:   Sign and system (logical vs arithmetic)
+Used for:                Fast math, loop optimization, hardware logic
+        </pre>
+            </section>
+        </section>
+
+
+        <p id="footer">
+            <b>Usage & License</b> <br>
+            This site is freely provided for the pursuit of knowledge. <br>
+            All content must be properly cited in any private, public, or scholarly use. <br>
+            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s content.
+            <br>
+            <br>
+        </p>
+    </main>
+</body>
+
+</html>

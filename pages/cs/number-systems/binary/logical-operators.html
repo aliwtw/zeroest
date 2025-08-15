@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binary Shift Operations for Arithmetic</title>
+    <link rel="stylesheet" href="/pages/static/style.css">
+
+    <script src="/pages/static/mathJax/config.js"></script>
+    <script src="/pages/static/mathJax/es5/tex-chtml-full.js"></script>
+    <script src="/pages/static/script.js" defer></script>
+
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="3" />
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+        </svg>
+    '>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <a class="vertical-text" href="/">Zeroest</a>
+    </div>
+
+    <!-- Sidebar Table of Contents -->
+    <aside>
+        <h2>Contents</h2>
+        <nav id="toc" data-numbered="true">
+            <!-- JS will populate this -->
+        </nav>
+        <hr>
+
+        <!-- Add video here -->
+        <!-- ?rel=0 To stop youtube from showing related videos -->
+        <div>
+            <h2>Video Adaptation</h2>
+            <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
+                style="border: none;" allowfullscreen>
+            </iframe>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+
+
+
+        <section id="logical-operators">
+            <h2 class="heading">Logical Operators in Binary</h2>
+
+            <p>
+                Logical (or bitwise) operators operate directly on binary digits (bits) and are foundational in
+                low-level programming, digital circuit design, and binary arithmetic. Each operator performs a specific
+                bit-level operation, comparing or transforming binary digits.
+            </p>
+
+            <section id="logical-operator-overview">
+                <h3 class="heading">Common Logical Operators</h3>
+                <ul>
+                    <li><strong>AND ( & )</strong> – Bit is 1 only if both bits are 1</li>
+                    <li><strong>OR ( | )</strong> – Bit is 1 if at least one bit is 1</li>
+                    <li><strong>XOR ( ^ )</strong> – Bit is 1 if the bits are different</li>
+                    <li><strong>NOT ( ~ )</strong> – Inverts each bit (1 becomes 0, and 0 becomes 1)</li>
+                </ul>
+            </section>
+
+            <section id="bitwise-and">
+                <h3 class="heading">AND ( & ) Operator</h3>
+                <p>
+                    The AND operator compares each pair of bits. If both are 1, the result is 1; otherwise, it is 0.
+                </p>
+                <p><strong>Example:</strong></p>
+                <pre>
+0101   (5)
+& 1100   (12)
+──────
+0100   (4)
+        </pre>
+                <p>Only the second bit from the right is 1 in both inputs.</p>
+            </section>
+
+            <section id="bitwise-or">
+                <h3 class="heading">OR ( | ) Operator</h3>
+                <p>
+                    The OR operator sets each bit to 1 if at least one of the corresponding bits is 1.
+                </p>
+                <p><strong>Example:</strong></p>
+                <pre>
+0101   (5)
+| 1100   (12)
+──────
+1101   (13)
+        </pre>
+                <p>All bits that are 1 in either operand become 1 in the result.</p>
+            </section>
+
+            <section id="bitwise-xor">
+                <h3 class="heading">XOR ( ^ ) Operator</h3>
+                <p>
+                    The XOR operator (exclusive OR) sets each bit to 1 only if the corresponding bits are different.
+                </p>
+                <p><strong>Example:</strong></p>
+                <pre>
+0101   (5)
+^ 1100   (12)
+──────
+1001   (9)
+        </pre>
+                <p>Bits that are different yield 1; bits that are the same yield 0.</p>
+            </section>
+
+            <section id="bitwise-not">
+                <h3 class="heading">NOT ( ~ ) Operator</h3>
+                <p>
+                    The NOT operator flips every bit: 0 becomes 1, and 1 becomes 0.
+                </p>
+                <p><strong>Example (4-bit):</strong></p>
+                <pre>
+~0101 = 1010
+        </pre>
+                <p>
+                    Note: On actual hardware, the number of bits used (e.g., 8, 16, 32) matters for the output value,
+                    especially with two's complement representation.
+                </p>
+            </section>
+
+            <section id="logical-operators-applications">
+                <h3 class="heading">Benefits and Applications of Logical Operators</h3>
+
+                <section id="logical-operators-benefits">
+                    <h4 class="heading">Why Logical Operators Matter</h4>
+                    <p>
+                        Logical (bitwise) operators play a vital role in digital computation due to their <strong>speed,
+                            simplicity, and low-level control</strong>. They allow direct manipulation of binary data
+                        and are fundamental to hardware logic, system-level programming, and performance-critical
+                        applications.
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Efficiency:</strong> Bitwise operations are typically executed in a single CPU
+                            cycle, making them significantly faster than higher-level arithmetic operations.
+                        </li>
+                        <li>
+                            <strong>Precision Control:</strong> Ideal for manipulating individual bits or flags without
+                            affecting the rest of a byte or word.
+                        </li>
+                        <li>
+                            <strong>Minimal Resource Usage:</strong> Used in embedded systems where memory and
+                            processing power are limited.
+                        </li>
+                        <li>
+                            <strong>Foundational for Digital Logic:</strong> Directly map to the logic gates (AND, OR,
+                            NOT, XOR) used in circuit design and FPGA/ASIC development.
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="logical-operators-usages">
+                    <h4 class="heading">Real-World Applications</h4>
+                    <ul>
+                        <li>
+                            <strong>Embedded Systems & IoT:</strong><br>
+                            Bitwise operations control device registers, sensor flags, and hardware interrupts
+                            efficiently in constrained environments.
+                        </li>
+                        <li>
+                            <strong>Cryptography:</strong><br>
+                            XOR is a core operation in many encryption algorithms due to its reversibility and ability
+                            to mix data.
+                        </li>
+                        <li>
+                            <strong>Graphics & Game Development:</strong><br>
+                            Bitmasks are used to manipulate color channels, collision flags, and rendering attributes
+                            efficiently.
+                        </li>
+                        <li>
+                            <strong>Operating Systems:</strong><br>
+                            Bitwise operations set, clear, and toggle permission bits, process status flags, and memory
+                            access control.
+                        </li>
+                        <li>
+                            <strong>Networking:</strong><br>
+                            IP address subnetting, flag parsing, and protocol header interpretation often require
+                            logical bitwise manipulation.
+                        </li>
+                        <li>
+                            <strong>Data Compression and Encoding:</strong><br>
+                            Bit manipulation helps pack data efficiently or decode compressed binary streams like audio,
+                            video, or images.
+                        </li>
+                        <li>
+                            <strong>Compilers and Virtual Machines:</strong><br>
+                            Logical operators help in optimizing branching logic, condition evaluation, and register
+                            allocation.
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="logical-operators-conclusion">
+                    <h4 class="heading">Conclusion</h4>
+                    <p>
+                        Logical operators are more than just tools for comparing bits—they are <strong>essential
+                            building blocks of modern computing</strong>. From the hardware level up to high-level
+                        applications, bitwise logic ensures that systems are fast, efficient, and capable of handling
+                        complex control logic with minimal overhead.
+                    </p>
+                </section>
+            </section>
+
+
+            <section id="bitwise-summary">
+                <h3 class="heading">Summary of Logical Operators</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>A</th>
+                            <th>B</th>
+                            <th>A & B</th>
+                            <th>A | B</th>
+                            <th>A ^ B</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    Logical operators are widely used in binary masking, condition checks, bit-level toggling, and
+                    cryptographic algorithms.
+                </p>
+            </section>
+        </section>
+
+
+
+        <p id="footer">
+            <b>Usage & License</b> <br>
+            This site is freely provided for the pursuit of knowledge. <br>
+            All content must be properly cited in any private, public, or scholarly use. <br>
+            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s
+            content.
+            <br>
+            <br>
+        </p>
+    </main>
+</body>
+
+</html>

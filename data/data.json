@@ -19,7 +19,7 @@
           "Computer Science",
           "Digital Logic"
         ],
-        "link": "cs/number-systems.html",
+        "link": false,
         "hidden": false,
         "lastUpdated": "2025-04-05",
         "subtopics": [
@@ -31,10 +31,89 @@
               "Computer Science",
               "Digital Logic"
             ],
-            "link": "cs/number-systems/binary.html",
+            "link": "pages/cs/number-systems/binary/intro.html",
             "hidden": false,
             "lastUpdated": "2025-04-5",
-            "subtopics": []
+            "subtopics": [
+              {
+                "id": "unsigned-binary-arithmetic",
+                "title": "Unsigned Binary Arithmetic",
+                "description": "Covers binary addition, subtraction, and overflow handling for unsigned integers.",
+                "link": "pages/cs/number-systems/binary/arithmetic-unsigned.html",
+                "hidden": false,
+                "lastUpdated": "2025-07-06",
+                "categories": [
+                  "Computer Science",
+                  "Digital Logic"
+                ],
+                "subtopics": []
+              },
+              {
+                "id": "signed-binary-representations",
+                "title": "Signed Binary Representations",
+                "description": "Explains signed number encodings including sign-and-magnitude, 1’s complement, and 2’s complement.",
+                "link": "pages/cs/number-systems/binary/signed-representations.html",
+                "hidden": false,
+                "lastUpdated": "2025-07-06",
+                "categories": [
+                  "Computer Science",
+                  "Digital Logic"
+                ],
+                "subtopics": []
+              },
+              {
+                "id": "arithmetic-and-logical-shifts",
+                "title": "Arithmetic and Logical Shifts",
+                "description": "Details the differences and use-cases for arithmetic vs. logical binary shifts.",
+                "link": "pages/cs/number-systems/binary/arithmetic-shift.html",
+                "hidden": false,
+                "lastUpdated": "2025-07-06",
+                "categories": [
+                  "Computer Science",
+                  "Digital Logic"
+                ],
+                "subtopics": []
+              },
+              {
+                "id": "binary-logical-operators",
+                "title": "Binary Logical Operators",
+                "description": "Covers logic gates and binary operations like AND, OR, XOR, and NOT with real-world examples.",
+                "link": "pages/cs/number-systems/binary/logical-operators.html",
+                "hidden": false,
+                "lastUpdated": "2025-07-06",
+                "categories": [
+                  "Computer Science",
+                  "Digital Logic"
+                ],
+                "subtopics": []
+              },
+              {
+                "id": "floating-point",
+                "title": "Floating Point",
+                "description": "Introduces floating-point representation and Negative Powers of Two",
+                "link": "pages/cs/number-systems/binary/float.html",
+                "hidden": false,
+                "lastUpdated": "2025-07-06",
+                "categories": [
+                  "Computer Science",
+                  "Digital Logic"
+                ],
+                "subtopics": []
+              },
+              {
+                "id": "IEEE-754",
+                "title": "IEEE 754 Format",
+                "description": "Breakdown of IEEE 754 format components including sign, exponent, and mantissa.",
+                "link": "pages/cs/number-systems/binary/IEEE-754.html",
+                "hidden": false,
+                "lastUpdated": "2025-07-04",
+                "categories": [
+                  "Computer Science",
+                  "Digital Logic"
+                ],
+                "subtopics": []
+              }
+            ]
           },
           {
             "id": "octal",
@@ -43,22 +122,9 @@
             "categories": [
               "Computer Science"
             ],
-            "link": "cs/number-systems/octal.html",
+            "link": "pages/cs/number-systems/octal.html",
             "hidden": false,
             "lastUpdated": "2025-05-18",
-            "subtopics": []
-          },
-          {
-            "id": "decimal",
-            "title": "Decimal Number System",
-            "description": "Base-10 number system, the standard numerical system used by humans.",
-            "categories": [
-              "Mathematics",
-              "Computer Science"
-            ],
-            "link": "cs/number-systems/decimal.html",
-            "hidden": false,
-            "lastUpdated": "2020-05-01",
             "subtopics": []
           },
           {
@@ -69,9 +135,22 @@
               "Computer Science",
               "Digital Logic"
             ],
-            "link": "cs/number-systems/hexadecimal.html",
+            "link": "pages/cs/number-systems/hexa.html",
             "hidden": false,
             "lastUpdated": "2025-05-01",
+            "subtopics": []
+          },
+          {
+            "id": "decimal",
+            "title": "Decimal System and Base Conversion via Division and Remainders",
+            "description": "Understanding the base-10 number system and how repeated division and remainders enable conversion to binary, octal, and hexadecimal.",
+            "categories": [
+              "Mathematics",
+              "Computer Science"
+            ],
+            "link": "pages/cs/number-systems/decimal.html",
+            "hidden": false,
+            "lastUpdated": "2020-05-01",
             "subtopics": []
           },
           {
@@ -82,9 +161,108 @@
               "Computer Science",
               "Data Encoding"
             ],
-            "link": "cs/number-systems/base64.html",
-            "hidden": false,
+            "link": "pages/cs/number-systems/base64.html",
+            "hidden": true,
             "lastUpdated": "2025-05-02",
+            "subtopics": []
+          }
+        ]
+      },
+      {
+        "id": "cryptology",
+        "title": "Cryptology",
+        "description": "Cryptology is the rigorous science of designing, analyzing, and breaking secure information systems, comprising both cryptography and cryptanalysis.",
+        "categories": [
+          "Computer Science"
+        ],
+        "link": false,
+        "hidden": false,
+        "lastUpdated": "2025-07-20",
+        "subtopics": [
+          {
+            "id": "cryptography",
+            "title": "Cryptography",
+            "description": "Cryptography is the rigorous science of securing information against the adversarial behaviour.",
+            "categories": [
+              "Computer Science"
+            ],
+            "link": false,
+            "hidden": false,
+            "lastUpdated": "2025-07-20",
+            "subtopics": [
+              {
+                "id": "modern-cryptography",
+                "title": "Modern Cryptography",
+                "description": "Cryptography based on formal mathematical principles and computational assumptions, providing provable security against well-defined adversaries in digital systems.",
+                "categories": [
+                  "Computer Science"
+                ],
+                "link": false,
+                "hidden": false,
+                "lastUpdated": "2025-07-20",
+                "subtopics": []
+              },
+              {
+                "id": "classic-cryptography",
+                "title": "Classic Cryptography",
+                "description": "Cryptographic methods predating modern mathematical approaches, typically using manual or mechanical ciphers to obscure messages.",
+                "categories": [
+                  "Computer Science"
+                ],
+                "link": false,
+                "hidden": false,
+                "lastUpdated": "2025-07-20",
+                "subtopics": [
+                  {
+                    "id": "classic-transposition-cipher",
+                    "title": "Classic Transposition Cipher",
+                    "description": "A transposition cipher encrypts a message by rearranging the positions of its characters according to a secret permutation without altering the characters themselves; classic examples include the Rail Fence, Columnar, Double Columnar, and Scytale ciphers.",
+                    "categories": [
+                      "Computer Science"
+                    ],
+                    "link": "pages/cs/cryptography/classic/transposition.html",
+                    "hidden": false,
+                    "lastUpdated": "2025-07-20",
+                    "subtopics": []
+                  },
+                  {
+                    "id": "classic-substitution-cipher",
+                    "title": "Classic Substitution Ciphe",
+                    "description": "A substitution cipher encrypts a message by replacing each character with another according to a secret mapping or key without changing the character positions; classic examples include the Caesar, Atbash, Vigenère, and Playfair ciphers.",
+                    "categories": [
+                      "Computer Science"
+                    ],
+                    "link": "pages/cs/cryptography/classic/substitution.html",
+                    "hidden": false,
+                    "lastUpdated": "2025-07-20",
+                    "subtopics": []
+                  },
+                  {
+                    "id": "classical-cipher-properties",
+                    "title": "Classical Cipher Properties",
+                    "description": "Overview of classical ciphers, their mathematical foundations, and principles of confusion, diffusion, and analysis.",
+                    "categories": [
+                      "Computer Science"
+                    ],
+                    "link": "pages/cs/cryptography/classic/properties.html",
+                    "hidden": false,
+                    "lastUpdated": "2025-07-20",
+                    "subtopics": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "cryptanalysis",
+            "title": "Cryptanalysis",
+            "description": "Cryptanalysis is the study of breaking or evaluating cryptographic systems to find weaknesses.",
+            "categories": [
+              "Computer Science"
+            ],
+            "link": false,
+            "hidden": false,
+            "lastUpdated": "2025-07-20",
             "subtopics": []
           }
         ]

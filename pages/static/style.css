@@ -87,6 +87,16 @@ p {
   margin-bottom: 1rem;
 }
 
+.link {
+  color: gray;
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: white;
+  background-color: #000;
+}
+
 hr {
   margin: 2rem 0;
   border: none;
@@ -119,22 +129,23 @@ hr {
   text-decoration: none;
 }
 
-#toc ol {
+ol {
   counter-reset: item;
   list-style: none;
 }
 
 
-#toc li {
+ol li {
   counter-increment: item;
 }
 
-#toc li::before {
+ol li::before {
   content: counters(item, ".") " "; /* For nested li counters() */
+  color: gray;
 }
 
 /* Smaller font size and indentation for deeper levels */
-#toc ol ol {
+ol ol {
   margin-left: 1.5rem;
 }
 
