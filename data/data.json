@@ -191,18 +191,6 @@
             "lastUpdated": "2025-07-20",
             "subtopics": [
               {
-                "id": "modern-cryptography",
-                "title": "Modern Cryptography",
-                "description": "Cryptography based on formal mathematical principles and computational assumptions, providing provable security against well-defined adversaries in digital systems.",
-                "categories": [
-                  "Computer Science"
-                ],
-                "link": false,
-                "hidden": false,
-                "lastUpdated": "2025-07-20",
-                "subtopics": []
-              },
-              {
                 "id": "classic-cryptography",
                 "title": "Classic Cryptography",
                 "description": "Cryptographic methods predating modern mathematical approaches, typically using manual or mechanical ciphers to obscure messages.",
@@ -213,6 +201,18 @@
                 "hidden": false,
                 "lastUpdated": "2025-07-20",
                 "subtopics": [
+                  {
+                    "id": "classical-cipher-properties",
+                    "title": "Classical Cipher Properties",
+                    "description": "Overview of classical ciphers, their mathematical foundations, and principles of confusion, diffusion, and analysis.",
+                    "categories": [
+                      "Computer Science"
+                    ],
+                    "link": "pages/cs/cryptography/classic/properties.html",
+                    "hidden": false,
+                    "lastUpdated": "2025-07-20",
+                    "subtopics": []
+                  },
                   {
                     "id": "classic-transposition-cipher",
                     "title": "Classic Transposition Cipher",
@@ -227,7 +227,7 @@
                   },
                   {
                     "id": "classic-substitution-cipher",
-                    "title": "Classic Substitution Ciphe",
+                    "title": "Classic Substitution Cipher",
                     "description": "A substitution cipher encrypts a message by replacing each character with another according to a secret mapping or key without changing the character positions; classic examples include the Caesar, Atbash, Vigenère, and Playfair ciphers.",
                     "categories": [
                       "Computer Science"
@@ -236,15 +236,52 @@
                     "hidden": false,
                     "lastUpdated": "2025-07-20",
                     "subtopics": []
-                  },
+                  }
+                ]
+              },
+              {
+                "id": "modern-cryptography",
+                "title": "Modern Cryptography",
+                "description": "Cryptography based on formal mathematical principles and computational assumptions, providing provable security against well-defined adversaries in digital systems.",
+                "categories": [
+                  "Computer Science"
+                ],
+                "link": "pages/cs/cryptography/modern/intro.html",
+                "hidden": false,
+                "lastUpdated": "2025-07-20",
+                "subtopics": [
                   {
-                    "id": "classical-cipher-properties",
-                    "title": "Classical Cipher Properties",
-                    "description": "Overview of classical ciphers, their mathematical foundations, and principles of confusion, diffusion, and analysis.",
+                    "id": "shannon-perfect-secrecy",
+                    "title": "Shannon Perfect Secrecy",
+                    "description": "Shannon's concept of perfect secrecy states that a ciphertext provides absolutely no information about the original plaintext, meaning the probability of the plaintext remains the same whether you've seen the ciphertext or not.",
                     "categories": [
                       "Computer Science"
                     ],
-                    "link": "pages/cs/cryptography/classic/properties.html",
+                    "link": "pages/cs/cryptography/modern/shannon-perfect-secrecy.html",
+                    "hidden": false,
+                    "lastUpdated": "2025-07-20",
+                    "subtopics": []
+                  },
+                  {
+                    "id": "adversarial-model",
+                    "title": "Adversarial Model",
+                    "description": "An adversary model in cryptography is a formalized definition of a potential attacker, specifying their capabilities, goals, and limitations to rigorously evaluate the security of a cryptographic protocol or system.",
+                    "categories": [
+                      "Computer Science"
+                    ],
+                    "link": "pages/cs/cryptography/modern/adversarial-model.html",
+                    "hidden": false,
+                    "lastUpdated": "2025-07-20",
+                    "subtopics": []
+                  },
+                  {
+                    "id": "cryptographic-oracles",
+                    "title": "Cryptographic Oracles",
+                    "description": "An oracle is often described as a \"black box\" because the attacker doesn't need to know the internal workings of the system.",
+                    "categories": [
+                      "Computer Science"
+                    ],
+                    "link": "pages/cs/cryptography/modern/cryptographic-oracles.html",
                     "hidden": false,
                     "lastUpdated": "2025-07-20",
                     "subtopics": []

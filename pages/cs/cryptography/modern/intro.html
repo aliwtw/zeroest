@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to Modern Cryptography</title>
+    <link rel="stylesheet" href="/pages/static/style.css">
+
+    <script src="/pages/static/mathJax/config.js"></script>
+    <script src="/pages/static/mathJax/es5/tex-chtml-full.js"></script>
+    <script src="/pages/static/script.js" defer></script>
+
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="3" />
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+        </svg>
+    '>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <a class="vertical-text" href="/">Zeroest</a>
+    </div>
+
+    <!-- Sidebar Table of Contents -->
+    <aside>
+        <h2>Contents</h2>
+        <nav id="toc" data-numbered="true">
+            <!-- JS will populate this -->
+        </nav>
+        <hr>
+
+        <!-- Add video here -->
+        <!-- ?rel=0 To stop youtube from showing related videos -->
+        <div hidden>
+            <h2>Video Adaptation</h2>
+            <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
+                style="border: none;" allowfullscreen>
+            </iframe>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+
+        <section id="modern-cryptography">
+            <h1 class="heading">Introduction to Modern Cryptography</h1>
+
+            <section id="definition">
+                <h3 class="heading">Definition</h3>
+                <p>
+                    <b>Modern Cryptography</b> is the rigorous, scientific study of constructing protocols that achieve
+                    security goals, such as confidentiality and authenticity, in the presence of adversaries. Unlike
+                    classical cryptography, its security is not an assumption but a provable property grounded in
+                    computational complexity theory.
+                </p>
+                <p>
+                    Security is formally defined through a game-theoretic framework where the adversary is a
+                    probabilistic polynomial-time Turing machine. A cryptographic scheme is considered secure if no such
+                    adversary can win a predefined game with a non-negligible advantage. This security is often reduced
+                    to the presumed intractability of a well-known computational problem, such as the integer
+                    factorization problem (IFP) or the discrete logarithm problem (DLP). This approach allows for the
+                    construction of primitives with security guarantees that are mathematically sound and verifiable.
+                </p>
+            </section>
+
+            <section id="core-principles">
+                <h2 class="heading">Core Principles of Modern Cryptography</h2>
+                <p>
+                    Modern cryptography is built upon three foundational principles that ensure a scientific and
+                    rigorous approach to security.
+                </p>
+                <section id="formal-definitions">
+                    <h3 class="heading">1. Formal Definitions of Security</h3>
+                    <p>
+                        Cryptographic security is not an intuitive notion; it must be precisely and mathematically
+                        defined. This involves a game-theoretic framework where an adversary's capabilities and goals
+                        are explicitly modeled. A scheme is declared "secure" only if it can withstand a specific,
+                        formalized attack scenario.
+                    </p>
+
+                    <section id="semantic-security">
+                        <h4 class="heading">Example: Semantic Security for Encryption</h4>
+                        <p>
+                            An encryption scheme is a triple of algorithms $(\text{Gen}, \text{Enc}, \text{Dec})$,
+                            where:
+                        </p>
+                        <ul>
+                            <li>$\text{Gen}(1^n)$ is a key generation algorithm that outputs a key $k$.</li>
+                            <li>$\text{Enc}_k(m)$ is the encryption algorithm for message $m$.</li>
+                            <li>$\text{Dec}_k(c)$ is the decryption algorithm for ciphertext $c$.</li>
+                        </ul>
+                        <p>
+                            <b>Definition:</b> A scheme is <b>semantically secure</b> if, for any two messages $m_0, m_1$
+                            of the same length, no probabilistic polynomial-time (PPT) adversary can distinguish between
+                            their encryptions with more than a negligible advantage. Formally, for a security parameter
+                            $n$:
+                        </p>
+                        $$
+                        \Big| \Pr[A(\text{Enc}_k(m_0)) = 1] - \Pr[A(\text{Enc}_k(m_1)) = 1] \Big| \le \text{negl}(n)
+                        $$
+                        <p>
+                            where $k \leftarrow \text{Gen}(1^n)$, and $\text{negl}(n)$ is a function that vanishes
+                            faster than any inverse polynomial.
+                        </p>
+                    </section>
+                </section>
+
+                <section id="precise-assumptions">
+                    <h3 class="heading">2. Precise Assumptions on Computational Hardness</h3>
+                    <p>
+                        Security is predicated on the existence of computationally "hard" problems. These are problems
+                        for which no efficient (i.e., polynomial-time) algorithm is known to exist. If an adversary
+                        could solve such a problem efficiently, the cryptographic scheme would be broken.
+                    </p>
+                    <section id="examples-hardness">
+                        <h4 class="heading">Examples of Hard Problems</h4>
+                        <ul>
+                            <li><b>Integer Factorization Problem (IFP):</b> Underpins the security of the RSA
+                                cryptosystem.</li>
+                            <li><b>Discrete Logarithm Problem (DLP):</b> The foundation for schemes like Diffie–Hellman
+                                key exchange and ElGamal encryption.</li>
+                            <li><b>Learning With Errors (LWE):</b> A foundational problem for lattice-based
+                                cryptography, a leading candidate for post-quantum schemes.</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="proofs-of-security">
+                    <h3 class="heading">3. Rigorous Proofs of Security</h3>
+                    <p>
+                        Security is not just defined or assumed; it is proven. A cryptographic proof is a formal,
+                        mathematical argument demonstrating that a scheme is secure, given the stated assumptions. This
+                        is often achieved through a <b>reduction</b>.
+                    </p>
+                    <p>
+                        A security reduction shows that if an adversary could break the cryptographic scheme (e.g.,
+                        forge a signature), then we could use that adversary as a subroutine to solve the underlying
+                        hard problem (e.g., factor an integer). Since we assume the hard problem is intractable, the
+                        cryptographic scheme must be secure. This ties the abstract security definition directly to a
+                        concrete computational assumption.
+                    </p>
+                </section>
+            </section>
+
+            <section id="conclusion">
+                <h3 class="heading">Conclusion</h3>
+                <p>
+                    Modern cryptography is defined by rigorous mathematical formalism and provable security guarantees.
+                    It moves beyond classical ciphers to establish systems secure against well-defined adversaries under
+                    precise computational assumptions.
+                </p>
+            </section>
+        </section>
+
+
+
+        <p id="footer">
+            <b>Usage & License</b> <br>
+            This site is freely provided for the pursuit of knowledge. <br>
+            All content must be properly cited in any private, public, or scholarly use. <br>
+            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s content.
+            <br>
+            <br>
+        </p>
+    </main>
+</body>
+
+</html>

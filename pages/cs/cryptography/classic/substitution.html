@@ -92,7 +92,7 @@
                 <h2 class="heading">Common Algorithm Types</h2>
 
                 <section id="monoalphabetic">
-                    <h3 class="heading">1. Monoalphabetic Substitution</h3>
+                    <h3 class="heading">Monoalphabetic Substitution</h3>
                     <p>
                         Each plaintext letter maps to a fixed ciphertext letter throughout the message.<br>Example:
                     <pre>
@@ -118,7 +118,7 @@ Ciphertext: KHOOR
                         </p>
 
                         <section id="rot-cipher">
-                            <h5 class="heading">2. ROT-n Ciphers</h5>
+                            <h5 class="heading">ROT-n Ciphers</h5>
                             <p>
                                 ROT-n ciphers are generalizations of the Caesar cipher where each letter is shifted by
                                 <i>n</i> positions. ROT13 is the most common example.
@@ -132,12 +132,32 @@ ROT13: URYYB
                         <style>
                             input {
                                 width: 400px;
-                                font-size: 1.2em;
                                 padding: 5px;
+                                margin: 2px;
+                            }
+
+                            span{
+                                font-size: 1em;
+                            }
+
+                            button {
+                                font-weight: bold;
+                                padding: 3px;
+                                margin: 3px;
+                            }
+
+                            table,
+                            td {
+                                border: 2px solid;
+                                padding: 1px;
+                                border-collapse: collapse;
                             }
                         </style>
 
                         <input type="text" id="shiftInput" placeholder="Type letters and use ↑ ↓ to shift">
+                        <button type="button" onclick="shiftButtonClicked(1)">↑</button>
+                        <span id="rot-n">0</span>
+                        <button type="button" onclick="shiftButtonClicked(-1)">↓</button>
 
                         <script>
                             const input = document.getElementById('shiftInput');
@@ -159,6 +179,19 @@ ROT13: URYYB
                                 }
                             }
 
+                            function shiftButtonClicked(direction) {
+
+                                let rot = +document.getElementById(id="rot-n").innerHTML
+                                rot = (rot+=direction)%26
+                                if (rot<0) rot+=26 // % is not a true math mod
+                                document.getElementById(id="rot-n").innerHTML =rot;
+
+                                input.value = input.value
+                                    .split('')
+                                    .map(c => shiftChar(c, direction))
+                                    .join('');
+                            }
+
                             input.addEventListener('keydown', (e) => {
                                 if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
                                     e.preventDefault(); // Prevent cursor movement
@@ -175,7 +208,7 @@ ROT13: URYYB
 
                     </section>
                     <section id="atbash-cipher">
-                        <h5 class="heading">3. Atbash Cipher</h5>
+                        <h5 class="heading">Atbash Cipher</h5>
                         <p>
                             Atbash is a classical monoalphabetic substitution that maps each letter to its reverse in
                             the alphabet (A↔Z, B↔Y, ...).
@@ -190,7 +223,7 @@ Ciphertext: SVOOL
                 </section>
 
                 <section id="polyalphabetic">
-                    <h3 class="heading">2. Polyalphabetic Substitution</h3>
+                    <h3 class="heading">Polyalphabetic Substitution</h3>
                     <p>
                         Each position may use a different substitution alphabet, often controlled by a repeating key
                         sequence.
@@ -209,16 +242,120 @@ Ciphertext: SVOOL
                         </p>
 
                         <p><b>Example:</b><br>
-                            Plaintext: ATTACKATDAWN<br>
-                            Key: LEMON<br>
-                            Ciphertext: LXFOPVEFRNHR
+
+                            Key:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                id="vigenere-key" type="text" value="LEMON"><br>
+                            Plaintext:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="vigenere-message" type="text"
+                                value="ATTACKATDAWN"><br>
+                            Repeating key:&nbsp;&nbsp;&nbsp;<input id="vigenere-key-repeating" type="text" value="LEMONLEMONLE" style="border: none; outline: none;" readonly><br>
+                            Ciphertext:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="vigenere-cipher-input" type="text"
+                                value="LXFOPVEFRNHR">
+
                         </p>
+
+                        <script>
+                            /* Vigenère cipher */
+                            document.getElementById("vigenere-message").addEventListener("input", (e) => {
+                                e.target.value = filterInput(e.target.value);
+                                keyExtention()
+
+                                vigenere_enc()
+                            });
+                            document.getElementById("vigenere-key").addEventListener("input", (e) => {
+                                e.target.value = filterInput(e.target.value);
+                                keyExtention()
+
+                                vigenere_enc()
+                            });
+                            document.getElementById("vigenere-cipher-input").addEventListener("input", (e) => {
+                                e.target.value = filterInput(e.target.value);
+                                vigenere_dec()
+                            });
+
+                            function keyExtention() {
+                                let key = document.getElementById("vigenere-key").value;
+                                const msgLenght = document.getElementById("vigenere-message").value.length;
+                                const keyLenght = key.length;
+
+                                if (keyLenght < msgLenght) key = key.repeat((msgLenght / keyLenght) + 1);
+
+                                key = key.substring(0, msgLenght)
+
+                                document.getElementById("vigenere-key-repeating").value = key;
+
+                            }
+
+                            function filterInput(M) {
+                                return M.replace(/[^A-Za-z]/g, '').toUpperCase();
+                            }
+
+                            function vigenere_enc() {
+                                const M = Array.from(document.getElementById("vigenere-message").value);
+                                const K = Array.from(document.getElementById("vigenere-key").value);
+
+                                let C = enc(M, K);
+
+                                document.getElementById("vigenere-cipher-input").value = C.join('');
+
+                                //console.log(C)
+                            }
+
+                            function vigenere_dec() {
+                                const C = Array.from(document.getElementById("vigenere-cipher-input").value);
+                                const K = Array.from(document.getElementById("vigenere-key").value);
+
+                                let M = dec(C, K);
+
+                                document.getElementById("vigenere-message").value = M.join('');
+                            }
+
+                            function enc(M, K) {
+
+                                C = []
+                                M.forEach((m, i) => {
+                                    m = m.charCodeAt(0) - 65; // 0-25
+                                    k = K[i % (K.length)]; // Get key repeating by mod(key size)
+                                    k = k.charCodeAt(0) - 65; // 0-25
+
+                                    let c = (m + k) % 26;
+
+                                    c = String.fromCharCode(c + 65);
+
+                                    C.push(c);
+
+                                })
+
+                                return C;
+                            }
+
+                            function dec(C, K) {
+
+                                M = []
+                                C.forEach((c, i) => {
+                                    c = c.charCodeAt(0) - 65; // 0-25
+                                    k = K[i % (K.length)]; // Get key repeating by mod(key size)
+                                    k = k.charCodeAt(0) - 65; // 0-25
+
+                                    let m = (((c - k) % 26) + 26) % 26; // Extra mod to eliminate negatives as % is not a true mathematical mod
+
+                                    //console.log(m)
+
+                                    m = String.fromCharCode(m + 65);
+
+                                    M.push(m);
+
+                                })
+
+                                return M;
+                            }
+
+
+                        </script>
 
                         <style>
                             /* Vigenère table styling */
                             .vigenere-table {
                                 border-collapse: collapse;
-                                font-family: monospace;
                             }
 
                             .vigenere-table th,
@@ -233,10 +370,6 @@ Ciphertext: SVOOL
                             .vigenere-table th {
                                 font-weight: bolder;
                                 border: 3px solid black;
-                            }
-
-                            .vigenere-table tr:hover {
-                                background-color: grey;
                             }
 
                             .highlight-col {
@@ -292,9 +425,21 @@ Ciphertext: SVOOL
 
                                     td.addEventListener('mouseenter', () => {
                                         const rows = table.querySelectorAll('tr');
-                                        rows.forEach(row => {
+
+                                        for (const [index, row] of rows.entries()) {
+                                            if (index >= rowIndex + 2) break;
+                                            if (index == rowIndex + 1) {
+
+                                                for (const [index, col] of (row.querySelectorAll('th, td')).entries()) {
+
+                                                    col.classList.add('highlight-col');
+                                                    if (colIndex == index) break;
+                                                    //console.log(index,colIndex)
+                                                }
+                                            }
                                             row.children[colIndex + 1].classList.add('highlight-col');
-                                        });
+
+                                        }
                                     });
 
                                     td.addEventListener('mouseleave', () => {
@@ -325,7 +470,7 @@ Ciphertext: SVOOL
                 </section>
 
                 <section id="homophonic">
-                    <h3 class="heading">3. Homophonic Substitution</h3>
+                    <h3 class="heading">Homophonic Substitution</h3>
                     <p>
                         Each plaintext symbol can map to multiple ciphertext symbols to flatten frequency
                         distribution.
@@ -335,7 +480,7 @@ Ciphertext: SVOOL
                 </section>
 
                 <section id="polysubstitution">
-                    <h3 class="heading">4. Polygraphic Substitution</h3>
+                    <h3 class="heading">Polygraphic Substitution</h3>
                     <p>
                         Groups of letters (digraphs, trigraphs) are substituted as a unit, e.g., the Playfair cipher
                         uses digraphs to increase diffusion.

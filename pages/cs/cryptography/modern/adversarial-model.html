@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adversarial Model</title>
+    <link rel="stylesheet" href="/pages/static/style.css">
+
+    <script src="/pages/static/mathJax/config.js"></script>
+    <script src="/pages/static/mathJax/es5/tex-chtml-full.js"></script>
+    <script src="/pages/static/script.js" defer></script>
+
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="3" />
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+        </svg>
+    '>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <a class="vertical-text" href="/">Zeroest</a>
+    </div>
+
+    <!-- Sidebar Table of Contents -->
+    <aside>
+        <h2>Contents</h2>
+        <nav id="toc" data-numbered="true">
+            <!-- JS will populate this -->
+        </nav>
+        <hr>
+
+        <!-- Add video here -->
+        <!-- ?rel=0 To stop youtube from showing related videos -->
+        <div hidden>
+            <h2>Video Adaptation</h2>
+            <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
+                style="border: none;" allowfullscreen>
+            </iframe>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+
+        <section id="adversarial-model">
+            <h3 class="heading">Adversarial Model</h3>
+            <p>
+                In modern cryptography, security is defined relative to an <b>adversarial model</b>: a formal
+                specification of the adversary’s capabilities, resources, and goals. This ensures that security claims
+                are precise, testable, and mathematically rigorous rather than heuristic.
+            </p>
+
+            <section id="adversary-definition">
+                <h4 class="heading">Definition of an Adversary</h4>
+                <p>
+                    An adversary is an algorithm, typically modeled as a <b>probabilistic polynomial-time (PPT)</b>
+                    entity, which attempts to compromise one or more security properties of a cryptographic scheme.
+                    Examples of properties include:
+                </p>
+                <ul>
+                    <li><b>Confidentiality:</b> The adversary cannot learn any information about plaintexts from
+                        ciphertexts.</li>
+                    <li><b>Integrity:</b> The adversary cannot forge valid messages or modify them undetectably.</li>
+                    <li><b>Authentication:</b> The adversary cannot impersonate legitimate parties.</li>
+                </ul>
+            </section>
+
+            <section id="types-of-adversaries">
+                <h4 class="heading">Types of Adversaries</h4>
+                <ul>
+                    <li><b>Passive Adversary:</b> Observes communications but does not alter them.</li>
+                    <li><b>Active Adversary:</b> Can inject, modify, or delete messages.</li>
+                    <li><b>Adaptive Adversary:</b> Chooses future actions based on previously observed information.</li>
+                    <li><b>Quantum Adversary:</b> Has access to quantum computing resources; relevant for post-quantum
+                        cryptography.</li>
+                </ul>
+            </section>
+
+            <section id="attack-models">
+                <h4 class="heading">Common Cryptographic Attack Models</h4>
+                <p>
+                    Security definitions specify the type of attack a scheme should resist. Standard attack models
+                    include:
+                </p>
+                <ul>
+                    <li><b>Eavesdropping (Passive Attack):</b> Observes messages without interference.</li>
+                    <li><b>Known-Plaintext Attack (KPA):</b> Adversary has access to plaintext-ciphertext pairs.</li>
+                    <li><b>Chosen-Plaintext Attack (CPA):</b> Adversary can request encryptions of arbitrary plaintexts.
+                    </li>
+                    <li><b>Adaptive Chosen-Plaintext Attack (Adaptive CPA):</b> Queries depend on previously observed
+                        encryptions.</li>
+                    <li><b>Chosen-Ciphertext Attack (CCA):</b> Adversary can request decryptions of arbitrary
+                        ciphertexts, excluding the challenge ciphertext.</li>
+                    <li><b>Adaptive Chosen-Ciphertext Attack (CCA2):</b> Can query decryptions both before and after
+                        seeing the challenge ciphertext.</li>
+                    <li><b>Chosen-Message Attack (CMA):</b> For digital signatures or MACs, adversary can request
+                        signatures for messages of its choice to attempt a forgery.</li>
+                    <li><b>Indistinguishability (IND) Attacks:</b> Adversary tries to distinguish encryptions of two
+                        chosen messages, forming the basis for semantic security definitions (IND-CPA, IND-CCA).</li>
+                    <li><b>Key-Compromise Impersonation (KCI):</b> Adversary knows a participant’s secret key and
+                        attempts to impersonate other parties to them.</li>
+                    <li><b>Man-in-the-Middle (MITM) Attack:</b> Intercepts and modifies communications between two
+                        parties without detection.</li>
+                    <li><b>Replay Attack:</b> Resends valid messages to produce unauthorized effects.</li>
+                    <li><b>Side-Channel Attacks:</b> Exploits physical leakages like timing, power consumption, or
+                        electromagnetic emissions.</li>
+                    <li><b>CCA+ (Chosen-Ciphertext with Auxiliary Information):</b> Extends CCA with additional side
+                        information or partial key exposure.</li>
+                </ul>
+            </section>
+
+            <section id="formal-security">
+                <h4 class="heading">Formal Security Considerations</h4>
+                <p>
+                    Modern cryptographic security is defined relative to the adversary’s computational limits and
+                    interactions:
+                </p>
+                <ul>
+                    <li>The adversary is assumed to be a PPT algorithm.</li>
+                    <li>Success is quantified as the probability of breaking a security property, which must be
+                        negligible in the security parameter $n$.</li>
+                    <li>Security proofs often reduce breaking the scheme to solving a hard mathematical problem, such as
+                        integer factorization, discrete logarithms, or lattice-based problems.</li>
+                    <li>Indistinguishability-based definitions (IND-CPA, IND-CCA) formalize semantic security for
+                        encryption schemes.</li>
+                    <li>Chosen-message security (CMA) formalizes the inability of an adversary to forge valid signatures
+                        or MACs, even after querying a signing oracle adaptively.</li>
+                </ul>
+                <p>
+                    By explicitly defining adversaries, attack types, and oracles, cryptographers can rigorously prove
+                    that a scheme is secure under well-defined assumptions rather than relying on informal intuition.
+                </p>
+            </section>
+        </section>
+
+
+
+
+        <p id="footer">
+            <b>Usage & License</b> <br>
+            This site is freely provided for the pursuit of knowledge. <br>
+            All content must be properly cited in any private, public, or scholarly use. <br>
+            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s content.
+            <br>
+            <br>
+        </p>
+    </main>
+</body>
+
+</html>

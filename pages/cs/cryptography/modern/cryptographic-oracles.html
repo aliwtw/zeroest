@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cryptographic Oracles</title>
+    <link rel="stylesheet" href="/pages/static/style.css">
+
+    <script src="/pages/static/mathJax/config.js"></script>
+    <script src="/pages/static/mathJax/es5/tex-chtml-full.js"></script>
+    <script src="/pages/static/script.js" defer></script>
+
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="white" stroke="black" stroke-width="3" />
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="97" font-family="Courier New" fill="black">0</text>
+        </svg>
+    '>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <a class="vertical-text" href="/">Zeroest</a>
+    </div>
+
+    <!-- Sidebar Table of Contents -->
+    <aside>
+        <h2>Contents</h2>
+        <nav id="toc" data-numbered="true">
+            <!-- JS will populate this -->
+        </nav>
+        <hr>
+
+        <!-- Add video here -->
+        <!-- ?rel=0 To stop youtube from showing related videos -->
+        <div hidden>
+            <h2>Video Adaptation</h2>
+            <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
+                style="border: none;" allowfullscreen>
+            </iframe>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+
+
+        <section id="cryptographic-oracles">
+            <h3 class="heading">Cryptographic Oracles</h3>
+            <p>
+                In modern cryptography, an <b>oracle</b> is an abstract entity or interface that allows an adversary to
+                interact with a cryptographic system under controlled conditions. Oracles formalize the types of queries
+                an adversary can make and are central to defining attack models.
+            </p>
+
+            <section id="definition-oracle">
+                <h4 class="heading">Definition</h4>
+                <p>
+                    Formally, an oracle is a function or procedure that responds to queries by an adversary. It can
+                    represent encryption, decryption, signature generation, verification, or other cryptographic
+                    operations.
+                </p>
+                <p>
+                    The responses are used by the adversary to gain information, simulate attacks, or attempt to break
+                    security properties. Oracles are a key tool in <b>provable security</b>, allowing reductions from
+                    breaking a scheme to solving a hard computational problem.
+                </p>
+            </section>
+
+            <section id="types-of-oracles">
+                <h4 class="heading">Types of Cryptographic Oracles</h4>
+                <ul>
+                    <li><b>Encryption Oracle:</b> Given a plaintext, it returns the corresponding ciphertext. Used in
+                        CPA and adaptive CPA models.</li>
+                    <li><b>Decryption Oracle:</b> Given a ciphertext, it returns the corresponding plaintext. Used in
+                        CCA and adaptive CCA models.</li>
+                    <li><b>Signature Oracle:</b> Given a message, it returns a valid signature under a secret key. Used
+                        to model chosen-message attacks (CMA) in digital signatures.</li>
+                    <li><b>Verification Oracle:</b> Given a message-signature pair, it returns a boolean indicating
+                        validity. Useful for modeling attacks where the adversary can test potential forgeries.</li>
+                    <li><b>Random Oracle:</b> A theoretical construct that behaves as a perfect random function. Used in
+                        proofs (Random Oracle Model, ROM) to idealize hash functions.</li>
+                    <li><b>MAC/Authentication Oracle:</b> Returns message authentication codes for queried messages,
+                        used in forgery and integrity attacks.</li>
+                </ul>
+            </section>
+
+            <section id="oracle-usage">
+                <h4 class="heading">Use in Security Models</h4>
+                <p>
+                    Oracles allow adversaries to adaptively query a system, formalizing realistic attack scenarios:
+                </p>
+                <ul>
+                    <li>In a <b>Chosen-Plaintext Attack (CPA)</b>, the adversary queries an encryption oracle for
+                        multiple plaintexts.</li>
+                    <li>In a <b>Chosen-Ciphertext Attack (CCA)</b>, the adversary queries a decryption oracle, except on
+                        the challenge ciphertext.</li>
+                    <li>In <b>Chosen-Message Attacks (CMA)</b> for digital signatures, the adversary queries a signature
+                        oracle to obtain valid signatures for messages of their choice.</li>
+                </ul>
+                <p>
+                    Security is measured by the adversary’s advantage despite access to these oracles. Provable security
+                    often reduces breaking a scheme to the hardness of an underlying mathematical problem, even when the
+                    adversary has oracle access.
+                </p>
+            </section>
+
+            <section id="random-oracle-model">
+                <h4 class="heading">Random Oracle Model (ROM)</h4>
+                <p>
+                    The <b>Random Oracle Model</b> is a theoretical framework in which hash functions are modeled as
+                    perfectly random functions accessible via a random oracle. Security proofs in this model assume:
+                </p>
+                <ul>
+                    <li>Each query to the oracle returns a uniformly random output for new inputs.</li>
+                    <li>Repeated queries to the same input return the same output deterministically.</li>
+                </ul>
+                <p>
+                    ROM proofs are widely used to analyze schemes like digital signatures, encryption, and key exchange
+                    protocols. They provide strong intuition about real-world security, although they do not guarantee
+                    security in the standard model.
+                </p>
+            </section>
+
+            <section id="conclusion-oracles">
+                <h4 class="heading">Conclusion</h4>
+                <p>
+                    Cryptographic oracles are a formal tool for modeling adversary capabilities in provable security. By
+                    specifying which operations an adversary can query and how, oracles allow rigorous security
+                    definitions and reductions, providing a bridge between theoretical assumptions and practical
+                    attacks.
+                </p>
+            </section>
+        </section>
+
+
+
+        <p id="footer">
+            <b>Usage & License</b> <br>
+            This site is freely provided for the pursuit of knowledge. <br>
+            All content must be properly cited in any private, public, or scholarly use. <br>
+            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s content.
+            <br>
+            <br>
+        </p>
+    </main>
+</body>
+
+</html>
