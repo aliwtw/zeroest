@@ -250,15 +250,15 @@ document.getElementById('search-box').addEventListener('input', e => {
 
 // Add collapse toggle function
 
-function collapse(element){
+function collapse(element) {
 
-    if(element.textContent == "-") {
+    if (element.textContent == "-") {
         element.parentElement.lastElementChild.style.display = "none"
 
         element.textContent = "+"
         element.title = "Expand"
     }
-    else if(element.textContent == "+") {
+    else if (element.textContent == "+") {
         element.parentElement.lastElementChild.style.display = "block"
 
         element.textContent = "-"
@@ -287,17 +287,59 @@ document.getElementById('contact').addEventListener('click', () => {
 
 // Add listener to switch between tree and list view
 document.getElementById('tree-or-list').addEventListener('click', (e) => {
+    const allCollapse = document.getElementById("all-collapse")
+
     if (e.target.innerHTML == 'Σ') {
         e.target.innerHTML = '⊥'
         e.target.title = "Latest Additions"
 
         document.getElementById('tree-container').style.display = 'block';
         document.getElementById('list-container').style.display = 'none';
+
+        allCollapse.style.display = 'block';
     } else if (e.target.innerHTML == '⊥') {
+
+
         e.target.innerHTML = 'Σ'
         e.target.title = "Tree View"
 
         document.getElementById('tree-container').style.display = 'none';
         document.getElementById('list-container').style.display = 'block';
+
+        allCollapse.style.display = 'none';
     }
+})
+
+document.getElementById("all-collapse").addEventListener('click', (e) => {
+    const element = e.target;
+
+    element.disabled = true
+
+    if (element.textContent == "^") {
+        element.textContent = "v";
+        element.title = "Expand all";
+    }
+    else if (element.textContent == "v") {
+        element.textContent = "^";
+        element.title = "Collapse all";
+    }
+
+    const allButtons = document.querySelectorAll('#tree-container .collapse-button');
+    for (i = allButtons.length - 1; i >= 0; i--) {
+        const button = allButtons[i];
+        if (element.textContent == "v") {
+            button.parentElement.lastElementChild.style.display = "none"
+
+            button.textContent = "+"
+            button.title = "Expand"
+        }
+        else if (element.textContent == "^") {
+            button.parentElement.lastElementChild.style.display = "block"
+
+            button.textContent = "-"
+            button.title = "Collapse"
+        }
+    }
+
+    element.disabled = false
 })

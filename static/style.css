@@ -61,7 +61,7 @@ z-0 {
 }
 
 
-.tree-node .collapse-button {
+.collapse-button {
   border-style: none;
   background-color: white;
   border: 1px solid black;
@@ -70,7 +70,7 @@ z-0 {
   padding-bottom: 1px;
 }
 
-.tree-node .collapse-button:hover {
+.collapse-button:hover {
   background-color: black;
   color: white;
 }
@@ -94,11 +94,19 @@ z-0 {
   text-decoration: underline;
 }
 
+#main-search-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 #search-container {
   margin: 1rem;
   text-align: left;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 #tree-or-list {
@@ -112,8 +120,8 @@ z-0 {
 }
 
 #search-box {
-  width: 40%;
-  max-width: 400px;
+  width: 32ch;
+  height: 3ch;
   padding: 0.25rem;
   font-family: monospace;
   font-size: 1rem;
