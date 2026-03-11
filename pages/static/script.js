@@ -130,5 +130,14 @@ function generateIEEEReference() {
     return `${author}, "${title}", ${websiteName}. [Online]. Available: ${url}. ${accessDate}.`;
 }
 
+const license = `
+            <b>Usage & License</b> <br>
+            This site is freely provided for the pursuit of knowledge. <br>
+            All content must be properly cited in any private, public, or scholarly use. <br>
+            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s content.
+            <br>
+            <br>
+`;
+
 // Set footer
-document.getElementById("footer").innerHTML += "<b>Citation:</b> " + generateIEEEReference();
+document.getElementById("footer").innerHTML =license + "<b>Citation:</b> " + generateIEEEReference();
