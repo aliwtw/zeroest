@@ -84,7 +84,7 @@
                 <section id="positional-value">
                     <h3 class="heading">Positional Value and Significance</h3>
                     <p>
-                        Positional numeral systems like decimal exploit the regularity of powers of the base. For
+                        Positional numeral systems like decimal utilize the regularity of powers of the base. For
                         base-10,
                         each successive digit represents an order of magnitude increase or decrease (10×, 100×, etc.).
                         This principle extends naturally to other bases, including binary, octal, and hexadecimal.
@@ -112,8 +112,12 @@
                 </section>
 
                 <section id="example-binary">
-                    <h3 class="heading">Example: Decimal 156 to Binary (Base-2)</h3>
-                    <table>
+                    <h3 class="heading">Example: Decimal <span style="border: 1px solid grey;"><input id="bin-input"
+                                type="text" value="156"
+                                style="width: 8ch; border: none; outline: none; text-align: right; font-weight: bold;"
+                                oninput='updateTable("bin-input", "bin-output", 2)'><span
+                                style=" font-size: small;">$_{10}$</span></span> to Binary(Base-2)</h3>
+                    <table id="bin-output">
                         <thead>
                             <tr>
                                 <th>Step</th>
@@ -123,71 +127,101 @@
                                 <th>Remainder</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>156</td>
-                                <td>156 ÷ 2</td>
-                                <td>78</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>78</td>
-                                <td>78 ÷ 2</td>
-                                <td>39</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>39</td>
-                                <td>39 ÷ 2</td>
-                                <td>19</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>19</td>
-                                <td>19 ÷ 2</td>
-                                <td>9</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>9</td>
-                                <td>9 ÷ 2</td>
-                                <td>4</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>4</td>
-                                <td>4 ÷ 2</td>
-                                <td>2</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>2</td>
-                                <td>2 ÷ 2</td>
-                                <td>1</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>1</td>
-                                <td>1 ÷ 2</td>
-                                <td>0</td>
-                                <td>1</td>
-                            </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
-                    <p><b>Binary:</b> \(156_{10} = 10011100_2\)</p>
+                    <script>
+                        function decimalToBaseSteps(num, base) {
+
+                            if (num == 0) return [{
+                                decimal: 0,
+                                quotient: 0,
+                                remainder: 0
+                            }]
+
+                            let steps = [];
+                            let current = num;
+
+                            while (current > 0) {
+                                let quotient = Math.floor(current / base);
+
+                                const digits = "0123456789ABCDEF";
+                                let remainder = digits[current % base];
+
+                                steps.push({
+                                    decimal: current,
+                                    quotient: quotient,
+                                    remainder: remainder
+                                });
+
+                                current = quotient;
+                            }
+
+                            return steps;
+                        }
+
+                        function updateTable(inputID, tableID, base) {
+
+                            const input = document.getElementById(inputID);
+                            const tableBody = document.querySelector(`#${tableID} tbody`);
+
+
+                            let value = parseInt(input.value);
+                            input.value = value;
+
+                            if (isNaN(value) || value < 0) {
+                                input.value = '';
+                                return
+                            }
+
+                            let steps = decimalToBaseSteps(value, base);
+
+                            tableBody.innerHTML = "";
+
+                            let binary = "";
+
+
+                            steps.forEach((step, index) => {
+
+                                binary = step.remainder + binary;
+
+                                let row = `
+                                            <tr>
+                                                <td>${index + 1}</td>
+                                                <td>${step.decimal}</td>
+                                                <td>${step.decimal / base} </td>
+                                                <td>${step.quotient}</td>
+                                                <td>${step.remainder}</td>
+                                            </tr>
+                                            `;
+
+                                tableBody.insertAdjacentHTML("beforeend", row);
+                            });
+
+                            let resultRow = `
+                                            <tr>
+                                                <td colspan="5">
+                                                    <p><b>Result:</b> $${binary}_{${base}} = ${value}_{10}$</p>
+                                                </td>
+                                            </tr>
+                                            `;
+
+                            tableBody.insertAdjacentHTML("beforeend", resultRow);
+
+                            MathJax.typeset();
+                        }
+
+                        updateTable("bin-input", "bin-output", 2); // initial run
+                    </script>
+                    <a class="link" href="./binary/intro.html#binary-example">How to convert a Binary to Decimal?</a>
                 </section>
 
                 <section id="example-octal">
-                    <h3 class="heading">Example: Decimal 156 to Octal (Base-8)</h3>
-                    <table>
+                    <h3 class="heading">Example: Decimal <span style="border: 1px solid grey;"><input id="oct-input"
+                                type="text" value="156"
+                                style="width: 8ch; border: none; outline: none; text-align: right; font-weight: bold;"
+                                oninput='updateTable("oct-input", "oct-output", 8)'><span
+                                style=" font-size: small;">$_{10}$</span></span> to Octal(Base-8)</h3>
+                    <table id="oct-output">
                         <thead>
                             <tr>
                                 <th>Step</th>
@@ -197,36 +231,21 @@
                                 <th>Remainder</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>156</td>
-                                <td>156 ÷ 8</td>
-                                <td>19</td>
-                                <td>4</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>19</td>
-                                <td>19 ÷ 8</td>
-                                <td>2</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>2</td>
-                                <td>2 ÷ 8</td>
-                                <td>0</td>
-                                <td>2</td>
-                            </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
-                    <p><b>Octal:</b> \(156_{10} = 234_8\)</p>
+                    <script>
+                        updateTable("oct-input", "oct-output", 8);
+                    </script>
+                    <a class="link" href="./octal.html#octal-decimal-example">How to convert a Octal to Decimal?</a>
                 </section>
 
-                <section id="example-hexadecimal">
-                    <h3 class="heading">Example: Decimal 156 to Hexadecimal (Base-16)</h3>
-                    <table>
+                <section id="example-hex">
+                    <h3 class="heading">Example: Decimal <span style="border: 1px solid grey;"><input id="hex-input"
+                                type="text" value="156"
+                                style="width: 8ch; border: none; outline: none; text-align: right; font-weight: bold;"
+                                oninput='updateTable("hex-input", "hex-output", 16)'><span
+                                style=" font-size: small;">$_{10}$</span></span> to Hexa(Base-16)</h3>
+                    <table id="hex-output">
                         <thead>
                             <tr>
                                 <th>Step</th>
@@ -236,66 +255,12 @@
                                 <th>Remainder</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>156</td>
-                                <td>156 ÷ 16</td>
-                                <td>9</td>
-                                <td>12 (C)</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>9</td>
-                                <td>9 ÷ 16</td>
-                                <td>0</td>
-                                <td>9</td>
-                            </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
-                    <p><b>Hexadecimal:</b> \(156_{10} = 9C_{16}\)</p>
-                </section>
-
-                <section id="example-base64">
-                    <h3 class="heading">Example: Decimal 156 to Base-64</h3>
-
-                    <p>
-                        Base-64 is a numeral system that uses 64 unique symbols. While not standardized for pure numeric
-                        bases, a common
-                        character set (as used in Base64 encoding) includes:
-                        <br>
-                        <code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/</code>
-                    </p>
-                    
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Step</th>
-                                <th>Divide</th>
-                                <th>Quotient</th>
-                                <th>Remainder</th>
-                                <th>Base-64 Digit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>156 ÷ 64</td>
-                                <td>2</td>
-                                <td>28</td>
-                                <td><code>c</code> (28<sup>th</sup> symbol)</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>2 ÷ 64</td>
-                                <td>0</td>
-                                <td>2</td>
-                                <td><code>C</code> (2<sup>nd</sup> symbol)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <p><b>Base-64:</b> \(156_{10} = Cc_{64}\)</p>
+                    <script>
+                        updateTable("hex-input", "hex-output", 16);
+                    </script>
+                    <a class="link" href="./hexa.html#hexa-example">How to convert a Hexadecimal to Decimal?</a>
                 </section>
 
             </section>
@@ -306,7 +271,7 @@
                 <section id="mathematical-basis">
                     <h3 class="heading">Mathematical Justification</h3>
                     <p>
-                        The process exploits the fact that every positional digit is a multiple of powers of the base.
+                        The process is based on the fact that every positional digit is a multiple of powers of the base.
                         Using modulus and integer division isolates these powers:
                         $$
                         \text{remainder} = N \bmod b, \quad \text{quotient} = \left\lfloor \frac{N}{b} \right\rfloor
@@ -333,7 +298,7 @@
                             </p>
 
                             <div>
-                                \( N = b \cdot Q_1 + R_0 \quad \) (Remainder is the <b>Least Significant Digit</b>)<br>
+                                \( N = b \cdot Q_1 + R_0 \quad \) (First remainder is the <b>Least Significant Digit</b>)<br>
                                 \( Q_1 = b \cdot Q_2 + R_1 \quad \) (Next remainder)<br>
                                 \( Q_2 = b \cdot Q_3 + R_2 \quad \) (And so on)<br>
                                 \( \vdots \)<br>
@@ -343,7 +308,7 @@
                             <p>
                                 Each remainder \( R_i \) represents the digit at position \( i \) in base \( b \), where
                                 \( R_0 \) is the digit
-                                for \( b^0 \), \( R_1 \) is the digit for \( b^1 \), and so forth.
+                                for \( b^0 \), \( R_1 \) is the digit for \( b^1 \), and so on for others.
                             </p>
                         </section>
 
@@ -372,23 +337,6 @@
                     </section>
 
                 </section>
-
-                <section id="universality">
-                    <h3 class="heading">Universality Across Bases</h3>
-                    <p>
-                        This algorithm applies to all integer bases \(b \geq 2\), including:
-                    </p>
-                    <ul>
-                        <li><b>Binary (Base-2):</b> Each digit is a bit — 0 or 1.</li>
-                        <li><b>Octal (Base-8):</b> Groups of three binary digits map neatly to octal.</li>
-                        <li><b>Hexadecimal (Base-16):</b> Groups of four binary digits convert directly to one hex
-                            digit.</li>
-                    </ul>
-                    <p>
-                        This is why computers use binary internally but often display values in octal or hexadecimal for
-                        clarity.
-                    </p>
-                </section>
             </section>
 
             <section id="decimal-summary">
@@ -404,14 +352,7 @@
         </section>
 
 
-        <p id="footer">
-            <b>Usage & License</b> <br>
-            This site is freely provided for the pursuit of knowledge. <br>
-            All content must be properly cited in any private, public, or scholarly use. <br>
-            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s content.
-            <br>
-            <br>
-        </p>
+        <p id="footer"></p>
     </main>
 </body>
 

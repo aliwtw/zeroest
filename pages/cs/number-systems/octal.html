@@ -140,7 +140,8 @@
                     </ul>
                     <p>Therefore, the binary number <code>101110011101</code> is represented as
                         <code>5635 <sub>8</sub></code> in
-                        octal notation.</p>
+                        octal notation.
+                    </p>
 
                 </section>
             </section>
@@ -199,48 +200,130 @@
                     </tbody>
                 </table>
             </section>
+        </section>
 
+        <section id="octal-example">
+            <h2 class="heading">Example: Binary to Octal Conversion</h2>
+            <p>Convert the binary number <code>101101110</code> to its octal representation:</p>
+            <p style="text-align: center; font-family: monospace;">
+                101 101 110
+            </p>
+            <p>Group the binary digits into triads (from right to left):</p>
+            <ul>
+                <li><b>101</b> (binary) = <b>5</b> (octal)</li>
+                <li><b>101</b> (binary) = <b>5</b> (octal)</li>
+                <li><b>110</b> (binary) = <b>6</b> (octal)</li>
+            </ul>
+            <p>
+                Therefore, the binary number <code>101101110</code> corresponds to $556_8$ in octal
+                notation.
+            </p>
+            <a class="link" href="./binary/intro.html#bin-oct">How to convert a Binary number to Octal?</a>
+        </section>
+
+        <section id="octal-decimal-example">
+            <h2 class="heading">Example: Octal to Decimal Conversion</h2>
             <section id="octal-example">
-                <h2 class="heading">Example: Binary to Octal Conversion</h2>
-                <p>Convert the binary number <code>101101110</code> to its octal representation:</p>
-                <p style="text-align: center; font-family: monospace;">
-                    101 101 110
+                <h3 class="heading">Example</h3>
+                <p> Convert the octal number
+                    <span style="border: solid 1px grey;">
+                        <input id="oct-input"
+                            style="margin-right: 0; width:9ch; font-weight: bold; text-align: right; border: none; outline: none;"
+                            type="text" value="760">$_8$
+                    </span>
+                    to its decimal (base-10) representation:
                 </p>
-                <p>Group the binary digits into triads (from right to left):</p>
-                <ul>
-                    <li><b>101</b> (binary) = <b>5</b> (octal)</li>
-                    <li><b>101</b> (binary) = <b>5</b> (octal)</li>
-                    <li><b>110</b> (binary) = <b>6</b> (octal)</li>
-                </ul>
-                <p>
-                    Therefore, the binary number <code>101101110</code> corresponds to <code>556_8</code> in octal
-                    notation.
+                <p id="oct-output"
+                    style="text-align: left; overflow-x: auto; white-space: nowrap; border: 1px solid #ccc; max-width: 50vw;">
                 </p>
-            </section>
 
-            <section id="octal-decimal-example">
-                <h2 class="heading">Example: Octal to Decimal Conversion</h2>
-                <p> Convert the octal number $1786_8$ to its decimal (base-10) representation: </p>
-                <p style="text-align: left;">
-                    $$
-                    \begin{aligned}
-                    1786_8 &= (1 \times 8^3) + (7 \times 8^2) + (8 \times 8^1) + (6 \times 8^0) \\
-                    &= 512 + 448 + 8 + 6 \\
-                    &= 974_{10}
-                    \end{aligned}
-                    $$
-                </p>
-            </section>
+                <script>
+                    const input = document.getElementById("oct-input");
+                    let value = input.value;
 
-            <section id="conclusion">
-                <h3 class="heading">Conclusion</h3>
-                <p>
-                    The octal number system provides a concise and efficient way to represent binary data, particularly
-                    useful when working
-                    with 3-bit groupings. While less prevalent than hexadecimal in modern computing, octal remains
-                    relevant in specific contexts such as Unix file permissions and legacy systems.
-                </p>
+                    input.addEventListener("input", e => {
+                        e.target.value = e.target.value.replace(/[^0-7]/g, "");
+
+                        const targetVal = e.target.value;
+
+                        if (value !== targetVal) {
+                            value = targetVal;
+                            if (targetVal != 0) {
+                                calcOutput();
+                            } else {
+                                document.getElementById("oct-output").innerHTML = "<i>Enter a Octal value above to see results<i>";
+                            }
+
+                        }
+                    });
+
+                    function calcOutput() {
+
+                        let result = 0;
+
+                        let text = `$$
+                                    \\begin{aligned}`;
+
+                        text += value + "_8 &= ";
+
+                        for (let i = 0; i < value.length; i++) {
+
+                            let power = value.length - 1 - i;
+
+                            text += `(${value[i]} \\times 8^{${power}})`;
+
+                            if (i === value.length - 1) {
+                                text += " \\\\";
+                            } else {
+                                text += " + ";
+                            }
+                        }
+
+                        text += '&= ';
+
+                        for (let i = 0; i < value.length; i++) {
+
+                            let power = value.length - 1 - i;
+                            const bitVal = value[i] * (8 ** power);
+
+                            result += bitVal;
+
+                            text += `${bitVal}`;
+
+                            if (i === value.length - 1) {
+                                text += " \\\\";
+                            } else {
+                                text += " + ";
+                            }
+                        }
+
+                        text += `&= ${result}_{10}
+                                \\end{aligned}
+                                $$`;
+
+                        document.getElementById("oct-output").innerHTML = text;
+                        MathJax.typeset();
+                    }
+
+                    // Initialise
+                    calcOutput();
+                </script>
+
+                <a class="link" href="./decimal.html#example-octal">How to convert a Decimal number to Octal?</a>
+                <br>
+
             </section>
+        </section>
+
+        <section id="conclusion">
+            <h3 class="heading">Conclusion</h3>
+            <p>
+                The octal number system provides a concise and efficient way to represent binary data, particularly
+                useful when working
+                with 3-bit groupings. While less prevalent than hexadecimal in modern computing, octal remains
+                relevant in specific contexts such as Unix file permissions and legacy systems.
+            </p>
+        </section>
         </section>
 
 

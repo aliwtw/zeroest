@@ -42,11 +42,10 @@
             <!-- JS will populate this -->
         </nav>
         <hr>
-
         <!-- Add video here -->
         <!-- ?rel=0 To stop youtube from showing related videos -->
         <div>
-            <h2>Video Adaptation</h2>
+            <h2 hidden>Video Adaptation</h2>
             <iframe class="video" src="https://www.youtube.com/embed/VuUiXKslxmU?rel=0" title="Novice" frameborder="0"
                 allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy"
                 style="border: none;" allowfullscreen>
@@ -57,201 +56,464 @@
     <!-- Main Content -->
     <main>
 
-        <section id="binary-fundamentals">
-            <h1 class="heading">Binary Fundamentals</h1>
 
-            <section id="what-is-binary">
-                <h2 class="heading">What is Binary?</h2>
+        <h1 class="heading">Binary Fundamentals</h1>
 
-                <section id="definition">
-                    <h3 class="heading">Definition</h3>
-                    <p>
-                        The <b>binary numeral system</b>, also referred to as <i>base-2</i>, is a positional number
-                        system that utilizes exactly <span style="white-space: nowrap;">two symbols: <b>{0,
-                                1}</b>.</span> Each digit, called a <b>bit</b>,
-                        occupies a position corresponding to a power of two, analogous to the base-10 system in which
-                        digits represent powers of ten.
-                    </p>
+        <section id="what-is-binary">
+            <h2 class="heading">What is Binary?</h2>
 
-                    <p>
-                        A <b>number base</b> (or radix) determines the number of unique digits, including
-                        zero, used to represent numbers. For example, base-2 (binary) uses only 0 and 1, while base-10
-                        (decimal) uses digits from 0 to 9.
-                        <br>
+            <section id="definition">
+                <h3 class="heading">Definition</h3>
+                <p>
+                    The <b>binary numeral system</b>, also referred to as <i>base-2</i>, is a positional number
+                    system that utilizes exactly <span style="white-space: nowrap;">two symbols: <b>{0,
+                            1}</b>.</span> Each digit, called a <b>bit</b>,
+                    occupies a position corresponding to a power of two, analogous to the base-10 system in which
+                    digits represent powers of ten.
+                </p>
 
-                        Numbers with there bases can be can be represented as: $\text{Number}_\text{Base}$ <br>
-                        <b> Example:</b> <i>Binary:</i> $0101_2$, <i>Decimal:</i> $5_{10}$
-                    </p>
+                <p>
+                    A <b>number base</b> (or radix) determines the number of unique digits, including
+                    zero, used to represent numbers. For example, base-2 (binary) uses only 0 and 1, while base-10
+                    (decimal) uses digits from 0 to 9.
+                    <br>
 
-                    <p>
-                        Formally, an $n$-bit binary number can be expressed as:
-                        $$
-                        b_{n-1}b_{n-2}\dots b_1b_0
-                        $$
-                        where each bit $b_i \in \{0, 1\}$ for all $i \in \{0, 1, \dots, n-1\}$. The corresponding
-                        integer value (in base-10) is given by the weighted sum:
-                        $$
-                        \sum_{i=0}^{n-1} b_i \cdot 2^i
-                        $$
-                        
-                        The bit $b_0$ is referred to as the least significant bit (LSB), as it corresponds to the lowest positional weight, $2^0$. In contrast, the bit $b_{n-1}$ is the most significant bit (MSB), associated with the highest positional weight, $2^{n-1}$.
+                    Numbers with there bases can be can be represented as: $\text{Number}_\text{Base}$ <br>
+                    <b> Example:</b> <i>Binary:</i> $0101_2$, <i>Decimal:</i> $5_{10}$
+                </p>
 
-                    </p>
-                </section>
-
-
-                <section id="binary-example">
-                    <h2 class="heading">Example</h2>
-                    <p> Convert the binary number $1011_2$ to its decimal (base-10) representation: </p>
-                    <p style="text-align: left;">
-                        $$
-                        \begin{aligned}
-                        1011_2 &= (1 \times 2^3) + (0 \times 2^2) + (1 \times 2^1) + (1 \times 2^0) \\
-                        &= 8 + 0 + 2 + 1 \\
-                        &= 11_{10}
-                        \end{aligned}
-                        $$
-                    </p>
-                </section>
-            </section>
-
-            <section id="why-binary">
-                <h2 class="heading">Why Binary?</h2>
-
-                <section id="binary-logical-foundation">
-                    <h3 class="heading">Compatibility with Boolean Algebra</h3>
-                    <p>
-                        Binary logic aligns directly with Boolean algebra - the foundation of digital logic.
-                        Operations like AND, OR, NOT, and XOR are naturally defined over binary inputs, enabling the
-                        construction of efficient and scalable logic circuits.
-                    </p>
-                </section>
-
-                <section id="binary-hardware-efficiency">
-                    <h3 class="heading">Efficient Hardware Implementation</h3>
-                    <p>
-                        Binary logic gates are simple to implement using transistors. This results in compact,
-                        power-efficient circuits that scale effectively, supporting advancements in microprocessor
-                        design and integrated systems.
-                    </p>
-                </section>
-
-                <section id="binary-finite-fields">
-                    <h3 class="heading">Formal Integration with Finite Fields</h3>
-                    <p>
-                        Binary operations correspond to arithmetic in the finite field $\mathbb{F}_2$, which is
-                        fundamental in cryptographic constructions, error-correcting codes, and formal verification
-                        methods. This algebraic structure provides a rigorous framework for secure digital
-                        communication.
-                    </p>
-                </section>
-
-                <section id="binary-determinism">
-                    <h3 class="heading">Deterministic Computation Models</h3>
-                    <p>
-                        Binary supports deterministic models such as finite automata and Turing machines. These
-                        models form the theoretical foundation of computer science, demonstrating that binary is
-                        sufficient for expressing any computable function within a formal system.
-                    </p>
-                </section>
-                
-                <section id="binary-physical-alignment">
-                    <h3 class="heading">Physical Alignment with Digital Electronics</h3>
-                    <p>
-                        Binary representation is inherently suited to physical hardware, where two distinct voltage
-                        levels represent logical 0 and 1 (commonly 0V and a positive voltage like 3.3V or 5V). This
-                        direct mapping simplifies circuit design and minimizes signal ambiguity.
-                    </p>
-                </section>
-
-                <section id="binary-stability">
-                    <h3 class="heading">Noise Tolerance and Signal Stability</h3>
-                    <p>
-                        With only two discrete states, binary systems are more resistant to electrical noise and
-                        voltage fluctuations than multi-level systems. This improves reliability and reduces the
-                        chance of signal misinterpretation in digital circuits.
-                    </p>
-                </section>
-            </section>
-
-
-
-            <section id="binary-units">
-                <h3 class="heading">Basic Binary Units</h3>
-
-                <section id="bit">
-                    <h4 class="heading">Bit</h4>
-                    <p>
-                        A <strong>bit (b)</strong> (short for binary digit) is the fundamental unit of binary information.
-                        It holds one of two values: 0 or 1.
-                        In algebraic terms, a bit belongs to the finite field $\mathbb{F}_2$, which contains exactly
-                        two elements.
-                    </p>
-                </section>
-
-                <section id="byte">
-                    <h3 class="heading">Byte</h3>
-                    <p>
-                        A <strong>byte (B)</strong> consists of 8 bits and is a standard unit for data storage and memory
-                        access: <i style="color: grey;">8-dimensional vector over the binary field</i>
-                    </p>
+                <p>
+                    Formally, an $n$-bit binary number can be expressed as:
                     $$
-                    \text{Byte} = (b_7, b_6, b_5, b_4, b_3, b_2, b_1, b_0) \in \mathbb{F}_2^8
+                    b_{n-1}b_{n-2}\dots b_1b_0
                     $$
-                    <ul>
-                        <li>Represents one ASCII character.</li>
-                        <li>CPU architectures commonly operate on byte-aligned data.</li>
-                        <li>Maximum value (unsigned): $2^8 - 1 = 255$
-                        </li>
-                    </ul>
-                </section>
+                    Where each bit $b_i \in \{0, 1\}$ for all $i \in \{0, 1, \dots, n-1\}$. The corresponding
+                    integer value (in base-10) is given by the weighted sum:
+                    $$
+                    \sum_{i=0}^{n-1} b_i \cdot 2^i
+                    $$
 
-                <section id="nibble">
-                    <h3 class="heading">Nibble</h3>
-                    <p>
-                        A <strong>nibble</strong> is a group of 4 bits-exactly half a byte: $\text{Nibble} = (b_3, b_2,
-                        b_1, b_0) \in \mathbb{F}_2^4$
-                    </p>
-                    <ul>
-                        <li>
-                            Capable of representing a single hexadecimal digit (0–15). <br>
-                            Example: $ 0000_2 = 0_{16}, \quad 1111_2 = F_{16}$
-                        </li>
-                        <li>Used in compact digital representations such as 7-segment displays.</li>
-                    </ul>
-                </section>
+                    The bit $b_0$ is referred to as the least significant bit (LSB), as it corresponds to the lowest
+                    positional weight, $2^0$. In contrast, the bit $b_{n-1}$ is the most significant bit (MSB),
+                    associated with the highest positional weight, $2^{n-1}$.
 
-
-                <section id="word">
-                    <h3 class="heading">Word</h3>
-                    <p>A <strong>word</strong> is a fixed-length sequence of bits processed as a unit by a CPU. The word
-                        size defines the computational width of a system:</p>
-                    <ul>
-                        <li>Common sizes: 32-bit and 64-bit.</li>
-                        <li>Defines processor architecture and affects performance, memory addressing, and instruction
-                            sets.</li>
-                    </ul>
-                </section>
+                </p>
             </section>
 
-            <section id="conclusion">
-                <h3 class="heading">5. Conclusion</h3>
-                <p>The binary system is the foundation of digital computation, providing a simple and efficient
-                    framework suited to electronic hardware. Its connection to Boolean algebra and finite fields
-                    supports logic design and cryptography. Understanding its structure and basic units is essential
-                    for representing </p>
+
+            <section id="binary-example">
+                <h3 class="heading">Example</h3>
+                <p> Convert the binary number
+                    <span style="border: solid 1px grey;">
+                        <input id="bin-input"
+                            style="margin-right: 0; width:9ch; font-weight: bold; text-align: right; border: none; outline: none;"
+                            type="text" value="1011">$_2$
+                    </span>
+                    to its decimal (base-10) representation:
+                </p>
+                <p id="bin-output"
+                    style="text-align: left; overflow-x: auto; white-space: nowrap; border: 1px solid #ccc; max-width: 50vw;">
+                    $$
+                    \begin{aligned}
+                    1011_2 &= (1 \times 2^3) + (0 \times 2^2) + (1 \times 2^1) + (1 \times 2^0) \\
+                    &= 8 + 0 + 2 + 1 \\
+                    &= 11_{10}
+                    \end{aligned}
+                    $$
+                </p>
+
+                <script>
+                    const input = document.getElementById("bin-input");
+                    let value = input.value;
+
+                    input.addEventListener("input", e => {
+                        e.target.value = e.target.value.replace(/[^01]/g, "");
+
+                        const targetVal = e.target.value;
+
+                        if (value !== targetVal) {
+                            value = targetVal;
+                            if (targetVal) {
+                                calcOutput();
+                            } else {
+                                document.getElementById("bin-output").innerHTML = "<i>Enter a binary value above to see results<i>";
+                            }
+
+                        }
+                    });
+
+                    function calcOutput() {
+
+                        let result = 0;
+
+                        let text = `$$
+                                    \\begin{aligned}`;
+
+                        text += value + "_2 &= ";
+
+                        for (let i = 0; i < value.length; i++) {
+
+                            let power = value.length - 1 - i;
+
+                            text += `(${value[i]} \\times 2^{${power}})`;
+
+                            if (i === value.length - 1) {
+                                text += " \\\\";
+                            } else {
+                                text += " + ";
+                            }
+                        }
+
+                        text += '&= ';
+
+                        for (let i = 0; i < value.length; i++) {
+
+                            let power = value.length - 1 - i;
+                            const bitVal = value[i] * (2 ** power);
+
+                            result += bitVal;
+
+                            text += `${bitVal}`;
+
+                            if (i === value.length - 1) {
+                                text += " \\\\";
+                            } else {
+                                text += " + ";
+                            }
+                        }
+
+                        text += `&= ${result}_{10}
+                                \\end{aligned}
+                                $$`;
+
+                        document.getElementById("bin-output").innerHTML = text;
+                        MathJax.typeset();
+                    }
+                </script>
+
+                <a class="link" href="../decimal.html#example-binary">How to convert a Decimal number to binary?</a>
+                <br>
+
+            </section>
+        </section>
+
+        <section id="universality">
+            <h3 class="heading">Universality Across Power-of-Two Bases</h3>
+            <p>
+                A fundamental property of binary representation is that it enables efficient conversion to numeral
+                systems whose bases are powers of two, \(2^b\) where \(b \geq 1\). Since binary itself is base <b>2</b>,
+                each positional digit $d$ in a base \(2^b\) numeral system corresponds directly to a fixed-length
+                group of $b$ binary digits. Specifically, any digit $d$ can be expressed in binary as:
+
+                \[
+                d = \sum_{i=0}^{b-1} a_i 2^i \quad \text{where } a_i \in \{0,1\}
+                \]
+
+                This correspondence follows from the positional structure of the numeral system.
+                In particular, a digit $d$ located at position $k$ in base \(2^b\) represents, the value
+
+                \(
+                d \times (2^b)^k = d \times 2^{bk}
+                \).
+                <br>
+                Therefore, the binary representation of the digit $d$ occupies a block of $b$ bits beginning
+                at bit position \(b \times k\).<br>
+                As a result, \(x\) digits in base \(2^b\) maps exactly to \(b \times x\) contiguous bits, consisting of
+                total \(x\), $b$-bit segments in the binary representation.
+            </p>
+
+            <p>
+                This also compels the relationship to be firmly held during positional shifts. For example, shifting the position of a
+                digit by one place to the left in a base \(2^b\)
+                representation is equivalent to shifting the binary representation left by $b$ bits. This
+                equivalence reflects the shared exponential structure of the two systems and explains why bases that are
+                powers of two (such as octal and hexadecimal) map naturally and efficiently onto binary representations.
+            </p>
+
+            <p>
+                Consequently, digits in a base \(2^b\) numeral system can be converted to binary by replacing each
+                digit with its equivalent $b$-bit binary representation.
+            </p>
+
+            <p>
+                Conversely, conversion from binary to any base \(2^b\) can be performed by partitioning the binary
+                sequence into contiguous groups of \(b\) bits and mapping each group to its corresponding digit in the
+                target base. Since there are \(2^b\) possible combinations of \(b\) binary digits, these combinations
+                correspond one-to-one with the digit set \(\{0,1,\dots,2^b-1\}\). <br>
+                <u>Note:</u> If the number of binary bits is not a multiple of the required group size for the target
+                base, prepend zeros to the left of the binary number as padding bits.
+            </p>
+            <br>
+            </p>
+            This method naturally generalizes to Octal numbers and Hexadecimals:
+            </p>
+
+            <ul>
+                <li>
+                    <b>Octal (Base-8):</b> Groups of three binary digits map neatly to octal.
+                    <a class="link" href="../octal.html">Learn more about Octal numbers.</a>
+                </li>
+                <li>
+                    <b>Hexadecimal (Base-16):</b> Groups of four binary digits convert directly to one hex digit.
+                    <a class="link" href="../hexa.html">Learn more about Hexadecimals.</a>
+                </li>
+                <br>
+            </ul>
+            <p>
+                This is why computers use binary internally but often display values in octal or hexadecimal for
+                clarity.
+            </p>
+            <section>
+                <h4 class="heading">Examples</h3>
+                    <br>
+                    <p> Convert the binary number
+                        <span style="border: solid 1px grey;">
+                            <input id="bin-input2"
+                                style="margin-right: 0; width:9ch; font-weight: bold; text-align: right; border: none; outline: none;"
+                                type="text" value="1011">$_2$
+                        </span>
+                        to its Otctal (base-8) and Hexadecimal (base-16) representations:
+                    <div id="bin-output2"></div>
+                    </p>
+                    <script>
+                        const binInput = document.getElementById("bin-input2");
+                        const outputDiv = document.getElementById("bin-output2");
+
+                        binInput.addEventListener("input", e => {
+                            e.target.value = e.target.value.replace(/[^01]/g, "");
+
+                            const targetVal = e.target.value;
+
+                            if (value !== targetVal) {
+                                value = targetVal;
+                                if (targetVal) {
+                                    calcOutput2(value);
+                                } else {
+                                    outputDiv.innerHTML = "<i>Enter a binary value above to see results<i>";
+                                }
+
+                            }
+                        });
+
+                        function getPadded(value, exp) { //exp is 2's exponent
+                            if (value.length % exp === 0) return value;
+                            return '0'.repeat(exp - (value.length % exp)) + value;
+                        }
+
+                        function createTable(paddedValue, exp) {
+                            const newTable = document.createElement("table");
+                            newTable.style.textAlign = "center";
+
+
+                            const row1 = document.createElement("tr");
+                            const row2 = document.createElement("tr");
+                            const row3 = document.createElement("tr");
+                            const row4 = document.createElement("tr");
+
+                            newTable.appendChild(row1);
+                            newTable.appendChild(row2);
+                            newTable.appendChild(row3);
+                            newTable.appendChild(row4);
+
+                            let finalResult = []
+                            for (let i = 0; i < paddedValue.length; i += exp) {
+                                let digitResult = 0
+                                let digitResults = []
+                                for (let j = 0; j < exp; j++) {
+                                    const cellR1 = document.createElement("td");
+                                    const cellR2 = document.createElement("td");
+
+                                    const result = paddedValue[i + j] * (2 ** ((exp - 1) - j));
+                                    digitResult += result;
+
+                                    digitResults.push(result);
+
+                                    cellR1.innerHTML = paddedValue[i + j];
+                                    cellR2.innerHTML = `\${${paddedValue[i + j]}} \\times 2^${(exp - 1) - j} = ${result}$`;
+
+                                    row1.appendChild(cellR1);
+                                    row2.appendChild(cellR2);
+
+                                }
+
+                                const hexField = "0123456789ABCDEF"
+                                finalResult.push(hexField[digitResult]);
+
+                                const cellR3 = document.createElement("td");
+                                cellR3.colSpan = exp
+                                cellR3.innerHTML += digitResults.join(" + ") + " = " + digitResult;
+
+                                row3.appendChild(cellR3)
+                            }
+
+                            const cell = document.createElement("td");
+                            cell.innerHTML = `$${finalResult.join('')}_{${2 ** exp}}$`
+                            cell.colSpan = paddedValue.length;
+
+                            row4.appendChild(cell);
+
+                            return newTable;
+                        }
+
+                        function calcOutput2(value) {
+                            const binPaddedOct = getPadded(value, 3);
+                            const binPaddedHex = getPadded(value, 4);
+
+                            outputDiv.innerHTML = "<h4 id='bin-oct'>To octal</h4>";
+                            outputDiv.appendChild(createTable(binPaddedOct, 3));
+                            outputDiv.innerHTML += `<p>
+                                To convert an octal number to binary, replace each octal digit with its 3-bit binary equivalent and concatenate the results.<br>
+                                Follow the same steps as above but in reverse order.
+                                </p>`;
+
+                            outputDiv.innerHTML += "<br><br>";
+
+                            outputDiv.innerHTML += "<h4  id='bin-hex'>To Hexadecimal</h4>";
+                            outputDiv.appendChild(createTable(binPaddedHex, 4));
+                            outputDiv.innerHTML += `<p>
+                                To convert a Hexadecimal to binary, replace each Hexa digit with its 4-bit binary equivalent and concatenate the results.<br>
+                                Follow the same steps as above but in reverse order.
+                                </p>`;
+
+
+                            MathJax.typeset();
+                        }
+
+                        // initialise
+                        calcOutput2("1011");
+
+                    </script>
+            </section>
+        </section>
+        <section id="why-binary">
+            <h2 class="heading">Why Binary?</h2>
+
+            <section id="binary-logical-foundation">
+                <h3 class="heading">Compatibility with Boolean Algebra</h3>
+                <p>
+                    Binary logic aligns directly with Boolean algebra - the foundation of digital logic.
+                    Operations like AND, OR, NOT, and XOR are naturally defined over binary inputs, enabling the
+                    construction of efficient and scalable logic circuits.
+                </p>
+            </section>
+
+            <section id="binary-hardware-efficiency">
+                <h3 class="heading">Efficient Hardware Implementation</h3>
+                <p>
+                    Binary logic gates are simple to implement using transistors. This results in compact,
+                    power-efficient circuits that scale effectively, supporting advancements in microprocessor
+                    design and integrated systems.
+                </p>
+            </section>
+
+            <section id="binary-finite-fields">
+                <h3 class="heading">Formal Integration with Finite Fields</h3>
+                <p>
+                    Binary operations correspond to arithmetic in the finite field $\mathbb{F}_2$, which is
+                    fundamental in cryptographic constructions, error-correcting codes, and formal verification
+                    methods. This algebraic structure provides a rigorous framework for secure digital
+                    communication.
+                </p>
+            </section>
+
+            <section id="binary-determinism">
+                <h3 class="heading">Deterministic Computation Models</h3>
+                <p>
+                    Binary supports deterministic models such as finite automata and Turing machines. These
+                    models form the theoretical foundation of computer science, demonstrating that binary is
+                    sufficient for expressing any computable function within a formal system.
+                </p>
+            </section>
+
+            <section id="binary-physical-alignment">
+                <h3 class="heading">Physical Alignment with Digital Electronics</h3>
+                <p>
+                    Binary representation is inherently suited to physical hardware, where two distinct voltage
+                    levels represent logical 0 and 1 (commonly 0V and a positive voltage like 3.3V or 5V). This
+                    direct mapping simplifies circuit design and minimizes signal ambiguity.
+                </p>
+            </section>
+
+            <section id="binary-stability">
+                <h3 class="heading">Noise Tolerance and Signal Stability</h3>
+                <p>
+                    With only two discrete states, binary systems are more resistant to electrical noise and
+                    voltage fluctuations than multi-level systems. This improves reliability and reduces the
+                    chance of signal misinterpretation in digital circuits.
+                </p>
             </section>
         </section>
 
 
-        <p id="footer">
-            <b>Usage & License</b> <br>
-            This site is freely provided for the pursuit of knowledge. <br>
-            All content must be properly cited in any private, public, or scholarly use. <br>
-            No permission is granted for AI or machine learning systems to crawl, store, or utilize this site’s content.
-            <br>
-            <br>
-        </p>
+
+        <section id="binary-units">
+            <h3 class="heading">Basic Binary Units</h3>
+
+            <section id="bit">
+                <h4 class="heading">Bit</h4>
+                <p>
+                    A <strong>bit (b)</strong> (short for binary digit) is the fundamental unit of binary information.
+                    It holds one of two values: 0 or 1.
+                    In algebraic terms, a bit belongs to the finite field $\mathbb{F}_2$, which contains exactly
+                    two elements.
+                </p>
+            </section>
+
+            <section id="nibble">
+                <h3 class="heading">Nibble</h3>
+                <p>
+                    A <strong>nibble</strong> is a group of 4 bits-exactly half a byte: $\text{Nibble} = (b_3, b_2,
+                    b_1, b_0) \in \mathbb{F}_2^4$
+                </p>
+                <ul>
+                    <li>
+                        Capable of representing a single <a class="link" href="../hexa.html">hexadecimal</a> digit
+                        (0–15). <br>
+                        Example: $ 0000_2 = 0_{16}, \quad 1111_2 = F_{16}$
+                    </li>
+                    <li>Used in compact digital representations such as 7-segment displays.</li>
+                </ul>
+            </section>
+
+            <section id="byte">
+                <h3 class="heading">Byte</h3>
+                <p>
+                    A <strong>byte (B)</strong> consists of 8 bits and is a standard unit for data storage and memory
+                    access.
+                </p>
+                $$
+                \text{Byte} = (b_7, b_6, b_5, b_4, b_3, b_2, b_1, b_0) \in \mathbb{F}_2^8
+                $$
+                <ul>
+                    <li>Represents one ASCII character.</li>
+                    <li>CPU architectures commonly operate on byte-aligned data.</li>
+                    <li>Maximum value (unsigned): $2^8 - 1 = 255$
+                    </li>
+                </ul>
+            </section>
+
+            <section id="word">
+                <h3 class="heading">Word</h3>
+                <p>A <strong>word</strong> is a fixed-length sequence of bits processed as a unit by a CPU. The word
+                    size defines the computational width of a system:</p>
+                <ul>
+                    <li>Common sizes: 32-bit and 64-bit.</li>
+                    <li>Defines processor architecture and affects performance, memory addressing, and instruction
+                        sets.</li>
+                </ul>
+            </section>
+        </section>
+
+        <section id="conclusion">
+            <h3 class="heading">Conclusion</h3>
+            <p>The binary system is the foundation of digital computation, providing a simple and efficient
+                framework suited to electronic hardware. Its connection to Boolean algebra and finite fields
+                supports logic design and cryptography. Understanding its structure and basic units is essential
+                for representing </p>
+        </section>
+
+
+        <p id="footer"></p>
     </main>
 </body>
 

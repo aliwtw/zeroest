@@ -182,6 +182,7 @@
                     </ul>
                     <p>Therefore, the binary number <code>1101101011110001</code> is represented as <code>DAF1</code> in
                         hexadecimal notation.</p>
+                        <a class="link" href="./binary/intro.html#bin-hex">How to convert a Binary to Hexadecimal?</a>
                 </section>
 
             </section>
@@ -281,14 +282,86 @@
                 </table>
             </section>
 
+            <section id="hexa-example">
+                <h3 class="heading">Example</h3>
+                <p> Convert the Hexa number
+                    <span style="border: solid 1px grey;">
+                        <input id="hex-input"
+                            style="margin-right: 0; width:9ch; font-weight: bold; text-align: right; border: none; outline: none;"
+                            type="text" value="CA75">$_{16}$
+                    </span>
+                    to its decimal (base-10) representation:
+                </p>
+                <p id="hex-output"
+                    style="text-align: left; overflow-x: auto; white-space: nowrap; border: 1px solid #ccc; max-width: 50vw;">
+                </p>
+
+                <script>
+                    const input = document.getElementById("hex-input");
+                    const output = document.getElementById("hex-output");
+                    let value = input.value.toUpperCase(); // ensure uppercase
+
+                    function calcOutput() {
+                        if (!value) {
+                            output.innerHTML = "<i>Enter a Hex value above to see results</i>";
+                            return;
+                        }
+
+                        let result = 0;
+                        let text = `$$\\begin{aligned}`;
+
+                        // Show conversion step
+                        text += value + "_{16} &= ";
+
+                        for (let i = 0; i < value.length; i++) {
+                            let power = value.length - 1 - i;
+                            let digit = parseInt(value[i], 16); // convert hex digit to decimal
+                            text += `(${digit} \\times 16^{${power}})`;
+                            text += (i === value.length - 1) ? " \\\\" : " + ";
+                        }
+
+                        // Compute decimal values
+                        text += "&= ";
+                        for (let i = 0; i < value.length; i++) {
+                            let power = value.length - 1 - i;
+                            let digit = parseInt(value[i], 16);
+                            const bitVal = digit * (16 ** power);
+                            result += bitVal;
+                            text += `${bitVal}`;
+                            text += (i === value.length - 1) ? " \\\\" : " + ";
+                        }
+
+                        text += `&= ${result}_{10} \\end{aligned}$$`;
+
+                        output.innerHTML = text;
+                        MathJax.typeset();
+                    }
+
+                    // Input listener
+                    input.addEventListener("input", e => {
+                        e.target.value = e.target.value.toUpperCase().replace(/[^0-9A-F]/g, "");
+                        value = e.target.value;
+                        calcOutput();
+                    });
+
+                    // Initialise
+                    calcOutput();
+                </script>
+
+                <a class="link" href="./decimal.html#example-hex">How to convert a Decimal number to Hexadecimal?</a>
+            </section>
+
             <section id="conclusion">
                 <h3 class="heading">Conclusion</h3>
                 <p>
                     Hexadecimal balances human readability with efficient representation of binary data. Its direct
                     correspondence with binary enhances its utility in computing.
-                    When writing hexadecimal numbers in programming and technical contexts, a prefix of <code>0x</code> is often 
-                    added (e.g., <code>0xDAF1</code>) to clearly indicate that the number is in base 16. This helps distinguish 
-                    hexadecimal values from decimal or other numbering systems, avoiding confusion in code or documentation.
+                    When writing hexadecimal numbers in programming and technical contexts, a prefix of <code>0x</code>
+                    is often
+                    added (e.g., <code>0xDAF1</code>) to clearly indicate that the number is in base 16. This helps
+                    distinguish
+                    hexadecimal values from decimal or other numbering systems, avoiding confusion in code or
+                    documentation.
                 </p>
             </section>
         </section>
