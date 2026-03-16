@@ -114,7 +114,7 @@ function generateIEEEReference() {
     const websiteName = "Zeroest";
     const author = "A. Husnain";
     const title = document.title || "Untitled";
-    const url = window.location.href;
+    const url = window.location.href.split('#')[0];
 
     // Format date to IEEE style: [Accessed: Jun. 15, 2025]
     const dateObj = new Date();
